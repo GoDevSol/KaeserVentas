@@ -1,0 +1,22 @@
+ion-content {
+    --background: url('/assets/img/login/background.png') no-repeat center center / cover;
+}
+
+
+.vertical-align-content > *
+{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+}
+.roundedInput {
+--border-color: var(--ion-color-medium-shade);
+  margin-top: 5px;
+--border-radius: 25px;
+--border-width: 2px;
+--box-shadow: 0px gray;
+--color: black;
+--highlight-height: 0;
+--background: transparent;
+}

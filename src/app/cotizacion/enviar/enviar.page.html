@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('cotizacion')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('cotizacion')">
+        Confirmacion de Envio</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      Verifica los datos de la Solicitud de Cotizacion
+
+      <div style="margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;">
+        <h1> Datos:</h1>
+        <h2> No. de oportunidad: 002</h2>
+        <h2> No. de oferta: 2021001</h2>
+        <h2> Id Cliente: 06498</h2>
+        <h2> Nombre del cliente: Fenix Media</h2>
+        <h2> Dirección de entrega: 25 Avenida 1-89 Ofi 1703, Zona 15 Edificio Insigne</h2>
+        <h2> Contacto: +502 23099381 </h2>
+        <h2> Condiciones de pago: Pago Aplazado</h2>
+        <h2> Moneda: Dollar</h2>
+        <h2> Porcentaje de descuento: 30%</h2>
+        <h2> Correo electrónico del cliente: jhonatan.l@fenixmedia.org</h2>
+
+
+      </div>
+
+      <hr>
+      <div style="border-top: 2px solid #4C7176; padding-top: 10px;">
+        <table>
+          <tr>
+            <th>Unidades</th>
+            <th>Descripcion</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Aircenter SX 7.5</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Compresor es de tornillo rotativo CSG-2</td>
+          </tr>
+
+        </table>
+      </div>
+
+
+      <div style="text-align: -webkit-center; margin-top: 20px;">
+
+        <ion-button (click)="sendMail('enviar')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ENVIAR</ion-button>
+      </div>
+    </ion-card-content>
+
+
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="/assets/img/footer/footer.png"></ion-img>
+  </div>
+</ion-footer>
