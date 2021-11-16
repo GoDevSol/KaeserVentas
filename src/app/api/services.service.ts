@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ServicesService {
 
-  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  URL = "http://localhost/kaeserVentas/api/req/";
+  URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  //URL = "http://localhost/kaeserVentas/api/req/";
 
   constructor() { }
 

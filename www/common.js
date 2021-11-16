@@ -456,9 +456,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ServicesService = class ServicesService {
+    //URL = "http://localhost/kaeserVentas/api/req/";
     constructor() {
-        //URL = "https://godevsol.tech/kaeserVentas/api/req/";
-        this.URL = "http://localhost/kaeserVentas/api/req/";
+        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
     }
     //LOGIN
     login(credentials) {
