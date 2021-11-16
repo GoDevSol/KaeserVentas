@@ -70,6 +70,7 @@ StartPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule,
             _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule,
             _start_routing_module__WEBPACK_IMPORTED_MODULE_0__.StartPageRoutingModule
         ],
@@ -92,31 +93,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "StartPage": () => (/* binding */ StartPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_start_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./start.page.html */ 4022);
 /* harmony import */ var _start_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./start.page.scss */ 1234);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 9535);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 3324);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../api/services.service */ 7242);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 9535);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/storage-angular */ 2604);
+
+
+
+
 
 
 
 
 
 let StartPage = class StartPage {
-    constructor(router) {
+    constructor(router, storage, formBuilder, api, toastController) {
         this.router = router;
+        this.storage = storage;
+        this.formBuilder = formBuilder;
+        this.api = api;
+        this.toastController = toastController;
+        this.formLogin = this.formBuilder.group({
+            user: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required])),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required]))
+        });
     }
     ngOnInit() {
     }
-    loginUser() {
-        this.router.navigateByUrl("menu/register");
+    getToast() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                color: 'dark',
+                header: 'Usuario o Contraseña incorrectos.',
+                position: 'top',
+                duration: 750
+            });
+            toast.present();
+        });
+    }
+    loginUser(credentials) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const login = yield this.api.login(credentials);
+            if (login.message == "Successful login.") {
+                this.storage.create();
+                this.formLogin.reset();
+                this.storage.set("JWT", login.jwt);
+                this.storage.set("isLogged", true);
+                this.router.navigateByUrl("menu/register");
+            }
+            else {
+                this.getToast();
+            }
+        });
     }
 };
 StartPage.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
+    { type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_6__.Storage },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormBuilder },
+    { type: _api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ToastController }
 ];
-StartPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+StartPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-start',
         template: _raw_loader_start_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_start_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -153,7 +197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content [fullscreen]=\"true\" class=\"vertical-align-content\">\r\n\r\n  <ion-grid>\r\n    <ion-row>\r\n      <ion-col>\r\n        <div style=\"text-align: -webkit-center;\">\r\n          <ion-img style=\"width:70%;\r\n                      display: block;\" src=\"assets/img/login/logo.png\">\r\n          </ion-img>\r\n        </div>\r\n\r\n\r\n        <ion-item class=\"roundedInput\">\r\n          <ion-input placeholder=\"Usuario\"></ion-input>\r\n        </ion-item>\r\n        <ion-item class=\"roundedInput\">\r\n          <ion-input placeholder=\"Contraseña\"></ion-input>\r\n        </ion-item>\r\n\r\n        <div style=\"text-align: -webkit-center;\">\r\n          <ion-button style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;\" (click)=\"loginUser()\">\r\n            Iniciar\r\n            Sesiòn</ion-button>\r\n        </div>\r\n\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n\r\n\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content [fullscreen]=\"true\" class=\"vertical-align-content\">\r\n\r\n  <ion-grid>\r\n    <ion-row>\r\n      <ion-col>\r\n        <div style=\"text-align: -webkit-center;\">\r\n          <ion-img style=\"width:70%;\r\n                      display: block;\" src=\"assets/img/login/logo.png\">\r\n          </ion-img>\r\n        </div>\r\n\r\n\r\n        <form [formGroup]=\"formLogin\">\r\n\r\n          <ion-item class=\"roundedInput\">\r\n            <ion-input formControlName=\"user\" placeholder=\"Usuario\"></ion-input>\r\n          </ion-item>\r\n\r\n          <ion-item class=\"roundedInput\">\r\n            <ion-input formControlName=\"password\" type=\"password\" placeholder=\"Contraseña\"></ion-input>\r\n          </ion-item>\r\n          <div style=\"text-align: -webkit-center;\">\r\n            <ion-button [disabled]=\"!formLogin.valid\"\r\n              style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;\"\r\n              (click)=\"loginUser(formLogin.value)\">Iniciar Sesión</ion-button>\r\n          </div>\r\n\r\n        </form>\r\n\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n\r\n\r\n</ion-content>");
 
 /***/ })
 

@@ -32,7 +32,7 @@
         <ion-item button detail detail-icon="add-outline" *ngFor="let tipoEquipo of tiposEquipo"
           style=" --background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px; "
           (click)=" showModal(tipoEquipo.id)">
-          <h1>{{tipoEquipo.tipo}}</h1>
+          <h1>{{tipoEquipo.tipo.toUpperCase()}}</h1>
         </ion-item>
 
 

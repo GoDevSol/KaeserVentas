@@ -1,5 +1,10 @@
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
+import { ServicesService } from './../api/services.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-start',
@@ -8,15 +13,44 @@ import { Router } from '@angular/router';
 })
 export class StartPage implements OnInit {
 
-  constructor(private router: Router) {
+  formLogin: FormGroup;
+
+  constructor(private router: Router, private storage: Storage, private formBuilder: FormBuilder, private api: ServicesService, public toastController: ToastController) {
+
+    this.formLogin = this.formBuilder.group({
+      user: new FormControl("", Validators.compose([Validators.required])),
+      password: new FormControl("", Validators.compose([Validators.required]))
+    })
 
   }
 
   ngOnInit() {
   }
 
-  loginUser() {
-    this.router.navigateByUrl("menu/register");
+  async getToast() {
+    const toast = await this.toastController.create({
+      color: 'dark',
+      header: 'Usuario o Contraseña incorrectos.',
+      position: 'top',
+      duration: 750
+    });
+    toast.present();
+  }
+
+  async loginUser(credentials) {
+    const login = await this.api.login(credentials)
+
+    if (login.message == "Successful login.") {
+      this.storage.create();
+      this.formLogin.reset()
+      this.storage.set("JWT", login.jwt);
+      this.storage.set("isLogged", true);
+      this.router.navigateByUrl("menu/register");
+    } else {
+      this.getToast()
+    }
+
+
   }
 
 }

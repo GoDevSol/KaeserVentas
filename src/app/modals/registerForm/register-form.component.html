@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar
     style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
-    <ion-title>{{tipoEquipo.tipo}}</ion-title>
+    <ion-title>{{tipoEquipo.tipo.toUpperCase()}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">X</ion-button>
     </ion-buttons>
@@ -9,6 +9,14 @@
 </ion-header>
 
 <ion-content fullscreen>
+  <div style="text-align: -webkit-center;">
+    <ion-item class="roundedInput" style="width:90%;">
+      <ion-input type="text" placeholder="Busqueda" (input)="filter($event.target)"></ion-input>
+    </ion-item>
+  </div>
+
+
+
 
   <ion-card style="--background:#E6E7E7">
 
@@ -27,14 +35,16 @@
             </ion-row>
             <ion-row>
               <ion-col size-xs="4" style="text-align: right;">
-                <ion-button type="submit" style="--border-radius: 25px;--padding: 0 0px; --background: #59595C">-
+                <ion-button (click)="restar(modelo)"
+                  style="--border-radius: 25px;--padding: 0 0px; --background: #59595C">-
                 </ion-button>
               </ion-col>
               <ion-col size-xs="4" style="text-align: center;">
-                <h1 style="--border-radius: 25px;--padding: 0 25px; --background: #59595C">0</h1>
+                <h1 style="--border-radius: 25px;--padding: 0 25px; --background: #59595C">{{modelo.cantidad}}</h1>
               </ion-col>
               <ion-col size-xs="4" style="text-align: left;">
-                <ion-button type="submit" style="--border-radius: 25px;--padding: 0 0px; --background: #4C7176">+
+                <ion-button (click)="sumar(modelo)"
+                  style="--border-radius: 25px;--padding: 0 0px; --background: #4C7176">+
                 </ion-button>
               </ion-col>
             </ion-row>

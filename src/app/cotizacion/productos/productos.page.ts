@@ -13,9 +13,11 @@ import { ServicesService } from 'src/app/api/services.service';
 })
 export class ProductosPage implements OnInit {
 
+
   tiposEquipo: any = [];
 
   constructor(private navCtrl: NavController, private modalCtrl: ModalController, private api: ServicesService) {
+
 
   }
 

@@ -5,10 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class ServicesService {
 
-  URL = "https://godevsol.tech/kaeserVentas/req/";
+  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  URL = "http://localhost/kaeserVentas/api/req/";
+
   constructor() { }
 
+  //LOGIN
 
+  async login(credentials) {
+    return await this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
+  }
+
+  //
   async getTiposEquipo() {
     return await this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
   }
@@ -58,7 +66,6 @@ export class ServicesService {
       body: JSON.stringify(json)
     })
     var result = await data.json()
-
     return result.data[0];
   }
 

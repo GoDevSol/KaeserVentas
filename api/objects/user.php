@@ -5,7 +5,7 @@ class User extends CRUD
 {
 
     public $conn;
-    public $table_name = "userweb";
+    public $table_name = "user";
 
     public $id;
     public $nombres;

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1637008567005,
+  "timestamp": 1637094925361,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -96,9 +96,9 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/common.js": "f094ba3eb5fd939e2294d6adf510b021ec16a965",
+    "/common.js": "cdad7def8b0d1beec671df7f45eb77b32c1a60f7",
     "/index.html": "f93f03742658dba16c4a4b8c586ab9ed366eab46",
-    "/main.js": "63c79c13c9d7c25f5ed69df90e681cb0408efafa",
+    "/main.js": "70491983ea9f35f01f827b2f1408ceab87b59137",
     "/manifest.webmanifest": "280977d5afb5f3a0694503940c8eadb8c4ec66b7",
     "/node_modules_ionic_core_dist_esm_focus-visible-f4ad4f1a_js.js": "a0a0067b7aca4bbeb8ed1434b8accd6ea9725dce",
     "/node_modules_ionic_core_dist_esm_input-shims-73f15161_js.js": "d628dbadd71d7fe8fc2f856580a651e2723538e3",
@@ -158,13 +158,13 @@
     "/runtime.js": "7f8e95b2bf93722b8e4db5659894a3bb62e06edd",
     "/src_app_cotizacion_cotizacion_module_ts.js": "2ac2b8b859cd44cd16ce021e885aef61167dc194",
     "/src_app_cotizacion_enviar_enviar_module_ts.js": "9a0d074e21ab42f70f91d755a0b4934e41afaa3c",
-    "/src_app_cotizacion_productos_productos_module_ts.js": "38d5783fac2fd56dee9af7e9b7c0db083284d05e",
+    "/src_app_cotizacion_productos_productos_module_ts.js": "1eb26c1581feba4e32c0b0119b196b12572d8e96",
     "/src_app_menu_menu_module_ts.js": "7cb8b93b628bc4d5be5d2ef8bf91de5625a2f89e",
     "/src_app_postVenta_postVenta_module_ts.js": "9178b57bf88863be90b009c3cf5bb8086824d120",
-    "/src_app_register_register_module_ts.js": "ac4946719d866880ecb7c24f0edc597046b0ea9e",
-    "/src_app_start_start_module_ts.js": "87aa3e5feec583c10f778d0527fd19e320bd5c46",
+    "/src_app_register_register_module_ts.js": "6be6c669e58bbe6a10eb7bca14d15d849adc6cc8",
+    "/src_app_start_start_module_ts.js": "b85f0656a9e6a92210dcf51f12796ba6a9122ffd",
     "/styles.css": "f2c7f8d0d37f030a857fd541d6c284aaaa92242b",
-    "/vendor.js": "c3853400d6e33657178d19ef8f2b851d02ac5776"
+    "/vendor.js": "cc05e70f4d4c8592e48c1f891a70d98d08ef6972"
   },
   "navigationUrls": [
     {

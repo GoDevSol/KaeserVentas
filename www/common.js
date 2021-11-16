@@ -457,8 +457,16 @@ __webpack_require__.r(__webpack_exports__);
 
 let ServicesService = class ServicesService {
     constructor() {
-        this.URL = "https://godevsol.tech/kaeserVentas/req/";
+        //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+        this.URL = "http://localhost/kaeserVentas/api/req/";
     }
+    //LOGIN
+    login(credentials) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
+        });
+    }
+    //
     getTiposEquipo() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
@@ -567,20 +575,35 @@ let RegisterFormComponent = class RegisterFormComponent {
     constructor(modalCtrl, api) {
         this.modalCtrl = modalCtrl;
         this.api = api;
-        this.tipoEquipo = { tipo: 0 };
+        this.tipoEquipo = { tipo: "" };
         this.modelos = [];
+        this.modelosAll = [];
     }
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.modelos = yield this.api.getModelosByTipoEquipo({ "idTipoEquipo": this.id });
+            this.modelos = this.modelos.map(x => (Object.assign(Object.assign({}, x), { cantidad: 0 })));
+            this.modelosAll = this.modelos.filter(s => s.modelo.includes(""));
             this.tipoEquipo = yield this.api.getTipoEquipoById({ "id": this.id });
-            console.log(this.tipoEquipo);
+            console.log(this.modelos);
         });
     }
     dismissModal() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             yield this.modalCtrl.dismiss();
+            alert("ADIOS");
         });
+    }
+    filter(event) {
+        this.modelos = this.modelosAll.filter(s => s.modelo.includes(event.value));
+    }
+    sumar(model) {
+        model.cantidad++;
+    }
+    restar(model) {
+        if (!(model.cantidad == 0)) {
+            model.cantidad--;
+        }
     }
 };
 RegisterFormComponent.ctorParameters = () => [
@@ -610,7 +633,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: url(\"/assets/img/login/background.png\") no-repeat center center / cover;\n}\n\nh1 {\n  font-size: larger;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlZ2lzdGVyLWZvcm0uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxRkFBQTtBQUNKOztBQUVDO0VBQ0UsaUJBQUE7QUFDSCIsImZpbGUiOiJyZWdpc3Rlci1mb3JtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNvbnRlbnQge1xyXG4gICAgLS1iYWNrZ3JvdW5kOiB1cmwoJy9hc3NldHMvaW1nL2xvZ2luL2JhY2tncm91bmQucG5nJykgbm8tcmVwZWF0IGNlbnRlciBjZW50ZXIgLyBjb3ZlcjtcclxufVxyXG5cclxuIGgxe1xyXG4gICBmb250LXNpemU6IGxhcmdlcjtcclxuIH0iXX0= */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-content {\n  --background: url(\"/assets/img/login/background.png\") no-repeat center center / cover;\n}\n\nh1 {\n  font-size: larger;\n}\n\n.roundedInput {\n  --border-color: var(--ion-color-medium-shade);\n  margin-top: 5px;\n  --border-radius: 25px;\n  --border-width: 2px;\n  --box-shadow: 0px gray;\n  --color: black;\n  --highlight-height: 0;\n  --background: transparent;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlZ2lzdGVyLWZvcm0uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxRkFBQTtBQUNKOztBQUVDO0VBQ0UsaUJBQUE7QUFDSDs7QUFFQztFQUNELDZDQUFBO0VBQ0UsZUFBQTtFQUNGLHFCQUFBO0VBQ0EsbUJBQUE7RUFDQSxzQkFBQTtFQUNBLGNBQUE7RUFDQSxxQkFBQTtFQUNBLHlCQUFBO0FBQ0EiLCJmaWxlIjoicmVnaXN0ZXItZm9ybS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50IHtcclxuICAgIC0tYmFja2dyb3VuZDogdXJsKCcvYXNzZXRzL2ltZy9sb2dpbi9iYWNrZ3JvdW5kLnBuZycpIG5vLXJlcGVhdCBjZW50ZXIgY2VudGVyIC8gY292ZXI7XHJcbn1cclxuXHJcbiBoMXtcclxuICAgZm9udC1zaXplOiBsYXJnZXI7XHJcbiB9XHJcblxyXG4gLnJvdW5kZWRJbnB1dCB7XHJcbi0tYm9yZGVyLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItbWVkaXVtLXNoYWRlKTtcclxuICBtYXJnaW4tdG9wOiA1cHg7XHJcbi0tYm9yZGVyLXJhZGl1czogMjVweDtcclxuLS1ib3JkZXItd2lkdGg6IDJweDtcclxuLS1ib3gtc2hhZG93OiAwcHggZ3JheTtcclxuLS1jb2xvcjogYmxhY2s7XHJcbi0taGlnaGxpZ2h0LWhlaWdodDogMDtcclxuLS1iYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -625,7 +648,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-title>{{tipoEquipo.tipo}}</ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button (click)=\"dismissModal()\">X</ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      <div style=\"margin-top: 20px;--background: #E6E7E7; color:#59595C; border: solid #4C7176 1px;\">\r\n\r\n\r\n        <ion-item style=\"--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;\"\r\n          *ngFor=\"let modelo of modelos\">\r\n\r\n          <ion-grid>\r\n            <ion-row>\r\n              <ion-col style=\"text-align: center;\">\r\n                <strong style=\"color: #4C7176;\"> {{modelo.modelo}} </strong>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row>\r\n              <ion-col size-xs=\"4\" style=\"text-align: right;\">\r\n                <ion-button type=\"submit\" style=\"--border-radius: 25px;--padding: 0 0px; --background: #59595C\">-\r\n                </ion-button>\r\n              </ion-col>\r\n              <ion-col size-xs=\"4\" style=\"text-align: center;\">\r\n                <h1 style=\"--border-radius: 25px;--padding: 0 25px; --background: #59595C\">0</h1>\r\n              </ion-col>\r\n              <ion-col size-xs=\"4\" style=\"text-align: left;\">\r\n                <ion-button type=\"submit\" style=\"--border-radius: 25px;--padding: 0 0px; --background: #4C7176\">+\r\n                </ion-button>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n\r\n        </ion-item>\r\n\r\n\r\n      </div>\r\n\r\n    </ion-card-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-title>{{tipoEquipo.tipo.toUpperCase()}}</ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button (click)=\"dismissModal()\">X</ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n  <div style=\"text-align: -webkit-center;\">\r\n    <ion-item class=\"roundedInput\" style=\"width:90%;\">\r\n      <ion-input type=\"text\" placeholder=\"Busqueda\" (input)=\"filter($event.target)\"></ion-input>\r\n    </ion-item>\r\n  </div>\r\n\r\n\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      <div style=\"margin-top: 20px;--background: #E6E7E7; color:#59595C; border: solid #4C7176 1px;\">\r\n\r\n\r\n        <ion-item style=\"--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;\"\r\n          *ngFor=\"let modelo of modelos\">\r\n\r\n          <ion-grid>\r\n            <ion-row>\r\n              <ion-col style=\"text-align: center;\">\r\n                <strong style=\"color: #4C7176;\"> {{modelo.modelo}} </strong>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row>\r\n              <ion-col size-xs=\"4\" style=\"text-align: right;\">\r\n                <ion-button (click)=\"restar(modelo)\"\r\n                  style=\"--border-radius: 25px;--padding: 0 0px; --background: #59595C\">-\r\n                </ion-button>\r\n              </ion-col>\r\n              <ion-col size-xs=\"4\" style=\"text-align: center;\">\r\n                <h1 style=\"--border-radius: 25px;--padding: 0 25px; --background: #59595C\">{{modelo.cantidad}}</h1>\r\n              </ion-col>\r\n              <ion-col size-xs=\"4\" style=\"text-align: left;\">\r\n                <ion-button (click)=\"sumar(modelo)\"\r\n                  style=\"--border-radius: 25px;--padding: 0 0px; --background: #4C7176\">+\r\n                </ion-button>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n\r\n        </ion-item>\r\n\r\n\r\n      </div>\r\n\r\n    </ion-card-content>");
 
 /***/ })
 
