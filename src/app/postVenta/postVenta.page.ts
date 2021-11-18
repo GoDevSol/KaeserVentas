@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -11,25 +12,17 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class PostVentaPage implements OnInit {
   formRegister: FormGroup;
+  modelos: any = []
 
-  constructor(public toastController: ToastController, private formBuilder: FormBuilder, private navCtrl: NavController) {
-    this.formRegister = this.formBuilder.group({
-      oportunidad: new FormControl("", Validators.compose([Validators.required])),
-      oferta: new FormControl("", Validators.compose([Validators.required])),
-      idCliente: new FormControl("", Validators.compose([Validators.required])),
-      nombreCliente: new FormControl("", Validators.compose([Validators.required])),
-      direccion: new FormControl("", Validators.compose([Validators.required])),
-      contacto: new FormControl("", Validators.compose([Validators.required])),
-      condicionPago: new FormControl("", Validators.compose([Validators.required])),
-      moneda: new FormControl("", Validators.compose([Validators.required])),
-      porcentajeDescuento: new FormControl("", Validators.compose([Validators.required])),
-      correoCliente: new FormControl("", Validators.compose([Validators.required]))
-    })
+  constructor(public toastController: ToastController, private formBuilder: FormBuilder, private navCtrl: NavController, private storage: Storage) {
+
 
   }
 
   async ngOnInit() {
-    this.formRegister.reset()
+    this.storage.create()
+    this.modelos = await this.storage.get('modelos');
+    console.log(this.modelos)
 
 
   }

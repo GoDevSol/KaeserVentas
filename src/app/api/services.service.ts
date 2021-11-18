@@ -33,6 +33,13 @@ export class ServicesService {
 
 
 
+  //
+  async saveCotizacion(json) {
+    return await this.resolverSolicitudParams(this.URL + "TiposEquipo/read.php", json);
+  }
+
+
+
 
   //RESOLVE
 

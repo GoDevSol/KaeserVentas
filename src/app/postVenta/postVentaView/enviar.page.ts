@@ -1,4 +1,3 @@
-import { ServicesService } from 'src/app/api/services.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
@@ -14,7 +13,7 @@ export class EnviarPage implements OnInit {
   modelosStorage: any = [];
   datosForm: any = [];
 
-  constructor(private navCtrl: NavController, public toastController: ToastController, private storage: Storage, private api: ServicesService) {
+  constructor(private navCtrl: NavController, public toastController: ToastController, private storage: Storage) {
 
 
   }
@@ -24,6 +23,8 @@ export class EnviarPage implements OnInit {
     this.modelosStorage = await this.storage.get('modelos');
     this.datosForm = await this.storage.get('datosForm');
 
+    console.log(this.modelosStorage)
+    console.log(this.datosForm)
   }
 
   async goTo(ruta) {
@@ -47,15 +48,10 @@ export class EnviarPage implements OnInit {
     toast.present();
   }
 
-  async sendMail() {
-    var data = {
-      datosForm: this.datosForm,
-      datosModelos: this.modelosStorage,
-      direccionArchivo: ""
+  sendMail(value) {
 
-    }
-    const save = await this.api.saveCotizacion(data)
     this.handleButtonClick()
+
   }
 
 

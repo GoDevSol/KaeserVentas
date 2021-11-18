@@ -18,7 +18,7 @@
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
         (click)="goTo('register')">
-        Cotizaciones</ion-button>
+        POST VENTA</ion-button>
     </div>
   </ion-toolbar>
 
@@ -26,55 +26,38 @@
   <ion-card style="--background:#E6E7E7">
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      Ingresa tus datos y seleeciona los productos
+      COTIZACIONES A PROCESAR
     </ion-card-content>
+    <hr style="background: black;">
 
-    <form [formGroup]="formRegister">
+    <ion-item style="--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;"
+      *ngFor="let modelo of modelos">
 
-      <ion-item class="roundedInput">
-        <ion-input style="margin:-0px; --placeholder-font-weight:5px; height: 10px;" formControlName="oportunidad"
-          type="text" placeholder="No. de oportunidad">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="oferta" type="text" placeholder="No. de oferta"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="idCliente" type="text" placeholder="Id Cliente"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="nombreCliente" type="email" placeholder="Nombre del cliente"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="direccion" placeholder="Dirección de entrega"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="contacto" placeholder="Contacto"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="condicionPago" placeholder="Condiciones de pago"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="moneda" placeholder="Moneda"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input formControlName="correoCliente" placeholder="Correo electrónico del cliente"></ion-input>
-      </ion-item>
+      <ion-grid>
+        <ion-row style="padding: 0px;">
+          <ion-col style="text-align: left;">
+            <strong style="color: #4C7176;"> Cotizaciòn </strong>
+            <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
+          </ion-col>
+          <ion-col style="text-align: center;" size="3">
+            <ion-button (click)="goTo('register')"
+              style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
+              Procesar</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+
+    </ion-item>
 
 
 
-      <div style="text-align: -webkit-center;">
-        <ion-button (click)="SendEmail(formRegister.value)" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">GUARDAR</ion-button>
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goTo('register')" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+        REGRESAR</ion-button>
 
-        <ion-button [disabled]="!formRegister.valid" (click)="SendEmail(formRegister.value)" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">CONFIRMAR</ion-button>
-      </div>
-
-    </form>
+    </div>
 
 
   </ion-card>
