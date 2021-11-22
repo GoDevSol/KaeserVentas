@@ -218,7 +218,7 @@ class Common extends Response
     {
         $get = get_object_vars($class);
 
-        $str = "'";
+        $str = "";
 
         foreach ($get as $name => $value) {
 
@@ -232,7 +232,7 @@ class Common extends Response
 
         $str = rtrim($str, ",");
 
-        $str = $str . "'";
+        $str = $str . "";
 
         return $str;
     }

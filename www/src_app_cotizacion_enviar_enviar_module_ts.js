@@ -1,5 +1,140 @@
 (self["webpackChunkKaeser_Ventas"] = self["webpackChunkKaeser_Ventas"] || []).push([["src_app_cotizacion_enviar_enviar_module_ts"],{
 
+/***/ 7242:
+/*!*****************************************!*\
+  !*** ./src/app/api/services.service.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ServicesService": () => (/* binding */ ServicesService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2741);
+
+
+let ServicesService = class ServicesService {
+    //URL = "http://localhost/kaeserVentas/api/req/";
+    constructor() {
+        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
+    }
+    //LOGIN
+    login(credentials) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
+        });
+    }
+    //
+    getTiposEquipo() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
+        });
+    }
+    getTipoEquipoById(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsReturnOne(this.URL + "TiposEquipo/readById.php", id);
+        });
+    }
+    //MODELO
+    getModelosByTipoEquipo(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
+        });
+    }
+    //COTIZACIONES
+    readCotizacion() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
+        });
+    }
+    saveCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
+        });
+    }
+    modificarCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
+        });
+    }
+    //FILE
+    loadFile(file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
+        });
+    }
+    getFile(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "verificar.php", id);
+        });
+    }
+    //RESOLVE
+    resolverSolicitud(url) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url);
+            var result = yield data.json();
+            if (result.status == true) {
+                return result.data;
+            }
+            else {
+                return [];
+            }
+        });
+    }
+    resolverSolicitudParams(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+    resolverSolicitudParamsReturnOne(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data[0];
+        });
+    }
+    resolverSolicitudParamsWithOutAData(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result;
+        });
+    }
+    resolverSolicitudSinJSON(url, file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: file
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+};
+ServicesService.ctorParameters = () => [];
+ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root'
+    })
+], ServicesService);
+
+
+
+/***/ }),
+
 /***/ 6051:
 /*!************************************************************!*\
   !*** ./src/app/cotizacion/enviar/enviar-routing.module.ts ***!
@@ -93,37 +228,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EnviarPage": () => (/* binding */ EnviarPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_enviar_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./enviar.page.html */ 285);
 /* harmony import */ var _enviar_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enviar.page.scss */ 7110);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 2604);
+
+
 
 
 
 
 
 let EnviarPage = class EnviarPage {
-    constructor(navCtrl, toastController) {
+    constructor(navCtrl, toastController, storage, api) {
         this.navCtrl = navCtrl;
         this.toastController = toastController;
+        this.storage = storage;
+        this.api = api;
+        this.modelosStorage = [];
+        this.datosForm = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.modelosStorage = yield this.storage.get('modelos');
+            this.datosForm = yield this.storage.get('datosForm');
         });
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
     goForward(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateForward('menu/' + ruta);
         });
     }
     handleButtonClick() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const toast = yield this.toastController.create({
                 color: 'dark',
                 message: 'Se ha enviado la solicitud de cotizacion exitosamente.',
@@ -135,16 +280,26 @@ let EnviarPage = class EnviarPage {
             toast.present();
         });
     }
-    sendMail(value) {
-        this.handleButtonClick();
+    sendMail() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            var data = {
+                datosForm: JSON.stringify(this.datosForm),
+                datosModelos: JSON.stringify(this.modelosStorage),
+                direccionArchivo: ""
+            };
+            const save = yield this.api.saveCotizacion(data);
+            this.handleButtonClick();
+        });
     }
 };
 EnviarPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.NavController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.ToastController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage },
+    { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService }
 ];
-EnviarPage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+EnviarPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-enviar',
         template: _raw_loader_enviar_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_enviar_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -181,7 +336,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('cotizacion')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('cotizacion')\">\r\n        Confirmacion de Envio</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      Verifica los datos de la Solicitud de Cotizacion\r\n\r\n      <div style=\"margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <h1> Datos:</h1>\r\n        <h2> No. de oportunidad: 002</h2>\r\n        <h2> No. de oferta: 2021001</h2>\r\n        <h2> Id Cliente: 06498</h2>\r\n        <h2> Nombre del cliente: Fenix Media</h2>\r\n        <h2> Dirección de entrega: 25 Avenida 1-89 Ofi 1703, Zona 15 Edificio Insigne</h2>\r\n        <h2> Contacto: +502 23099381 </h2>\r\n        <h2> Condiciones de pago: Pago Aplazado</h2>\r\n        <h2> Moneda: Dollar</h2>\r\n        <h2> Porcentaje de descuento: 30%</h2>\r\n        <h2> Correo electrónico del cliente: jhonatan.l@fenixmedia.org</h2>\r\n\r\n\r\n      </div>\r\n\r\n      <hr>\r\n      <div style=\"border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <table>\r\n          <tr>\r\n            <th>Unidades</th>\r\n            <th>Descripcion</th>\r\n          </tr>\r\n          <tr>\r\n            <td>1</td>\r\n            <td>Aircenter SX 7.5</td>\r\n          </tr>\r\n          <tr>\r\n            <td>2</td>\r\n            <td>Compresor es de tornillo rotativo CSG-2</td>\r\n          </tr>\r\n\r\n        </table>\r\n      </div>\r\n\r\n\r\n      <div style=\"text-align: -webkit-center; margin-top: 20px;\">\r\n\r\n        <ion-button (click)=\"sendMail('enviar')\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">ENVIAR</ion-button>\r\n      </div>\r\n    </ion-card-content>\r\n\r\n\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('cotizacion')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('cotizacion')\">\r\n        Confirmacion de Envio</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      Verifica los datos de la Solicitud de Cotizacion\r\n\r\n      <div style=\"margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <h1> Datos:</h1>\r\n        <h2> No. de oportunidad: {{datosForm.oportunidad}}</h2>\r\n        <h2> No. de oferta: {{datosForm.oferta}}</h2>\r\n        <h2> Id Cliente: {{datosForm.idCliente}}</h2>\r\n        <h2> Nombre del cliente: {{datosForm.nombreCliente}}</h2>\r\n        <h2> Dirección de entrega: {{datosForm.direccion}}</h2>\r\n        <h2> Contacto: {{datosForm.contacto}} </h2>\r\n        <h2> Condiciones de pago: {{datosForm.condicionPago}}</h2>\r\n        <h2> Moneda: {{datosForm.moneda}}</h2>\r\n        <h2> Porcentaje de descuento: {{datosForm.porcentajeDescuento}}</h2>\r\n        <h2> Correo electrónico del cliente: {{datosForm.correoCliente}}</h2>\r\n\r\n\r\n      </div>\r\n\r\n      <hr>\r\n      <div style=\"border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <table>\r\n          <tr>\r\n            <th>#</th>\r\n            <th>Unidades</th>\r\n            <th>Descripcion</th>\r\n          </tr>\r\n          <tr *ngFor=\"let item of modelosStorage; let i = index\">\r\n            <td>{{i+1}}</td>\r\n            <td>{{item.cantidad}}</td>\r\n            <td>{{item.modelo}}</td>\r\n          </tr>\r\n\r\n        </table>\r\n      </div>\r\n\r\n\r\n      <div style=\"text-align: -webkit-center; margin-top: 20px;\">\r\n\r\n        <ion-button (click)=\"sendMail('enviar')\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">ENVIAR</ion-button>\r\n      </div>\r\n    </ion-card-content>\r\n\r\n\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
 
 /***/ })
 

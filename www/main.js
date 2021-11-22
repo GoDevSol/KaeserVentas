@@ -51,11 +51,11 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_start_start_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./start/start.module */ 4131)).then(m => m.StartPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_start_start_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./start/start.module */ 4131)).then(m => m.StartPageModule)
     },
     {
         path: '**',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_start_start_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./start/start.module */ 4131)).then(m => m.StartPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_start_start_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./start/start.module */ 4131)).then(m => m.StartPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

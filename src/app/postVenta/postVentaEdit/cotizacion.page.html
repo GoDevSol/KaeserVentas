@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('postVentaView')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('postVentaView')">
+        Editar Cotizacion</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      Ingresa tus datos y seleeciona los productos
+    </ion-card-content>
+
+    <form [formGroup]="formRegister">
+
+      <ion-item class="roundedInput">
+        <ion-input style="margin:-0px; --placeholder-font-weight:5px; height: 10px;" formControlName="oportunidad"
+          type="text" placeholder="No. de oportunidad">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="oferta" type="text" placeholder="No. de oferta"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="idCliente" type="text" placeholder="Id Cliente"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="nombreCliente" type="email" placeholder="Nombre del cliente"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="direccion" placeholder="Dirección de entrega"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="contacto" placeholder="Contacto"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="condicionPago" placeholder="Condiciones de pago"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="moneda" placeholder="Moneda"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input formControlName="correoCliente" placeholder="Correo electrónico del cliente"></ion-input>
+      </ion-item>
+
+
+
+      <div style="text-align: -webkit-center;">
+
+        <ion-button (click)="goForward('postVentaProduct')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+      </div>
+
+    </form>
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

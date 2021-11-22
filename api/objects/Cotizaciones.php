@@ -8,11 +8,11 @@ class Cotizaciones extends CRUD
     public $conn;
     public $table_name = "Cotizaciones";
 
-    
- public $id;
- public $datosForm;
- public $datosModelos;
- public $direccionArchivo;
+
+    public $id;
+    public $datosForm;
+    public $datosModelos;
+    public $direccionArchivo;
 
 
     public function __construct($db)
@@ -51,25 +51,25 @@ class Cotizaciones extends CRUD
         }
     }
 
- public function getById()
- {
-    return $this->_read("*", "id=", "", $this, "");
- }
+    public function getById()
+    {
+        return $this->_read("*", "id=", "", $this, "");
+    }
 
- public function getByDatosForm()
- {
-    return $this->_read("*", "datosForm=", "", $this, "");
- }
+    public function getByDatosForm()
+    {
+        return $this->_read("*", "datosForm=", "", $this, "");
+    }
 
- public function getByDatosModelos()
- {
-    return $this->_read("*", "datosModelos=", "", $this, "");
- }
+    public function getByDatosModelos()
+    {
+        return $this->_read("*", "datosModelos=", "", $this, "");
+    }
 
- public function getByDireccionArchivo()
- {
-    return $this->_read("*", "direccionArchivo=", "", $this, "");
- }
+    public function getByDireccionArchivo()
+    {
+        return $this->_read("*", "direccionArchivo=", "", $this, "");
+    }
 
 
 
@@ -80,60 +80,57 @@ class Cotizaciones extends CRUD
         return $this->_create($insertParams, $this);
     }
 
-function updateById()
-{
-    $updateParams = $this->createParams($this, "id");    
+    function updateById()
+    {
+        $updateParams = $this->createParams($this, "id");
+        $whereParams = "id=";
 
-    $whereParams = "id=";
+        return $this->_update($updateParams, $whereParams, $this);
+    }
+    function updateByDatosForm()
+    {
+        $updateParams = $this->createParams($this, "datosForm");
 
-    return $this->_update($updateParams, $whereParams, $this);
-}
-function updateByDatosForm()
-{
-    $updateParams = $this->createParams($this, "datosForm");    
+        $whereParams = "datosForm=";
 
-    $whereParams = "datosForm=";
+        return $this->_update($updateParams, $whereParams, $this);
+    }
+    function updateByDatosModelos()
+    {
+        $updateParams = $this->createParams($this, "datosModelos");
 
-    return $this->_update($updateParams, $whereParams, $this);
-}
-function updateByDatosModelos()
-{
-    $updateParams = $this->createParams($this, "datosModelos");    
+        $whereParams = "datosModelos=";
 
-    $whereParams = "datosModelos=";
+        return $this->_update($updateParams, $whereParams, $this);
+    }
+    function updateByDireccionArchivo()
+    {
+        $updateParams = $this->createParams($this, "direccionArchivo");
 
-    return $this->_update($updateParams, $whereParams, $this);
-}
-function updateByDireccionArchivo()
-{
-    $updateParams = $this->createParams($this, "direccionArchivo");    
+        $whereParams = "direccionArchivo=";
 
-    $whereParams = "direccionArchivo=";
-
-    return $this->_update($updateParams, $whereParams, $this);
-}
-
-
-function deleteById()
-{
-    $whereParams = "id=";
-    return $this->_delete($whereParams, $this);
-}
-function deleteByDatosForm()
-{
-    $whereParams = "datosForm=";
-    return $this->_delete($whereParams, $this);
-}
-function deleteByDatosModelos()
-{
-    $whereParams = "datosModelos=";
-    return $this->_delete($whereParams, $this);
-}
-function deleteByDireccionArchivo()
-{
-    $whereParams = "direccionArchivo=";
-    return $this->_delete($whereParams, $this);
-}
+        return $this->_update($updateParams, $whereParams, $this);
+    }
 
 
+    function deleteById()
+    {
+        $whereParams = "id=";
+        return $this->_delete($whereParams, $this);
+    }
+    function deleteByDatosForm()
+    {
+        $whereParams = "datosForm=";
+        return $this->_delete($whereParams, $this);
+    }
+    function deleteByDatosModelos()
+    {
+        $whereParams = "datosModelos=";
+        return $this->_delete($whereParams, $this);
+    }
+    function deleteByDireccionArchivo()
+    {
+        $whereParams = "direccionArchivo=";
+        return $this->_delete($whereParams, $this);
+    }
 }

@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-title>{{tipoEquipo.tipo.toUpperCase()}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">X</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      <div style="margin-top: 20px;--background: #E6E7E7; color:#59595C; ">
+
+        <input id='fileid' type='file' hidden (change)="loadFile($event)" />
+        <div style="text-align: -webkit-center;">
+          <ion-icon name="document-outline"></ion-icon>
+        </div>
+
+
+        <ion-item class="roundedInput">
+          <ion-input style="margin:-0px; --placeholder-font-weight:5px; height: 10px;" [value]="fileName" type="text"
+            disabled placeholder="Ningun archivo cargado">
+          </ion-input>
+        </ion-item>
+
+        <div style="text-align: -webkit-center;">
+          <ion-button (click)="openDialog()" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+            Cargar Archivo</ion-button>
+
+          <ion-button (click)="loadData()" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+            Guargar</ion-button>
+        </div>
+
+
+
+
+      </div>
+
+    </ion-card-content>

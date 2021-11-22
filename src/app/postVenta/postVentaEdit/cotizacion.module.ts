@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EnviarPageRoutingModule } from './enviar-routing.module';
+import { CotizacionPageRoutingModule } from './cotizacion-routing.module';
 
-import { EnviarPage } from './enviar.page';
+import { CotizacionPage } from './cotizacion.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { EnviarPage } from './enviar.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    EnviarPageRoutingModule
+    CotizacionPageRoutingModule
   ],
-  declarations: [EnviarPage]
+  declarations: [CotizacionPage]
 })
-export class EnviarPageModule { }
+export class CotizacionPageModule {}

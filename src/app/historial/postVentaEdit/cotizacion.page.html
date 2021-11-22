@@ -13,12 +13,12 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('postVentaView')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('register')">
-        Registro</ion-button>
+        (click)="goTo('postVentaView')">
+        Editar Cotizacion</ion-button>
     </div>
   </ion-toolbar>
 
@@ -68,7 +68,7 @@
 
       <div style="text-align: -webkit-center;">
 
-        <ion-button (click)="goForward('productos')" type="submit"
+        <ion-button (click)="goForward('postVentaProduct')" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
       </div>
 

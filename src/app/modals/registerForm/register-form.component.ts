@@ -33,8 +33,13 @@ export class RegisterFormComponent implements OnInit {
     this.tipoEquipo = await this.api.getTipoEquipoById({ "id": this.id })
 
     this.modelosAgregados = await this.storage.get('modelos');
+
     this.modelosAgregados.forEach(element => {
-      this.upsert(this.modelos, element)
+
+      if (element.idTipoEquipo == this.id) {
+        this.upsert(this.modelos, element)
+      }
+
     });
 
 

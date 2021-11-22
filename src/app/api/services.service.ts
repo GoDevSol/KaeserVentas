@@ -33,10 +33,34 @@ export class ServicesService {
 
 
 
-  //
-  async saveCotizacion(json) {
-    return await this.resolverSolicitudParams(this.URL + "TiposEquipo/read.php", json);
+  //COTIZACIONES
+  async readCotizacion() {
+    return await this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
   }
+
+  async saveCotizacion(json) {
+    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
+  }
+
+  async modificarCotizacion(json) {
+    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
+  }
+
+
+
+
+
+  //FILE
+  async loadFile(file) {
+    return await this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
+  }
+
+  async getFile(id) {
+    return await this.resolverSolicitudParams(this.URL + "verificar.php", id);
+  }
+
+
+
 
 
 

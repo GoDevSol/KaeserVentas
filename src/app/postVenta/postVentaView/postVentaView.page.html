@@ -12,12 +12,12 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('cotizacion')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('postVenta')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('cotizacion')">
-        Confirmacion de Envio</ion-button>
+        (click)="goTo('postVenta')">
+        Vista Previa</ion-button>
     </div>
   </ion-toolbar>
 
@@ -25,7 +25,7 @@
   <ion-card style="--background:#E6E7E7">
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      Verifica los datos de la Solicitud de Cotizacion
+      Agregue una vista previa para poder procesar la cotizacion o editela.
 
       <div style="margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;">
         <h1> Datos:</h1>
@@ -63,8 +63,14 @@
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
 
-        <ion-button (click)="sendMail('enviar')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ENVIAR</ion-button>
+        <ion-button (click)="showModal('enviar')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">AGREGAR ORDEN DE COMPRA</ion-button>
+
+        <ion-button (click)="Process()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">PROCESAR</ion-button>
+
+        <ion-button (click)="goTo('postVentaEdit')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
       </div>
     </ion-card-content>
 

@@ -1,5 +1,140 @@
 (self["webpackChunkKaeser_Ventas"] = self["webpackChunkKaeser_Ventas"] || []).push([["src_app_start_start_module_ts"],{
 
+/***/ 7242:
+/*!*****************************************!*\
+  !*** ./src/app/api/services.service.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ServicesService": () => (/* binding */ ServicesService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2741);
+
+
+let ServicesService = class ServicesService {
+    //URL = "http://localhost/kaeserVentas/api/req/";
+    constructor() {
+        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
+    }
+    //LOGIN
+    login(credentials) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
+        });
+    }
+    //
+    getTiposEquipo() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
+        });
+    }
+    getTipoEquipoById(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsReturnOne(this.URL + "TiposEquipo/readById.php", id);
+        });
+    }
+    //MODELO
+    getModelosByTipoEquipo(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
+        });
+    }
+    //COTIZACIONES
+    readCotizacion() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
+        });
+    }
+    saveCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
+        });
+    }
+    modificarCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
+        });
+    }
+    //FILE
+    loadFile(file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
+        });
+    }
+    getFile(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "verificar.php", id);
+        });
+    }
+    //RESOLVE
+    resolverSolicitud(url) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url);
+            var result = yield data.json();
+            if (result.status == true) {
+                return result.data;
+            }
+            else {
+                return [];
+            }
+        });
+    }
+    resolverSolicitudParams(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+    resolverSolicitudParamsReturnOne(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data[0];
+        });
+    }
+    resolverSolicitudParamsWithOutAData(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result;
+        });
+    }
+    resolverSolicitudSinJSON(url, file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: file
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+};
+ServicesService.ctorParameters = () => [];
+ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root'
+    })
+], ServicesService);
+
+
+
+/***/ }),
+
 /***/ 5189:
 /*!***********************************************!*\
   !*** ./src/app/start/start-routing.module.ts ***!

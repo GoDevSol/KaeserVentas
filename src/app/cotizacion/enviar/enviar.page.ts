@@ -49,8 +49,8 @@ export class EnviarPage implements OnInit {
 
   async sendMail() {
     var data = {
-      datosForm: this.datosForm,
-      datosModelos: this.modelosStorage,
+      datosForm: JSON.stringify(this.datosForm),
+      datosModelos: JSON.stringify(this.modelosStorage),
       direccionArchivo: ""
 
     }

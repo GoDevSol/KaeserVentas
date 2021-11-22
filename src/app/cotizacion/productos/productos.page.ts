@@ -29,7 +29,8 @@ export class ProductosPage implements OnInit {
       component: RegisterFormComponent,
       componentProps: {
         id: id
-      }
+      },
+      backdropDismiss: false
     })
 
     await modal.present();

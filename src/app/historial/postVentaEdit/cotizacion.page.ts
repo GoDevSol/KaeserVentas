@@ -11,6 +11,20 @@ import { Storage } from '@ionic/storage';
 })
 export class CotizacionPage implements OnInit {
   formRegister: FormGroup;
+  postVenta: {
+    datosForm: {
+      oportunidad: "",
+      oferta: "",
+      idCliente: "",
+      nombreCliente: "",
+      direccion: "",
+      contacto: "",
+      condicionPago: "",
+      moneda: "",
+      porcentajeDescuento: "",
+      correoCliente: ""
+    }
+  };
 
   constructor(public toastController: ToastController, private formBuilder: FormBuilder, private navCtrl: NavController, private storage: Storage) {
     this.formRegister = this.formBuilder.group({
@@ -29,6 +43,22 @@ export class CotizacionPage implements OnInit {
   }
 
   async ngOnInit() {
+    this.storage.create()
+    this.postVenta = await this.storage.get('postVenta');
+
+    var datosForm = this.postVenta.datosForm
+
+    this.formRegister.controls.oportunidad.setValue(datosForm.oportunidad);
+    this.formRegister.controls.oferta.setValue(datosForm.oferta);
+    this.formRegister.controls.idCliente.setValue(datosForm.idCliente);
+    this.formRegister.controls.nombreCliente.setValue(datosForm.nombreCliente);
+    this.formRegister.controls.direccion.setValue(datosForm.direccion);
+    this.formRegister.controls.contacto.setValue(datosForm.contacto);
+    this.formRegister.controls.condicionPago.setValue(datosForm.condicionPago);
+    this.formRegister.controls.moneda.setValue(datosForm.moneda);
+    this.formRegister.controls.porcentajeDescuento.setValue(datosForm.porcentajeDescuento);
+    this.formRegister.controls.correoCliente.setValue(datosForm.correoCliente);
+
   }
 
   async goTo(ruta) {
@@ -37,7 +67,11 @@ export class CotizacionPage implements OnInit {
 
   async goForward(ruta) {
     this.storage.create()
-    this.storage.set("datosForm", this.formRegister.value)
+
+    this.postVenta.datosForm = this.formRegister.value
+
+    this.storage.set("postVenta", this.postVenta)
+
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 

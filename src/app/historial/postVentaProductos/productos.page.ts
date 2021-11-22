@@ -1,4 +1,4 @@
-import { RegisterFormComponent } from './../../modals/registerForm/register-form.component';
+import { RegisterFormComponent } from '../../modals/registerForm/register-form.component';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +17,7 @@ export class ProductosPage implements OnInit {
 
   tiposEquipo: any = [];
   modelosStorage: any = [];;
+  postVenta: any = [];;
 
   constructor(private navCtrl: NavController, private modalCtrl: ModalController, private api: ServicesService, private storage: Storage) {
 
@@ -29,7 +30,8 @@ export class ProductosPage implements OnInit {
       component: RegisterFormComponent,
       componentProps: {
         id: id
-      }
+      },
+      backdropDismiss: false
     })
 
     await modal.present();
@@ -43,6 +45,13 @@ export class ProductosPage implements OnInit {
 
   async ngOnInit() {
     this.tiposEquipo = await this.api.getTiposEquipo()
+
+    this.storage.create()
+    this.postVenta = await this.storage.get('postVenta');
+
+    this.modelosStorage = this.postVenta.datosModelos
+
+    this.storage.set('modelos', this.modelosStorage);
   }
 
   async goTo(ruta) {
@@ -50,6 +59,13 @@ export class ProductosPage implements OnInit {
   }
 
   async goForward(ruta) {
+
+    this.storage.create()
+
+    this.postVenta.datosModelos = this.modelosStorage
+
+    this.storage.set("postVenta", this.postVenta)
+
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 

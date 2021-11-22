@@ -1,5 +1,140 @@
 (self["webpackChunkKaeser_Ventas"] = self["webpackChunkKaeser_Ventas"] || []).push([["src_app_postVenta_postVenta_module_ts"],{
 
+/***/ 7242:
+/*!*****************************************!*\
+  !*** ./src/app/api/services.service.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ServicesService": () => (/* binding */ ServicesService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2741);
+
+
+let ServicesService = class ServicesService {
+    //URL = "http://localhost/kaeserVentas/api/req/";
+    constructor() {
+        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
+    }
+    //LOGIN
+    login(credentials) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
+        });
+    }
+    //
+    getTiposEquipo() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
+        });
+    }
+    getTipoEquipoById(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParamsReturnOne(this.URL + "TiposEquipo/readById.php", id);
+        });
+    }
+    //MODELO
+    getModelosByTipoEquipo(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
+        });
+    }
+    //COTIZACIONES
+    readCotizacion() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
+        });
+    }
+    saveCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
+        });
+    }
+    modificarCotizacion(json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
+        });
+    }
+    //FILE
+    loadFile(file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
+        });
+    }
+    getFile(id) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "verificar.php", id);
+        });
+    }
+    //RESOLVE
+    resolverSolicitud(url) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url);
+            var result = yield data.json();
+            if (result.status == true) {
+                return result.data;
+            }
+            else {
+                return [];
+            }
+        });
+    }
+    resolverSolicitudParams(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+    resolverSolicitudParamsReturnOne(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result.data[0];
+        });
+    }
+    resolverSolicitudParamsWithOutAData(url, json) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: JSON.stringify(json)
+            });
+            var result = yield data.json();
+            return result;
+        });
+    }
+    resolverSolicitudSinJSON(url, file) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+            var data = yield fetch(url, {
+                method: "POST",
+                body: file
+            });
+            var result = yield data.json();
+            return result.data;
+        });
+    }
+};
+ServicesService.ctorParameters = () => [];
+ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root'
+    })
+], ServicesService);
+
+
+
+/***/ }),
+
 /***/ 1078:
 /*!*******************************************************!*\
   !*** ./src/app/postVenta/postVenta-routing.module.ts ***!
@@ -93,12 +228,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PostVentaPage": () => (/* binding */ PostVentaPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_postVenta_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./postVenta.page.html */ 7177);
 /* harmony import */ var _postVenta_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postVenta.page.scss */ 3746);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 4595);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ 3324);
+/* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 3324);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 2604);
+
+
 
 
 
@@ -106,30 +245,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PostVentaPage = class PostVentaPage {
-    constructor(toastController, formBuilder, navCtrl) {
+    constructor(toastController, formBuilder, navCtrl, storage, api) {
         this.toastController = toastController;
         this.formBuilder = formBuilder;
         this.navCtrl = navCtrl;
-        this.formRegister = this.formBuilder.group({
-            oportunidad: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            oferta: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            idCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            nombreCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            direccion: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            contacto: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            condicionPago: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            moneda: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            porcentajeDescuento: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required])),
-            correoCliente: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.compose([_angular_forms__WEBPACK_IMPORTED_MODULE_2__.Validators.required]))
-        });
+        this.storage = storage;
+        this.api = api;
+        this.modelos = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
-            this.formRegister.reset();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.modelos = yield this.api.readCotizacion();
+            this.modelos = yield this.modelos.map(x => {
+                x.datosForm = JSON.parse(x.datosForm.replaceAll('&quot;', '"'));
+                x.datosModelos = JSON.parse(x.datosModelos.replaceAll('&quot;', '"'));
+                return x;
+            });
+            console.log(this.modelos);
         });
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.navCtrl.navigateBack('menu/' + ruta);
+        });
+    }
+    goToPostVenta(ruta, modelo) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.storage.create();
+            this.storage.set("postVenta", modelo);
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
@@ -137,12 +280,14 @@ let PostVentaPage = class PostVentaPage {
     }
 };
 PostVentaPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ToastController },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormBuilder },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.NavController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage },
+    { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService }
 ];
-PostVentaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+PostVentaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
         selector: 'app-postVenta',
         template: _raw_loader_postVenta_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_postVenta_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -179,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('register')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('register')\">\r\n        Cotizaciones</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      Ingresa tus datos y seleeciona los productos\r\n    </ion-card-content>\r\n\r\n    <form [formGroup]=\"formRegister\">\r\n\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input style=\"margin:-0px; --placeholder-font-weight:5px; height: 10px;\" formControlName=\"oportunidad\"\r\n          type=\"text\" placeholder=\"No. de oportunidad\">\r\n        </ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"oferta\" type=\"text\" placeholder=\"No. de oferta\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"idCliente\" type=\"text\" placeholder=\"Id Cliente\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"nombreCliente\" type=\"email\" placeholder=\"Nombre del cliente\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"direccion\" placeholder=\"Dirección de entrega\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"contacto\" placeholder=\"Contacto\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"condicionPago\" placeholder=\"Condiciones de pago\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"moneda\" placeholder=\"Moneda\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"porcentajeDescuento\" placeholder=\"Porcentaje de descuento\"></ion-input>\r\n      </ion-item>\r\n      <ion-item class=\"roundedInput\">\r\n        <ion-input formControlName=\"correoCliente\" placeholder=\"Correo electrónico del cliente\"></ion-input>\r\n      </ion-item>\r\n\r\n\r\n\r\n      <div style=\"text-align: -webkit-center;\">\r\n        <ion-button (click)=\"SendEmail(formRegister.value)\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">GUARDAR</ion-button>\r\n\r\n        <ion-button [disabled]=\"!formRegister.valid\" (click)=\"SendEmail(formRegister.value)\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">CONFIRMAR</ion-button>\r\n      </div>\r\n\r\n    </form>\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('register')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('register')\">\r\n        POST VENTA</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      COTIZACIONES A PROCESAR\r\n    </ion-card-content>\r\n    <hr style=\"background: black;\">\r\n\r\n    <ion-item style=\"--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;\"\r\n      *ngFor=\"let modelo of modelos\">\r\n\r\n      <ion-grid>\r\n        <ion-row style=\"padding: 0px;\">\r\n          <ion-col style=\"text-align: left;\">\r\n            <strong style=\"color: #4C7176;\"> Cotizaciòn </strong>\r\n            <h6 style=\"margin: 0px;\">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>\r\n          </ion-col>\r\n          <ion-col style=\"text-align: center;\" size=\"3\">\r\n            <ion-button (click)=\"goToPostVenta('postVentaView',modelo)\"\r\n              style=\" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;\">\r\n              Procesar</ion-button>\r\n          </ion-col>\r\n        </ion-row>\r\n\r\n\r\n      </ion-grid>\r\n\r\n    </ion-item>\r\n\r\n\r\n\r\n\r\n    <div style=\"text-align: -webkit-center;\">\r\n      <ion-button (click)=\"goTo('register')\" style=\" --border-radius: 25px;--padding: 0 25px; --background: #4C7176\">\r\n        REGRESAR</ion-button>\r\n\r\n    </div>\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
 
 /***/ })
 

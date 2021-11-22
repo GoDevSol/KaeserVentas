@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EnviarPageRoutingModule } from './enviar-routing.module';
+import { PostVentaPageRoutingModule } from './postVenta-routing.module';
 
-import { EnviarPage } from './enviar.page';
+import { PostVentaPage } from './postVenta.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { EnviarPage } from './enviar.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    EnviarPageRoutingModule
+    PostVentaPageRoutingModule
   ],
-  declarations: [EnviarPage]
+  declarations: [PostVentaPage]
 })
-export class EnviarPageModule { }
+export class PostVentaPageModule { }

@@ -26,7 +26,7 @@ const routes = [
         children: [
             {
                 path: 'register',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_register_register_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../register/register.module */ 2474)).then(m => m.RegisterPageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_registerForm_register-form_component_ts"), __webpack_require__.e("src_app_register_register_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../register/register.module */ 2474)).then(m => m.RegisterPageModule)
             },
             {
                 path: 'cotizacion',
@@ -34,7 +34,7 @@ const routes = [
             },
             {
                 path: 'productos',
-                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_cotizacion_productos_productos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../cotizacion/productos/productos.module */ 5708)).then(m => m.ProductosPageModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_registerForm_register-form_component_ts"), __webpack_require__.e("src_app_cotizacion_productos_productos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../cotizacion/productos/productos.module */ 5708)).then(m => m.ProductosPageModule)
             },
             {
                 path: 'enviar',
@@ -43,6 +43,22 @@ const routes = [
             {
                 path: 'postVenta',
                 loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_postVenta_postVenta_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVenta.module */ 7838)).then(m => m.PostVentaPageModule)
+            },
+            {
+                path: 'postVentaView',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_postVenta_postVentaView_postVentaView_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVentaView/postVentaView.module */ 7159)).then(m => m.postVentaViewModule)
+            },
+            {
+                path: 'postVentaEdit',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_postVenta_postVentaEdit_cotizacion_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVentaEdit/cotizacion.module */ 1776)).then(m => m.CotizacionPageModule)
+            },
+            {
+                path: 'postVentaProduct',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_registerForm_register-form_component_ts"), __webpack_require__.e("src_app_postVenta_postVentaProductos_productos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVentaProductos/productos.module */ 6213)).then(m => m.ProductosPageModule)
+            },
+            {
+                path: 'historialMenu',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_historial_menu_register_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../historial/menu/register.module */ 2788)).then(m => m.RegisterPageModule)
             }
         ]
     }

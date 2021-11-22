@@ -6,13 +6,13 @@ include_once __DIR__ . '/../../objects/Cotizaciones.php';
 
 $Cotizaciones = new Cotizaciones($db);
 
-if ($common->validateInput($data, "datosForm,datosModelos,direccionArchivo")) {
+if ($common->validateInput($data, "datosForm,datosModelos")) {
 
     $db->beginTransaction();
 
     $common->inputMappingObj($data, $Cotizaciones);
 
-    $CotizacionesResult = $Cotizaciones-> createCotizaciones();
+    $CotizacionesResult = $Cotizaciones->createCotizaciones();
 
     if ($common->validateStatus($CotizacionesResult)) {
 

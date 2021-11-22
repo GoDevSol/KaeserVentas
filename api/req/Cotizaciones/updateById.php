@@ -6,14 +6,14 @@ include_once __DIR__ . '/../../objects/Cotizaciones.php';
 
 $Cotizaciones = new Cotizaciones($db);
 
-if ($common->validateInput($data, "Campos a cambiar")) {
+if ($common->validateInput($data, "datosForm,datosModelos,direccionArchivo")) {
 
     $db->beginTransaction();
 
     $common->inputMappingObj($data, $Cotizaciones);
 
     $CotizacionesResult = $Cotizaciones->updateById();
-    
+
 
     if ($common->validateStatus($CotizacionesResult)) {
 

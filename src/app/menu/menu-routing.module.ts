@@ -27,6 +27,23 @@ const routes: Routes = [
       {
         path: 'postVenta',
         loadChildren: () => import('../postVenta/postVenta.module').then(m => m.PostVentaPageModule)
+      },
+      {
+        path: 'postVentaView',
+        loadChildren: () => import('../postVenta/postVentaView/postVentaView.module').then(m => m.postVentaViewModule)
+      },
+      {
+        path: 'postVentaEdit',
+        loadChildren: () => import('../postVenta/postVentaEdit/cotizacion.module').then(m => m.CotizacionPageModule)
+      },
+      {
+        path: 'postVentaProduct',
+        loadChildren: () => import('../postVenta/postVentaProductos/productos.module').then(m => m.ProductosPageModule)
+      }
+      ,
+      {
+        path: 'historialMenu',
+        loadChildren: () => import('../historial/menu/register.module').then(m => m.RegisterPageModule)
       }
     ]
   }

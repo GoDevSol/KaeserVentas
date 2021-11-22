@@ -12,12 +12,12 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('cotizacion')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('postVenta')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('cotizacion')">
-        Productos</ion-button>
+        (click)="goTo('postVenta')">
+        Vista Previa</ion-button>
     </div>
   </ion-toolbar>
 
@@ -25,21 +25,26 @@
   <ion-card style="--background:#E6E7E7">
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      Selecciona los productos
+      Agregue una vista previa para poder procesar la cotizacion o editela.
 
-      <div style="margin-top: 20px;">
-
-        <ion-item button detail detail-icon="add-outline" *ngFor="let tipoEquipo of tiposEquipo"
-          style=" --background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px; "
-          (click)=" showModal(tipoEquipo.id)">
-          <h1>{{tipoEquipo.tipo.toUpperCase()}}</h1>
-        </ion-item>
+      <div style="margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;">
+        <h1> Datos:</h1>
+        <h2> No. de oportunidad: {{datosForm.oportunidad}}</h2>
+        <h2> No. de oferta: {{datosForm.oferta}}</h2>
+        <h2> Id Cliente: {{datosForm.idCliente}}</h2>
+        <h2> Nombre del cliente: {{datosForm.nombreCliente}}</h2>
+        <h2> Dirección de entrega: {{datosForm.direccion}}</h2>
+        <h2> Contacto: {{datosForm.contacto}} </h2>
+        <h2> Condiciones de pago: {{datosForm.condicionPago}}</h2>
+        <h2> Moneda: {{datosForm.moneda}}</h2>
+        <h2> Porcentaje de descuento: {{datosForm.porcentajeDescuento}}</h2>
+        <h2> Correo electrónico del cliente: {{datosForm.correoCliente}}</h2>
 
 
       </div>
 
       <hr>
-      <div *ngIf="modelosStorage.length > 0">
+      <div style="border-top: 2px solid #4C7176; padding-top: 10px;">
         <table>
           <tr>
             <th>#</th>
@@ -57,11 +62,15 @@
 
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
-        <ion-button (click)="goTo('cotizacion')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ANTERIOR</ion-button>
 
-        <ion-button (click)="goForward('enviar')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+        <ion-button (click)="showModal('enviar')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">AGREGAR ORDEN DE COMPRA</ion-button>
+
+        <ion-button (click)="Process()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">PROCESAR</ion-button>
+
+        <ion-button (click)="goTo('postVentaEdit')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
       </div>
     </ion-card-content>
 
