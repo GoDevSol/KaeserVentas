@@ -39,12 +39,43 @@ const routes: Routes = [
       {
         path: 'postVentaProduct',
         loadChildren: () => import('../postVenta/postVentaProductos/productos.module').then(m => m.ProductosPageModule)
-      }
-      ,
+      },
       {
         path: 'historialMenu',
         loadChildren: () => import('../historial/menu/register.module').then(m => m.RegisterPageModule)
+      },
+      {
+        path: 'solicitudes',
+        loadChildren: () => import('../historial/postVenta.module').then(m => m.PostVentaPageModule)
+      },
+      {
+        path: 'solicitudesView',
+        loadChildren: () => import('../historial/postVentaView/postVentaView.module').then(m => m.postVentaViewModule)
+      },
+      {
+        path: 'solicitudEdit',
+        loadChildren: () => import('../historial/postVentaEdit/cotizacion.module').then(m => m.CotizacionPageModule)
+      },
+      {
+        path: 'solicitudProducto',
+        loadChildren: () => import('../historial/postVentaProductos/productos.module').then(m => m.ProductosPageModule)
+      },
+      {
+        path: 'cotizacionesAll',
+        loadChildren: () => import('../historial/cotizaciones/postVenta.module').then(m => m.PostVentaPageModule)
+      },
+      {
+        path: 'ada',
+        loadChildren: () => import('../ada/1/ada.module').then(m => m.AdaPageModule)
+      },
+      {
+        path: 'ada-first',
+        loadChildren: () => import('../ada/2/ada.module').then(m => m.AdaPageModule)
       }
+
+
+
+
     ]
   }
 ];

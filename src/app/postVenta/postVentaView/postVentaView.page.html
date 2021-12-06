@@ -59,18 +59,48 @@
 
         </table>
       </div>
+      <div style="text-align: -webkit-left; margin-top: 15px;" *ngIf="direccionArchivo.length > 0 ">
+        <table>
+          <tr>
+            <th>
+              <ion-icon name="document-outline">
+              </ion-icon>
+            </th>
+            <th>
+              <strong>
+                {{direccionArchivo}}
+              </strong>
+            </th>
+          </tr>
+        </table>
 
+
+
+
+      </div>
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
+        <ion-button (click)="goTo('postVentaEdit')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
 
-        <ion-button (click)="showModal('enviar')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">AGREGAR ORDEN DE COMPRA</ion-button>
+
+
+      </div>
+      <div style="text-align: -webkit-center; margin-top: 20px;">
+
+        <ion-button *ngIf="direccionArchivo.length > 0 " (click)="showModal()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+          MODIFICAR ORDEN DE COMPRA</ion-button>
+
+        <ion-button *ngIf="direccionArchivo.length == 0 " (click)="showModal()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+          AGREGAR ORDEN DE COMPRA</ion-button>
 
         <ion-button (click)="Process()" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">PROCESAR</ion-button>
 
-        <ion-button (click)="goTo('postVentaEdit')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
+
+
       </div>
     </ion-card-content>
 

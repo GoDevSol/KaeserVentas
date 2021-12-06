@@ -12,11 +12,11 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('cotizacion')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('productos')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('cotizacion')">
+        (click)="goTo('productos')">
         Confirmacion de Envio</ion-button>
     </div>
   </ion-toolbar>
@@ -63,7 +63,7 @@
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
 
-        <ion-button (click)="sendMail('enviar')" type="submit"
+        <ion-button (click)="sendMail()" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ENVIAR</ion-button>
       </div>
     </ion-card-content>

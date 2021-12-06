@@ -133,35 +133,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RegisterPage": () => (/* binding */ RegisterPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_register_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./register.page.html */ 9200);
 /* harmony import */ var _register_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./register.page.scss */ 9728);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 4595);
+
 
 
 
 
 
 let RegisterPage = class RegisterPage {
-    constructor(modalCtrl, navCtrl) {
-        this.modalCtrl = modalCtrl;
+    constructor(navCtrl, api) {
         this.navCtrl = navCtrl;
+        this.api = api;
     }
     ngOnInit() {
+        this.api.cleanDBItem("modelos");
+        this.api.cleanDBItem("datosForm");
+        this.api.cleanDBItem("postVenta");
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
 };
 RegisterPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.ModalController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__.NavController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.NavController },
+    { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService }
 ];
-RegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+RegisterPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-register',
         template: _raw_loader_register_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_register_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -198,7 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n\r\n  <div style=\"text-align: -webkit-center;\">\r\n    <div class=\"rounded\">\r\n      MÀS AIRE POR MENOS ENERGIA\r\n    </div>\r\n  </div>\r\n\r\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" edge slot=\"fixed\">\r\n    <ion-fab-button style=\"--background: #4C7176;\">\r\n      <ion-icon name=\"settings\"></ion-icon>\r\n    </ion-fab-button>\r\n    <ion-fab-list side=\"top\">\r\n      <ion-fab-button style=\"--background: #ffffff;\">\r\n        <ion-icon name=\"person-add\"></ion-icon>\r\n      </ion-fab-button>\r\n      <ion-fab-button style=\"--background: #ffffff;\">\r\n        <ion-icon name=\"mail\"></ion-icon>\r\n      </ion-fab-button>\r\n    </ion-fab-list>\r\n  </ion-fab>\r\n\r\n  <ion-grid style=\"margin-top: 25px;\" style=\"text-align: -webkit-center;\">\r\n    <ion-row>\r\n      <ion-col size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/cotizador.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('cotizacion')\" cli class=\"OptButton\">Cotizador</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border cell-class\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/postventa.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('postVenta')\" class=\"OptButton\">Post Venta</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/ada.png\"></ion-img>\r\n          <ion-button class=\"OptButton\">ADA</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col size-xs=\"6\" size-md=\"4\" class=\"cell-class\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/arranques.png\"></ion-img>\r\n          <ion-button class=\"OptButton\">Arranques</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/checklist.png\"></ion-img>\r\n          <ion-button class=\"OptButton\">Checklist</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border cell-class\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/historial.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('historialMenu')\" class=\"OptButton\">Historial</ion-button>\r\n        </div>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n\r\n  <div style=\"text-align: -webkit-center;\">\r\n    <div class=\"rounded\">\r\n      MÀS AIRE POR MENOS ENERGIA\r\n    </div>\r\n  </div>\r\n\r\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" edge slot=\"fixed\">\r\n    <ion-fab-button style=\"--background: #4C7176;\">\r\n      <ion-icon name=\"settings\"></ion-icon>\r\n    </ion-fab-button>\r\n    <ion-fab-list side=\"top\">\r\n      <ion-fab-button style=\"--background: #ffffff;\">\r\n        <ion-icon name=\"person-add\"></ion-icon>\r\n      </ion-fab-button>\r\n      <ion-fab-button style=\"--background: #ffffff;\">\r\n        <ion-icon name=\"mail\"></ion-icon>\r\n      </ion-fab-button>\r\n    </ion-fab-list>\r\n  </ion-fab>\r\n\r\n  <ion-grid style=\"margin-top: 25px;\" style=\"text-align: -webkit-center;\">\r\n    <ion-row>\r\n      <ion-col size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/cotizador.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('cotizacion')\" cli class=\"OptButton\">Cotizador</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border cell-class\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/postventa.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('postVenta')\" class=\"OptButton\">Post Venta</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/ada.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('ada')\" class=\"OptButton\">ADA</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col size-xs=\"6\" size-md=\"4\" class=\"cell-class\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/arranques.png\"></ion-img>\r\n          <ion-button class=\"OptButton\">Arranques</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/checklist.png\"></ion-img>\r\n          <ion-button class=\"OptButton\">Checklist</ion-button>\r\n        </div>\r\n      </ion-col>\r\n\r\n      <ion-col class=\"cell-class-border cell-class\" size-xs=\"6\" size-md=\"4\">\r\n        <div class=\"backgroundOpt\">\r\n          <ion-img class=\"OptImg\" src=\"assets/img/menu/historial.png\"></ion-img>\r\n          <ion-button (click)=\"goTo('historialMenu')\" class=\"OptButton\">Historial</ion-button>\r\n        </div>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
 
 /***/ })
 

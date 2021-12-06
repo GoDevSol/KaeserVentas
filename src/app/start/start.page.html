@@ -13,11 +13,12 @@
         <form [formGroup]="formLogin">
 
           <ion-item class="roundedInput">
-            <ion-input formControlName="user" placeholder="Usuario"></ion-input>
+            <ion-input clearInput="true" formControlName="user" placeholder="Usuario"></ion-input>
           </ion-item>
 
           <ion-item class="roundedInput">
-            <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+            <ion-input clearInput="true" formControlName="password" type="password" placeholder="Contraseña">
+            </ion-input>
           </ion-item>
           <div style="text-align: -webkit-center;">
             <ion-button [disabled]="!formLogin.valid"

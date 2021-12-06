@@ -1,14 +1,52 @@
+import { ToastController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
 
-  URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  //URL = "http://localhost/kaeserVentas/api/req/";
+  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  URL = "https://localhost/kaeserVentas/api/req/";
 
-  constructor() { }
+  constructor(private storage: Storage, public toastController: ToastController) { }
+
+
+  //DB
+
+  async getDBItem(name) {
+    this.storage.create();
+    var item = await this.storage.get(name);
+    if (item == null) return []
+    return item;
+  }
+
+  async setDBItem(name, item) {
+    await this.storage.create();
+    await this.storage.set(name, item)
+  }
+
+  async cleanDBItem(name) {
+    await this.storage.create();
+    await this.storage.remove(name)
+  }
+
+
+
+  //toast
+
+  async showToast(msg, header) {
+    const toast = await this.toastController.create({
+      color: 'dark',
+      message: msg,
+      header: header,
+      position: 'top',
+      duration: 1500
+    });
+    toast.present();
+  }
+
 
   //LOGIN
 
@@ -34,8 +72,13 @@ export class ServicesService {
 
 
   //COTIZACIONES
-  async readCotizacion() {
+
+  async readCotizacionAll() {
     return await this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
+  }
+
+  async readCotizacion(state) {
+    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/readByEstado.php", state);
   }
 
   async saveCotizacion(json) {

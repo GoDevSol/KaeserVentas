@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ServicesService } from 'src/app/api/services.service';
-import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-register-form',
@@ -17,7 +15,7 @@ export class RegisterFormComponent implements OnInit {
   modelosAll: any = []
   modelosAgregados: any = []
 
-  constructor(private modalCtrl: ModalController, private storage: Storage, private api: ServicesService) {
+  constructor(private modalCtrl: ModalController, private api: ServicesService) {
 
   }
 
@@ -31,25 +29,17 @@ export class RegisterFormComponent implements OnInit {
 
     this.modelosAll = this.modelos.filter(s => s.modelo.includes(""));
     this.tipoEquipo = await this.api.getTipoEquipoById({ "id": this.id })
-
-    this.modelosAgregados = await this.storage.get('modelos');
+    this.modelosAgregados = await this.api.getDBItem('modelos');
 
     this.modelosAgregados.forEach(element => {
-
       if (element.idTipoEquipo == this.id) {
         this.upsert(this.modelos, element)
       }
-
     });
-
-
-
-
   }
 
   async dismissModal() {
-    this.storage.create();
-    this.storage.set("modelos", this.modelosAgregados);
+    this.api.setDBItem("modelos", this.modelosAgregados);
     await this.modalCtrl.dismiss();
 
   }
@@ -59,7 +49,6 @@ export class RegisterFormComponent implements OnInit {
   }
 
   sumar(model) {
-
     model.cantidad++
     this.upsert(this.modelosAgregados, model)
 
@@ -75,9 +64,7 @@ export class RegisterFormComponent implements OnInit {
   upsert(array, element) {
     const i = array.findIndex(_element => _element.id === element.id);
     if (element.cantidad == 0) array.splice(i, 1)
-    else if (i > -1) array[i] = element; // (2)
+    else if (i > -1) array[i] = element;
     else array.push(element);
   }
-
-
 }

@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('register')">
+        Soliictud de Estudios ADA</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      Ingresa tus datos y seleeciona los productos
+    </ion-card-content>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        QUSEMF-030754-GUA-Políticas de Medición y Estudios ADA
+      </div>
+    </div>
+    <form [formGroup]="formRegister">
+
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oportunidad" type="number" clearInput="true"
+          placeholder="No. de oportunidad">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oferta" type="number" placeholder="No. de oferta"
+          clearInput="true"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="idCliente" type="number" placeholder="Id Cliente"
+          clearInput="true"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="nombreCliente" type="name" name="name"
+          placeholder="Nombre del cliente" clearInput="true"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="direccion" placeholder="Dirección de entrega" clearInput="true">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="contacto" type="tel" name="tel" placeholder="Telefono Contacto"
+          clearInput="true">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="condicionPago" placeholder="Condiciones de pago"
+          clearInput="true"></ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="moneda" type="transaction-currency" name="transaction-currency"
+          placeholder="Moneda" clearInput="true">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"
+          clearInput="true">
+        </ion-input>
+      </ion-item>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="correoCliente" multiple="true" type="email"
+          placeholder="Correo electrónico del cliente" clearInput="true">
+        </ion-input>
+      </ion-item>
+
+
+
+      <div style="text-align: -webkit-center;">
+
+        <ion-button (click)="goForward('productos')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+      </div>
+
+    </form>
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

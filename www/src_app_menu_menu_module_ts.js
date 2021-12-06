@@ -46,7 +46,7 @@ const routes = [
             },
             {
                 path: 'postVentaView',
-                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_postVenta_postVentaView_postVentaView_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVentaView/postVentaView.module */ 7159)).then(m => m.postVentaViewModule)
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_addSaleOrder_addSaleOrder_component_ts"), __webpack_require__.e("src_app_postVenta_postVentaView_postVentaView_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../postVenta/postVentaView/postVentaView.module */ 7159)).then(m => m.postVentaViewModule)
             },
             {
                 path: 'postVentaEdit',
@@ -59,6 +59,34 @@ const routes = [
             {
                 path: 'historialMenu',
                 loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_historial_menu_register_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../historial/menu/register.module */ 2788)).then(m => m.RegisterPageModule)
+            },
+            {
+                path: 'solicitudes',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_historial_postVenta_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../historial/postVenta.module */ 730)).then(m => m.PostVentaPageModule)
+            },
+            {
+                path: 'solicitudesView',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_addSaleOrder_addSaleOrder_component_ts"), __webpack_require__.e("src_app_historial_postVentaView_postVentaView_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../historial/postVentaView/postVentaView.module */ 3832)).then(m => m.postVentaViewModule)
+            },
+            {
+                path: 'solicitudEdit',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_historial_postVentaEdit_cotizacion_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../historial/postVentaEdit/cotizacion.module */ 8221)).then(m => m.CotizacionPageModule)
+            },
+            {
+                path: 'solicitudProducto',
+                loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_modals_registerForm_register-form_component_ts"), __webpack_require__.e("src_app_historial_postVentaProductos_productos_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../historial/postVentaProductos/productos.module */ 5741)).then(m => m.ProductosPageModule)
+            },
+            {
+                path: 'cotizacionesAll',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_historial_cotizaciones_postVenta_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../historial/cotizaciones/postVenta.module */ 6231)).then(m => m.PostVentaPageModule)
+            },
+            {
+                path: 'ada',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_ada_1_ada_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../ada/1/ada.module */ 1677)).then(m => m.AdaPageModule)
+            },
+            {
+                path: 'ada-first',
+                loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_ada_2_ada_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../ada/2/ada.module */ 1812)).then(m => m.AdaPageModule)
             }
         ]
     }
@@ -141,12 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 let MenuPage = class MenuPage {
     constructor() {
         this.appPages = [
-            { title: 'Perfil', url: '/profile', icon: 'person-circle' },
-            // { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-            // { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-            // { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-            // { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-            // { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+            { title: 'Cerrar Sesión', url: '/menu/cotizacion', icon: 'log-out' },
         ];
         this.labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
     }
@@ -192,7 +215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-split-pane contentId=\"content\" when=\"false\">\r\n  <ion-menu contentId=\"content\" side=\"end\">\r\n    <ion-header>\r\n      <ion-toolbar>\r\n        <ion-title>Menu</ion-title>\r\n        <ion-buttons>\r\n          <ion-button icon-only>\r\n            <ion-icon name=\"arrow-back\" size=\"large\"></ion-icon>\r\n          </ion-button>\r\n        </ion-buttons>\r\n      </ion-toolbar>\r\n    </ion-header>\r\n    <ion-content>\r\n      <ion-list>\r\n        <ion-item>Home</ion-item>\r\n        <ion-item>Settings</ion-item>\r\n        <ion-item>Log out</ion-item>\r\n      </ion-list>\r\n    </ion-content>\r\n  </ion-menu>\r\n  <ion-router-outlet id=\"content\" main></ion-router-outlet>\r\n</ion-split-pane>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-split-pane contentId=\"content\" when=\"false\">\r\n  <ion-menu contentId=\"content\" side=\"end\">\r\n    <ion-header>\r\n      <ion-toolbar>\r\n        <ion-buttons>\r\n          <ion-menu-toggle style=\"padding-left: 10px;\">\r\n            <ion-icon name=\"arrow-back\" size=\"large\"></ion-icon>\r\n            <ion-button\r\n              style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176; --color: white; height: 25px;vertical-align: super;font-size: 15px;\">\r\n              MENU\r\n            </ion-button>\r\n          </ion-menu-toggle>\r\n        </ion-buttons>\r\n      </ion-toolbar>\r\n    </ion-header>\r\n    <ion-content>\r\n      <ion-list id=\"inbox-list\">\r\n\r\n\r\n\r\n        <ion-menu-toggle auto-hide=\"true\" *ngFor=\"let p of appPages; let i = index\">\r\n          <ion-item [routerLink]=\"[p.url]\" lines=\"full\" detail=\"false\" routerLinkActive=\"selected\">\r\n            <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n            <ion-label>{{ p.title }}</ion-label>\r\n          </ion-item>\r\n        </ion-menu-toggle>\r\n      </ion-list>\r\n    </ion-content>\r\n  </ion-menu>\r\n  <ion-router-outlet id=\"content\" main></ion-router-outlet>\r\n</ion-split-pane>");
 
 /***/ })
 

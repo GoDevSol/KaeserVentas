@@ -1,0 +1,101 @@
+
+CREATE TABLE `permissions` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `permissions` object
+);
+​
+CREATE TABLE `listing` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `contract_address` varchar(34),
+  `owner` int,
+  `listing_type_id` int
+);
+​
+CREATE TABLE `listing_type` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(50)
+);
+​
+CREATE TABLE `documents` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(50),
+  `document_type_id` int
+);
+​
+CREATE TABLE `document_type` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(50)
+);
+​
+CREATE TABLE `contract` (
+  `address` varchar(34) PRIMARY KEY,
+  `balance` int,
+  `token_balance` int,
+  `author` id,
+  `stakeholders` array,
+  `listing_id` int,
+  `valid_until` timestamp,
+  `rules_id` int
+);
+​
+CREATE TABLE `contract_rules` (
+  `id` int PRIMARY KEY,
+  `rule_id` id
+);
+​
+CREATE TABLE `rules` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `rules` array
+);
+​
+CREATE TABLE `ticket` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `contract_address` varchar(34),
+  `listing_id` int,
+  `user_id` int,
+  `transaction_id` int
+);
+​
+CREATE TABLE `transactions` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `type_id` int
+);
+​
+CREATE TABLE `transaction_type` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(50)
+);
+​
+ALTER TABLE `user` ADD FOREIGN KEY (`type`) REFERENCES `user_type` (`id`);
+​
+ALTER TABLE `permissions` ADD FOREIGN KEY (`id`) REFERENCES `user_type` (`permissions`);
+​
+ALTER TABLE `listing` ADD FOREIGN KEY (`owner`) REFERENCES `user` (`id`);
+​
+ALTER TABLE `listing` ADD FOREIGN KEY (`listing_type_id`) REFERENCES `listing_type` (`id`);
+​
+ALTER TABLE `listing` ADD FOREIGN KEY (`id`) REFERENCES `documents` (`id`);
+​
+ALTER TABLE `document_type` ADD FOREIGN KEY (`id`) REFERENCES `documents` (`document_type_id`);
+​
+ALTER TABLE `contract` ADD FOREIGN KEY (`address`) REFERENCES `user` (`contracts`);
+​
+ALTER TABLE `contract` ADD FOREIGN KEY (`author`) REFERENCES `user` (`id`);
+​
+ALTER TABLE `contract` ADD FOREIGN KEY (`stakeholders`) REFERENCES `user` (`id`);
+​
+ALTER TABLE `contract` ADD FOREIGN KEY (`listing_id`) REFERENCES `listing` (`id`);
+​
+ALTER TABLE `contract_rules` ADD FOREIGN KEY (`id`) REFERENCES `contract` (`rules_id`);
+​
+ALTER TABLE `contract_rules` ADD FOREIGN KEY (`rule_id`) REFERENCES `rules` (`id`);
+​
+ALTER TABLE `contract` ADD FOREIGN KEY (`address`) REFERENCES `ticket` (`contract_address`);
+​
+ALTER TABLE `listing` ADD FOREIGN KEY (`id`) REFERENCES `ticket` (`listing_id`);
+​
+ALTER TABLE `user` ADD FOREIGN KEY (`id`) REFERENCES `ticket` (`user_id`);
+​
+ALTER TABLE `user` ADD FOREIGN KEY (`transactions`) REFERENCES `transactions` (`id`);
+​
+ALTER TABLE `transactions` ADD FOREIGN KEY (`id`) REFERENCES `transaction_type` (`id`);

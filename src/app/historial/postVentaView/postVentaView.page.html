@@ -12,12 +12,12 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('postVenta')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('solicitudes')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('postVenta')">
-        Vista Previa</ion-button>
+        (click)="goTo('solicitudes')">
+        Solicitud</ion-button>
     </div>
   </ion-toolbar>
 
@@ -25,7 +25,7 @@
   <ion-card style="--background:#E6E7E7">
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      Agregue una vista previa para poder procesar la cotizacion o editela.
+      Ejecute la solicitud o editela.
 
       <div style="margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;">
         <h1> Datos:</h1>
@@ -59,18 +59,48 @@
 
         </table>
       </div>
+      <div style="text-align: -webkit-left; margin-top: 15px;" *ngIf="direccionArchivo.length > 0 ">
+        <table>
+          <tr>
+            <th>
+              <ion-icon name="document-outline">
+              </ion-icon>
+            </th>
+            <th>
+              <strong>
+                {{direccionArchivo}}
+              </strong>
+            </th>
+          </tr>
+        </table>
 
+
+
+
+      </div>
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
+        <ion-button (click)="goTo('solicitudEdit')" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
 
-        <ion-button (click)="showModal('enviar')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">AGREGAR ORDEN DE COMPRA</ion-button>
+
+
+      </div>
+      <div style="text-align: -webkit-center; margin-top: 20px;">
+
+        <ion-button *ngIf="direccionArchivo.length > 0 " (click)="showModal()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+          MODIFICAR ORDEN DE COMPRA</ion-button>
+
+        <ion-button *ngIf="direccionArchivo.length == 0 " (click)="showModal()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+          AGREGAR ORDEN DE COMPRA</ion-button>
 
         <ion-button (click)="Process()" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">PROCESAR</ion-button>
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EJECUTAR</ion-button>
 
-        <ion-button (click)="goTo('postVentaEdit')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
+
+
       </div>
     </ion-card-content>
 

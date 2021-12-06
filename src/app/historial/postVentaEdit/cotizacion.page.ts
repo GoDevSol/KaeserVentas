@@ -1,7 +1,8 @@
+import { ServicesService } from 'src/app/api/services.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Storage } from '@ionic/storage';
+
 
 
 @Component({
@@ -11,22 +12,9 @@ import { Storage } from '@ionic/storage';
 })
 export class CotizacionPage implements OnInit {
   formRegister: FormGroup;
-  postVenta: {
-    datosForm: {
-      oportunidad: "",
-      oferta: "",
-      idCliente: "",
-      nombreCliente: "",
-      direccion: "",
-      contacto: "",
-      condicionPago: "",
-      moneda: "",
-      porcentajeDescuento: "",
-      correoCliente: ""
-    }
-  };
+  postVenta: any
 
-  constructor(public toastController: ToastController, private formBuilder: FormBuilder, private navCtrl: NavController, private storage: Storage) {
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController, private api: ServicesService) {
     this.formRegister = this.formBuilder.group({
       oportunidad: new FormControl("", Validators.compose([Validators.required])),
       oferta: new FormControl("", Validators.compose([Validators.required])),
@@ -43,11 +31,9 @@ export class CotizacionPage implements OnInit {
   }
 
   async ngOnInit() {
-    this.storage.create()
-    this.postVenta = await this.storage.get('postVenta');
 
+    this.postVenta = await this.api.getDBItem('postVenta');
     var datosForm = this.postVenta.datosForm
-
     this.formRegister.controls.oportunidad.setValue(datosForm.oportunidad);
     this.formRegister.controls.oferta.setValue(datosForm.oferta);
     this.formRegister.controls.idCliente.setValue(datosForm.idCliente);
@@ -66,19 +52,9 @@ export class CotizacionPage implements OnInit {
   }
 
   async goForward(ruta) {
-    this.storage.create()
-
     this.postVenta.datosForm = this.formRegister.value
-
-    this.storage.set("postVenta", this.postVenta)
-
+    this.api.setDBItem("postVenta", this.postVenta)
     this.navCtrl.navigateForward('menu/' + ruta)
   }
-
-  SendEmail(value) {
-
-  }
-
-
 
 }

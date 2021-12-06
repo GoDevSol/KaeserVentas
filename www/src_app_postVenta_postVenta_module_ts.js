@@ -11,68 +11,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ServicesService": () => (/* binding */ ServicesService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 1855);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/storage */ 2604);
+
+
 
 
 let ServicesService = class ServicesService {
-    //URL = "http://localhost/kaeserVentas/api/req/";
-    constructor() {
-        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
+    constructor(storage, toastController) {
+        this.storage = storage;
+        this.toastController = toastController;
+        //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+        this.URL = "https://localhost/kaeserVentas/api/req/";
+    }
+    //DB
+    getDBItem(name) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            this.storage.create();
+            var item = yield this.storage.get(name);
+            if (item == null)
+                return [];
+            return item;
+        });
+    }
+    setDBItem(name, item) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.create();
+            yield this.storage.set(name, item);
+        });
+    }
+    cleanDBItem(name) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.create();
+            yield this.storage.remove(name);
+        });
+    }
+    //toast
+    showToast(msg, header) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                color: 'dark',
+                message: msg,
+                header: header,
+                position: 'top',
+                duration: 1500
+            });
+            toast.present();
+        });
     }
     //LOGIN
     login(credentials) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
         });
     }
     //
     getTiposEquipo() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
         });
     }
     getTipoEquipoById(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParamsReturnOne(this.URL + "TiposEquipo/readById.php", id);
         });
     }
     //MODELO
     getModelosByTipoEquipo(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
         });
     }
     //COTIZACIONES
-    readCotizacion() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+    readCotizacionAll() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
         });
     }
+    readCotizacion(state) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/readByEstado.php", state);
+        });
+    }
     saveCotizacion(json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
         });
     }
     modificarCotizacion(json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
         });
     }
     //FILE
     loadFile(file) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
         });
     }
     getFile(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "verificar.php", id);
         });
     }
     //RESOLVE
     resolverSolicitud(url) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url);
             var result = yield data.json();
             if (result.status == true) {
@@ -84,7 +130,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParams(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -94,7 +140,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParamsReturnOne(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -104,7 +150,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParamsWithOutAData(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -114,7 +160,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudSinJSON(url, file) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: file
@@ -124,9 +170,12 @@ let ServicesService = class ServicesService {
         });
     }
 };
-ServicesService.ctorParameters = () => [];
-ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+ServicesService.ctorParameters = () => [
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ToastController }
+];
+ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
         providedIn: 'root'
     })
 ], ServicesService);
@@ -228,16 +277,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PostVentaPage": () => (/* binding */ PostVentaPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_postVenta_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./postVenta.page.html */ 7177);
 /* harmony import */ var _postVenta_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postVenta.page.scss */ 3746);
 /* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 4595);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 3324);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 2604);
-
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 4595);
 
 
 
@@ -245,49 +290,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PostVentaPage = class PostVentaPage {
-    constructor(toastController, formBuilder, navCtrl, storage, api) {
-        this.toastController = toastController;
-        this.formBuilder = formBuilder;
+    constructor(navCtrl, api) {
         this.navCtrl = navCtrl;
-        this.storage = storage;
         this.api = api;
         this.modelos = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            this.modelos = yield this.api.readCotizacion();
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            this.modelos = yield this.api.readCotizacion({ estado: 1 });
             this.modelos = yield this.modelos.map(x => {
                 x.datosForm = JSON.parse(x.datosForm.replaceAll('&quot;', '"'));
                 x.datosModelos = JSON.parse(x.datosModelos.replaceAll('&quot;', '"'));
                 return x;
             });
-            console.log(this.modelos);
         });
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
     goToPostVenta(ruta, modelo) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            this.storage.create();
-            this.storage.set("postVenta", modelo);
-            this.navCtrl.navigateBack('menu/' + ruta);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.api.setDBItem("postVenta", modelo);
+            this.navCtrl.navigateForward('menu/' + ruta);
         });
-    }
-    SendEmail(value) {
     }
 };
 PostVentaPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.NavController },
     { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService }
 ];
-PostVentaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+PostVentaPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-postVenta',
         template: _raw_loader_postVenta_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_postVenta_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

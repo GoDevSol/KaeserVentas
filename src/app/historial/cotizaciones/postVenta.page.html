@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('historialMenu')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('historialMenu')">
+        SOLICITUDES</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      LISTADO DE SOLICITUDES
+    </ion-card-content>
+    <hr style="background: black;">
+
+    <ion-item style="--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;"
+      *ngFor="let modelo of modelos">
+
+      <ion-grid>
+        <ion-row style="padding: 0px;">
+          <ion-col style="text-align: left;">
+            <strong style="color: #4C7176;"> Cotizaciòn </strong>
+            <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
+          </ion-col>
+          <ion-col style="text-align: center;" size="3">
+
+            <ion-icon *ngIf="modelo.estado == 1" name="document-outline">
+            </ion-icon>
+            <ion-icon *ngIf="modelo.estado == 2" name="timer-outline"></ion-icon>
+            <ion-icon *ngIf="modelo.estado == 3" name="checkmark-done-outline"></ion-icon>
+
+            <p *ngIf="modelo.estado == 1" style="margin: 0;">POST VENTA</p>
+            <p *ngIf="modelo.estado == 2" style="margin: 0;">PENDIENTE</p>
+            <p *ngIf="modelo.estado == 3" style="margin: 0;">EJECUTADA</p>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+
+    </ion-item>
+
+
+
+
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goTo('historialMenu')"
+        style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+        REGRESAR</ion-button>
+
+    </div>
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+</ion-footer>

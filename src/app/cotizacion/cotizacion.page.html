@@ -32,36 +32,49 @@
     <form [formGroup]="formRegister">
 
       <ion-item class="roundedInput">
-        <ion-input style="margin:-0px; --placeholder-font-weight:5px; height: 10px;" formControlName="oportunidad"
-          type="text" placeholder="No. de oportunidad">
+        <ion-input clearInput="true" formControlName="oportunidad" type="number" clearInput="true"
+          placeholder="No. de oportunidad">
         </ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="oferta" type="text" placeholder="No. de oferta"></ion-input>
+        <ion-input clearInput="true" formControlName="oferta" type="number" placeholder="No. de oferta"
+          clearInput="true"></ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="idCliente" type="text" placeholder="Id Cliente"></ion-input>
+        <ion-input clearInput="true" formControlName="idCliente" type="number" placeholder="Id Cliente"
+          clearInput="true"></ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="nombreCliente" type="email" placeholder="Nombre del cliente"></ion-input>
+        <ion-input clearInput="true" formControlName="nombreCliente" type="name" name="name"
+          placeholder="Nombre del cliente" clearInput="true"></ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="direccion" placeholder="Dirección de entrega"></ion-input>
+        <ion-input clearInput="true" formControlName="direccion" placeholder="Dirección de entrega" clearInput="true">
+        </ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="contacto" placeholder="Contacto"></ion-input>
+        <ion-input clearInput="true" formControlName="contacto" type="tel" name="tel" placeholder="Telefono Contacto"
+          clearInput="true">
+        </ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="condicionPago" placeholder="Condiciones de pago"></ion-input>
+        <ion-input clearInput="true" formControlName="condicionPago" placeholder="Condiciones de pago"
+          clearInput="true"></ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="moneda" placeholder="Moneda"></ion-input>
+        <ion-input clearInput="true" formControlName="moneda" type="transaction-currency" name="transaction-currency"
+          placeholder="Moneda" clearInput="true">
+        </ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"></ion-input>
+        <ion-input clearInput="true" formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"
+          clearInput="true">
+        </ion-input>
       </ion-item>
       <ion-item class="roundedInput">
-        <ion-input formControlName="correoCliente" placeholder="Correo electrónico del cliente"></ion-input>
+        <ion-input clearInput="true" formControlName="correoCliente" multiple="true" type="email"
+          placeholder="Correo electrónico del cliente" clearInput="true">
+        </ion-input>
       </ion-item>
 
 

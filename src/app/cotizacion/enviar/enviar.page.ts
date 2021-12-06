@@ -14,15 +14,14 @@ export class EnviarPage implements OnInit {
   modelosStorage: any = [];
   datosForm: any = [];
 
-  constructor(private navCtrl: NavController, public toastController: ToastController, private storage: Storage, private api: ServicesService) {
+  constructor(private navCtrl: NavController, private api: ServicesService) {
 
 
   }
 
   async ngOnInit() {
-
-    this.modelosStorage = await this.storage.get('modelos');
-    this.datosForm = await this.storage.get('datosForm');
+    this.modelosStorage = await this.api.getDBItem('modelos');
+    this.datosForm = await this.api.getDBItem('datosForm');
 
   }
 
@@ -34,19 +33,6 @@ export class EnviarPage implements OnInit {
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 
-
-  async handleButtonClick() {
-    const toast = await this.toastController.create({
-      color: 'dark',
-      message: 'Se ha enviado la solicitud de cotizacion exitosamente.',
-      header: 'Cotizacion',
-      position: 'top',
-      duration: 1500
-    });
-    this.navCtrl.navigateBack('menu/' + 'register')
-    toast.present();
-  }
-
   async sendMail() {
     var data = {
       datosForm: JSON.stringify(this.datosForm),
@@ -55,7 +41,8 @@ export class EnviarPage implements OnInit {
 
     }
     const save = await this.api.saveCotizacion(data)
-    this.handleButtonClick()
+    this.api.showToast('Se ha enviado la solicitud de cotizacion exitosamente.', "Cotizacion",)
+    this.navCtrl.navigateBack('menu/' + 'register')
   }
 
 

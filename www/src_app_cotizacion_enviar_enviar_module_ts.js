@@ -11,68 +11,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ServicesService": () => (/* binding */ ServicesService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 1855);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/storage */ 2604);
+
+
 
 
 let ServicesService = class ServicesService {
-    //URL = "http://localhost/kaeserVentas/api/req/";
-    constructor() {
-        this.URL = "https://godevsol.tech/kaeserVentas/api/req/";
+    constructor(storage, toastController) {
+        this.storage = storage;
+        this.toastController = toastController;
+        //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+        this.URL = "https://localhost/kaeserVentas/api/req/";
+    }
+    //DB
+    getDBItem(name) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            this.storage.create();
+            var item = yield this.storage.get(name);
+            if (item == null)
+                return [];
+            return item;
+        });
+    }
+    setDBItem(name, item) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.create();
+            yield this.storage.set(name, item);
+        });
+    }
+    cleanDBItem(name) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.create();
+            yield this.storage.remove(name);
+        });
+    }
+    //toast
+    showToast(msg, header) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                color: 'dark',
+                message: msg,
+                header: header,
+                position: 'top',
+                duration: 1500
+            });
+            toast.present();
+        });
     }
     //LOGIN
     login(credentials) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
         });
     }
     //
     getTiposEquipo() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
         });
     }
     getTipoEquipoById(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParamsReturnOne(this.URL + "TiposEquipo/readById.php", id);
         });
     }
     //MODELO
     getModelosByTipoEquipo(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
         });
     }
     //COTIZACIONES
-    readCotizacion() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+    readCotizacionAll() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
         });
     }
+    readCotizacion(state) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/readByEstado.php", state);
+        });
+    }
     saveCotizacion(json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
         });
     }
     modificarCotizacion(json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
         });
     }
     //FILE
     loadFile(file) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudSinJSON(this.URL + "upload.php", file);
         });
     }
     getFile(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             return yield this.resolverSolicitudParams(this.URL + "verificar.php", id);
         });
     }
     //RESOLVE
     resolverSolicitud(url) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url);
             var result = yield data.json();
             if (result.status == true) {
@@ -84,7 +130,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParams(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -94,7 +140,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParamsReturnOne(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -104,7 +150,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudParamsWithOutAData(url, json) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: JSON.stringify(json)
@@ -114,7 +160,7 @@ let ServicesService = class ServicesService {
         });
     }
     resolverSolicitudSinJSON(url, file) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             var data = yield fetch(url, {
                 method: "POST",
                 body: file
@@ -124,9 +170,12 @@ let ServicesService = class ServicesService {
         });
     }
 };
-ServicesService.ctorParameters = () => [];
-ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+ServicesService.ctorParameters = () => [
+    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_0__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ToastController }
+];
+ServicesService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
         providedIn: 'root'
     })
 ], ServicesService);
@@ -228,14 +277,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EnviarPage": () => (/* binding */ EnviarPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_enviar_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./enviar.page.html */ 285);
 /* harmony import */ var _enviar_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enviar.page.scss */ 7110);
 /* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 4595);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/storage */ 2604);
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 4595);
 
 
 
@@ -243,63 +290,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let EnviarPage = class EnviarPage {
-    constructor(navCtrl, toastController, storage, api) {
+    constructor(navCtrl, api) {
         this.navCtrl = navCtrl;
-        this.toastController = toastController;
-        this.storage = storage;
         this.api = api;
         this.modelosStorage = [];
         this.datosForm = [];
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            this.modelosStorage = yield this.storage.get('modelos');
-            this.datosForm = yield this.storage.get('datosForm');
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            this.modelosStorage = yield this.api.getDBItem('modelos');
+            this.datosForm = yield this.api.getDBItem('datosForm');
         });
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
     goForward(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateForward('menu/' + ruta);
         });
     }
-    handleButtonClick() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            const toast = yield this.toastController.create({
-                color: 'dark',
-                message: 'Se ha enviado la solicitud de cotizacion exitosamente.',
-                header: 'Cotizacion',
-                position: 'top',
-                duration: 1500
-            });
-            this.navCtrl.navigateBack('menu/' + 'register');
-            toast.present();
-        });
-    }
     sendMail() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             var data = {
                 datosForm: JSON.stringify(this.datosForm),
                 datosModelos: JSON.stringify(this.modelosStorage),
                 direccionArchivo: ""
             };
             const save = yield this.api.saveCotizacion(data);
-            this.handleButtonClick();
+            this.api.showToast('Se ha enviado la solicitud de cotizacion exitosamente.', "Cotizacion");
+            this.navCtrl.navigateBack('menu/' + 'register');
         });
     }
 };
 EnviarPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ToastController },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_3__.Storage },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.NavController },
     { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_2__.ServicesService }
 ];
-EnviarPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+EnviarPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
         selector: 'app-enviar',
         template: _raw_loader_enviar_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_enviar_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -336,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('cotizacion')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('cotizacion')\">\r\n        Confirmacion de Envio</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      Verifica los datos de la Solicitud de Cotizacion\r\n\r\n      <div style=\"margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <h1> Datos:</h1>\r\n        <h2> No. de oportunidad: {{datosForm.oportunidad}}</h2>\r\n        <h2> No. de oferta: {{datosForm.oferta}}</h2>\r\n        <h2> Id Cliente: {{datosForm.idCliente}}</h2>\r\n        <h2> Nombre del cliente: {{datosForm.nombreCliente}}</h2>\r\n        <h2> Dirección de entrega: {{datosForm.direccion}}</h2>\r\n        <h2> Contacto: {{datosForm.contacto}} </h2>\r\n        <h2> Condiciones de pago: {{datosForm.condicionPago}}</h2>\r\n        <h2> Moneda: {{datosForm.moneda}}</h2>\r\n        <h2> Porcentaje de descuento: {{datosForm.porcentajeDescuento}}</h2>\r\n        <h2> Correo electrónico del cliente: {{datosForm.correoCliente}}</h2>\r\n\r\n\r\n      </div>\r\n\r\n      <hr>\r\n      <div style=\"border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <table>\r\n          <tr>\r\n            <th>#</th>\r\n            <th>Unidades</th>\r\n            <th>Descripcion</th>\r\n          </tr>\r\n          <tr *ngFor=\"let item of modelosStorage; let i = index\">\r\n            <td>{{i+1}}</td>\r\n            <td>{{item.cantidad}}</td>\r\n            <td>{{item.modelo}}</td>\r\n          </tr>\r\n\r\n        </table>\r\n      </div>\r\n\r\n\r\n      <div style=\"text-align: -webkit-center; margin-top: 20px;\">\r\n\r\n        <ion-button (click)=\"sendMail('enviar')\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">ENVIAR</ion-button>\r\n      </div>\r\n    </ion-card-content>\r\n\r\n\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar\r\n    style=\"--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;\">\r\n    <ion-img slot=\"start\" style=\"height: 50px; margin: 5px;\" src=\"assets/img/principal/logo.png\"></ion-img>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-menu-button style=\"color:#4C7176;\"></ion-menu-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n  <ion-toolbar style=\"--background:none; border: none;\">\r\n    <div>\r\n      <img (click)=\"goTo('productos')\" style=\"height: 25px;display: inline; width: 20px; vertical-align: super;\"\r\n        src=\"assets/img/back.png\">\r\n      <ion-button\r\n        style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;\"\r\n        (click)=\"goTo('productos')\">\r\n        Confirmacion de Envio</ion-button>\r\n    </div>\r\n  </ion-toolbar>\r\n\r\n\r\n  <ion-card style=\"--background:#E6E7E7\">\r\n\r\n    <ion-card-content style=\"text-align: justify;line-height: 1;font-size: 14px;\">\r\n      Verifica los datos de la Solicitud de Cotizacion\r\n\r\n      <div style=\"margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <h1> Datos:</h1>\r\n        <h2> No. de oportunidad: {{datosForm.oportunidad}}</h2>\r\n        <h2> No. de oferta: {{datosForm.oferta}}</h2>\r\n        <h2> Id Cliente: {{datosForm.idCliente}}</h2>\r\n        <h2> Nombre del cliente: {{datosForm.nombreCliente}}</h2>\r\n        <h2> Dirección de entrega: {{datosForm.direccion}}</h2>\r\n        <h2> Contacto: {{datosForm.contacto}} </h2>\r\n        <h2> Condiciones de pago: {{datosForm.condicionPago}}</h2>\r\n        <h2> Moneda: {{datosForm.moneda}}</h2>\r\n        <h2> Porcentaje de descuento: {{datosForm.porcentajeDescuento}}</h2>\r\n        <h2> Correo electrónico del cliente: {{datosForm.correoCliente}}</h2>\r\n\r\n\r\n      </div>\r\n\r\n      <hr>\r\n      <div style=\"border-top: 2px solid #4C7176; padding-top: 10px;\">\r\n        <table>\r\n          <tr>\r\n            <th>#</th>\r\n            <th>Unidades</th>\r\n            <th>Descripcion</th>\r\n          </tr>\r\n          <tr *ngFor=\"let item of modelosStorage; let i = index\">\r\n            <td>{{i+1}}</td>\r\n            <td>{{item.cantidad}}</td>\r\n            <td>{{item.modelo}}</td>\r\n          </tr>\r\n\r\n        </table>\r\n      </div>\r\n\r\n\r\n      <div style=\"text-align: -webkit-center; margin-top: 20px;\">\r\n\r\n        <ion-button (click)=\"sendMail()\" type=\"submit\"\r\n          style=\"--border-radius: 25px;--padding: 0 25px; --background: #4C7176\">ENVIAR</ion-button>\r\n      </div>\r\n    </ion-card-content>\r\n\r\n\r\n\r\n\r\n  </ion-card>\r\n\r\n\r\n</ion-content>\r\n\r\n<ion-footer text-center no-border transparent style=\"background:white\">\r\n  <div style=\" text-align: -webkit-center; border-top: 2px solid #4C7176;\">\r\n    <ion-img style=\"width: 225px;\" src=\"assets/img/footer/footer.png\"></ion-img>\r\n  </div>\r\n</ion-footer>");
 
 /***/ })
 

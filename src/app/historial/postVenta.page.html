@@ -13,12 +13,12 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('historialMenu')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('register')">
-        POST VENTA</ion-button>
+        (click)="goTo('historialMenu')">
+        SOLICITUDES</ion-button>
     </div>
   </ion-toolbar>
 
@@ -26,7 +26,7 @@
   <ion-card style="--background:#E6E7E7">
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      COTIZACIONES A PROCESAR
+      LISTADO DE SOLICITUDES
     </ion-card-content>
     <hr style="background: black;">
 
@@ -40,9 +40,10 @@
             <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
           </ion-col>
           <ion-col style="text-align: center;" size="3">
-            <ion-button (click)="goToPostVenta('postVentaView',modelo)"
+            <ion-button (click)="goToPostVenta('solicitudesView',modelo)"
               style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
-              Procesar</ion-button>
+              EJECUTAR</ion-button>
+            <p style="margin: 0;">PENDIENTE</p>
           </ion-col>
         </ion-row>
 
@@ -55,7 +56,8 @@
 
 
     <div style="text-align: -webkit-center;">
-      <ion-button (click)="goTo('register')" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+      <ion-button (click)="goTo('historialMenu')"
+        style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
         REGRESAR</ion-button>
 
     </div>

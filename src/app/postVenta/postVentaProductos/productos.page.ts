@@ -1,11 +1,7 @@
 import { RegisterFormComponent } from '../../modals/registerForm/register-form.component';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController, ModalController } from '@ionic/angular';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController, ModalController } from '@ionic/angular';
 import { ServicesService } from 'src/app/api/services.service';
-import { Storage } from '@ionic/storage';
-
-
 
 @Component({
   selector: 'app-productos',
@@ -13,16 +9,11 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./productos.page.scss'],
 })
 export class ProductosPage implements OnInit {
-
-
   tiposEquipo: any = [];
   modelosStorage: any = [];;
   postVenta: any = [];;
 
-  constructor(private navCtrl: NavController, private modalCtrl: ModalController, private api: ServicesService, private storage: Storage) {
-
-
-  }
+  constructor(private navCtrl: NavController, private modalCtrl: ModalController, private api: ServicesService) { }
 
 
   async showModal(id) {
@@ -37,21 +28,13 @@ export class ProductosPage implements OnInit {
     await modal.present();
     await modal.onDidDismiss();
     this.getData();
-
-
-
-
   }
 
   async ngOnInit() {
     this.tiposEquipo = await this.api.getTiposEquipo()
-
-    this.storage.create()
-    this.postVenta = await this.storage.get('postVenta');
-
+    this.postVenta = await this.api.getDBItem('postVenta');
     this.modelosStorage = this.postVenta.datosModelos
-
-    this.storage.set('modelos', this.modelosStorage);
+    this.api.setDBItem('modelos', this.modelosStorage);
   }
 
   async goTo(ruta) {
@@ -60,24 +43,13 @@ export class ProductosPage implements OnInit {
 
   async goForward(ruta) {
 
-    this.storage.create()
-
     this.postVenta.datosModelos = this.modelosStorage
-
-    this.storage.set("postVenta", this.postVenta)
-
+    this.api.setDBItem("postVenta", this.postVenta)
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 
   async getData() {
-    this.modelosStorage = await this.storage.get('modelos');
-
+    this.modelosStorage = this.api.getDBItem('modelos');
   }
-
-  SendEmail(value) {
-
-  }
-
-
 
 }

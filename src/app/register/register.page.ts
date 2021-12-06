@@ -1,3 +1,4 @@
+import { ServicesService } from 'src/app/api/services.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { RegisterFormComponent } from '../modals/registerForm/register-form.component';
@@ -9,9 +10,13 @@ import { RegisterFormComponent } from '../modals/registerForm/register-form.comp
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController, private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private api: ServicesService) { }
 
   ngOnInit() {
+    this.api.cleanDBItem("modelos")
+    this.api.cleanDBItem("datosForm")
+    this.api.cleanDBItem("postVenta")
+
   }
 
   async goTo(ruta) {

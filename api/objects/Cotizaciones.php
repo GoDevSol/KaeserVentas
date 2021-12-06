@@ -13,6 +13,7 @@ class Cotizaciones extends CRUD
     public $datosForm;
     public $datosModelos;
     public $direccionArchivo;
+    public $estado;
 
 
     public function __construct($db)
@@ -71,6 +72,11 @@ class Cotizaciones extends CRUD
         return $this->_read("*", "direccionArchivo=", "", $this, "");
     }
 
+    public function getByEstado()
+    {
+        return $this->_read("*", "estado=", "", $this, "");
+    }
+
 
 
     public function createCotizaciones()
@@ -83,6 +89,7 @@ class Cotizaciones extends CRUD
     function updateById()
     {
         $updateParams = $this->createParams($this, "id");
+
         $whereParams = "id=";
 
         return $this->_update($updateParams, $whereParams, $this);
@@ -111,6 +118,14 @@ class Cotizaciones extends CRUD
 
         return $this->_update($updateParams, $whereParams, $this);
     }
+    function updateByEstado()
+    {
+        $updateParams = $this->createParams($this, "estado");
+
+        $whereParams = "estado=";
+
+        return $this->_update($updateParams, $whereParams, $this);
+    }
 
 
     function deleteById()
@@ -131,6 +146,11 @@ class Cotizaciones extends CRUD
     function deleteByDireccionArchivo()
     {
         $whereParams = "direccionArchivo=";
+        return $this->_delete($whereParams, $this);
+    }
+    function deleteByEstado()
+    {
+        $whereParams = "estado=";
         return $this->_delete($whereParams, $this);
     }
 }

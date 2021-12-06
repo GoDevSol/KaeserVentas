@@ -2,9 +2,6 @@ import { ServicesService } from 'src/app/api/services.service';
 import { AddSaleOrderComponent } from './../../modals/addSaleOrder/addSaleOrder.component';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
-
-
 
 @Component({
   selector: 'app-enviar',
@@ -14,18 +11,13 @@ import { Storage } from '@ionic/storage';
 export class postVentaView implements OnInit {
   modelosStorage: any = [];
   datosForm: any = [];
+  direccionArchivo: any = "";
 
-  constructor(private navCtrl: NavController, private api: ServicesService, private modalCtrl: ModalController, public toastController: ToastController, private storage: Storage) {
-
-
-  }
+  constructor(private navCtrl: NavController, private api: ServicesService, private modalCtrl: ModalController, public toastController: ToastController) { }
 
   async ngOnInit() {
-    this.storage.create()
-    var postVenta = await this.storage.get('postVenta');
+    this.getData();
 
-    this.modelosStorage = postVenta.datosModelos
-    this.datosForm = postVenta.datosForm
   }
 
   async goTo(ruta) {
@@ -37,18 +29,6 @@ export class postVentaView implements OnInit {
   }
 
 
-  async handleButtonClick() {
-    const toast = await this.toastController.create({
-      color: 'dark',
-      message: 'Se ha enviado la solicitud de cotizacion exitosamente.',
-      header: 'Cotizacion',
-      position: 'top',
-      duration: 1500
-    });
-    this.navCtrl.navigateBack('menu/' + 'register')
-    toast.present();
-  }
-
   async showModal() {
 
     const modal = await this.modalCtrl.create({
@@ -58,24 +38,44 @@ export class postVentaView implements OnInit {
       },
       backdropDismiss: false
     })
-
     await modal.present();
-    //await modal.onDidDismiss();
-    //this.getData();
+    await modal.onDidDismiss();
+    this.getData();
+
+  }
+  async getData() {
+    var postVenta = await this.api.getDBItem('postVenta');
+
+    this.modelosStorage = postVenta.datosModelos
+    this.datosForm = postVenta.datosForm
+    this.direccionArchivo = postVenta.direccionArchivo
+
+    if (this.direccionArchivo != "") {
+      this.direccionArchivo = this.direccionArchivo.split('\\')[2]
+    }
 
   }
 
   async Process() {
-    var postVenta = await this.storage.get('postVenta');
+
+    var postVenta = await this.api.getDBItem('postVenta');
+    if (postVenta.direccionArchivo == "") {
+      this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
+      return
+    }
 
     var data = {
       id: postVenta.id,
       datosForm: JSON.stringify(postVenta.datosForm),
       datosModelos: JSON.stringify(postVenta.datosModelos),
-      direccionArchivo: postVenta.direccionArchivo
+      direccionArchivo: postVenta.direccionArchivo,
+      estado: 3
 
     }
-    this.api.modificarCotizacion(data);
+    await this.api.modificarCotizacion(data);
+    this.api.showToast('Solicitud procesada exitosamente', 'SOLICITUD');
+    this.navCtrl.navigateBack('menu/' + 'register')
+
 
   }
 

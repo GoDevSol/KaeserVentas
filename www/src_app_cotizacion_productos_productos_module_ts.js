@@ -93,15 +93,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ProductosPage": () => (/* binding */ ProductosPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 1855);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 1855);
 /* harmony import */ var _raw_loader_productos_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./productos.page.html */ 6557);
 /* harmony import */ var _productos_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./productos.page.scss */ 1632);
 /* harmony import */ var _modals_registerForm_register_form_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../modals/registerForm/register-form.component */ 2471);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 2741);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 4595);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2741);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 4595);
 /* harmony import */ var src_app_api_services_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/api/services.service */ 7242);
-/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/storage */ 2604);
-
 
 
 
@@ -110,17 +108,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProductosPage = class ProductosPage {
-    constructor(navCtrl, modalCtrl, api, storage) {
+    constructor(navCtrl, modalCtrl, api) {
         this.navCtrl = navCtrl;
         this.modalCtrl = modalCtrl;
         this.api = api;
-        this.storage = storage;
         this.tiposEquipo = [];
         this.modelosStorage = [];
     }
     ;
     showModal(id) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const modal = yield this.modalCtrl.create({
                 component: _modals_registerForm_register_form_component__WEBPACK_IMPORTED_MODULE_2__.RegisterFormComponent,
                 componentProps: {
@@ -134,36 +131,34 @@ let ProductosPage = class ProductosPage {
         });
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.tiposEquipo = yield this.api.getTiposEquipo();
+            this.modelosStorage = yield this.api.getDBItem('modelos');
         });
     }
     goTo(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateBack('menu/' + ruta);
         });
     }
     goForward(ruta) {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             this.navCtrl.navigateForward('menu/' + ruta);
         });
     }
     getData() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-            this.modelosStorage = yield this.storage.get('modelos');
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            this.modelosStorage = yield this.api.getDBItem('modelos');
         });
-    }
-    SendEmail(value) {
     }
 };
 ProductosPage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.NavController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.ModalController },
-    { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_3__.ServicesService },
-    { type: _ionic_storage__WEBPACK_IMPORTED_MODULE_4__.Storage }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.NavController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: src_app_api_services_service__WEBPACK_IMPORTED_MODULE_3__.ServicesService }
 ];
-ProductosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+ProductosPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-productos',
         template: _raw_loader_productos_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_productos_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]

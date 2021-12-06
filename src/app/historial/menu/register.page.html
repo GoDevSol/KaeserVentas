@@ -13,17 +13,19 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('postVentaView')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('postVentaView')">
+        (click)="goTo('register')">
         Historial</ion-button>
     </div>
   </ion-toolbar>
 
   <ion-content fullscreen>
-
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 16px;">
+      SELECCIÓN DE SOLICITUDES Ó POST VENTA
+    </ion-card-content>
 
 
     <ion-grid style="margin-top: 25px;" style="text-align: -webkit-center;">
@@ -31,14 +33,14 @@
         <ion-col size-xs="6" size-md="6">
           <div class="backgroundOpt">
             <ion-img class="OptImg" src="assets/img/menu/cotizador.png"></ion-img>
-            <ion-button (click)="goTo('cotizacion')" cli class="OptButton">Cotizador</ion-button>
+            <ion-button (click)="goTo('solicitudes')" cli class="OptButton">Solicitudes</ion-button>
           </div>
         </ion-col>
 
         <ion-col class="cell-class-border cell-class" size-xs="6" size-md="6">
           <div class="backgroundOpt">
             <ion-img class="OptImg" src="assets/img/menu/postventa.png"></ion-img>
-            <ion-button (click)="goTo('postVenta')" class="OptButton">Post Venta</ion-button>
+            <ion-button (click)="goTo('cotizacionesAll')" class="OptButton">Post Venta</ion-button>
           </div>
         </ion-col>
 
