@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  URL = "https://localhost/kaeserVentas/api/req/";
+  URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  //URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController) { }
 
