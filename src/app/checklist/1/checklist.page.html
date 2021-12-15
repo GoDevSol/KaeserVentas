@@ -1,0 +1,111 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('register')">
+        Soliictud de Estudios ADA</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      Ingresa tus datos y seleeciona los productos
+    </ion-card-content>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        QUSEM F-030754-GUA-Políticas de Medición y Estudios ADA
+      </div>
+    </div>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded-text">
+        <strong>1. Acerca de la Conexión y Desconexión</strong>
+      </div>
+    </div>
+    <div style="text-align:justify;" class="widhte">
+      <ol>
+        <li>
+          El tiempo aproximado de conexión es de 1.5 horas por compresor.
+        </li>
+        <li>Se deben apagar los equipos de 15 a 20 mins al realizar la Conexión (día 1) y Desconexión (día 9).</li>
+        <li>Se realiza bloqueo eléctrico después de apagar los compresores, uno a uno.</li>
+        <li>Los equipos de medición se conectan/desconectan a los equipos, uno a uno.</li>
+        <li>El día de la Conexión (día 1) y Desconexión (día 9), debe haber una persona brindando soporte al Técnico de
+          Aplicaciones de Kaeser Compresores</li>
+        <li>La medición debe estar 9 días que incluyen: un fin de semana, la conexión y desconexión. Ejemplo: la
+          conexión
+          se realiza
+          en el 1er. día, la medición se toma desde el 2do. al 8vo. día y al 9no. se desconecta</li>
+        <li>Si la medición se ve interrumpida por cualquier motivo, se debe repetir el proceso de medición, en acuerdo
+          con
+          el
+          cliente y disposición de equipos de medición y personal de Kaeser Compresores</li>
+        <li>Según se determine, se realizarán de 0 a 3 visitas de Inspección durante el período de la medición</li>
+        <li>El cliente es el responsable de comunicar a todo el personal que corresponda, para que estén enterados de la
+          medición y
+          de las visitas de los Técnicos de Aplicaciones de Kaeser Compresores (Ej. Garita, Gerentes o Jefes de
+          Producción,
+          Mantenimiento, Planta, Operadores, etc.)</li>
+        <li>Verificar existencia de válvulas para conexiones de transductores de presión/punto de rocío, si no hay, el
+          cliente debe
+          instalarlos previo a la medición</li>
+        <li>Durante el período de medición, favor No realizar ningún tipo de mantenimiento a los equipos, para evitar
+          posibles
+          problemas con la medición.</li>
+
+      </ol>
+    </div>
+
+
+    <div style="text-align: -webkit-center;">
+      <div class="rounded-text">
+        <strong>2. Cambios o Cancelaciones</strong>
+      </div>
+    </div>
+    <div style="text-align:justify;" class="widhte">
+      <ol>
+        <li>Cualquier cambio/cancelación en la fecha acordada para la medición debe ser realizada con 48 horas de
+          anticipación</li>
+        <li>Si no se cumple con las 48 horas de anticipación, se cobrará una penalización de $50 por cada
+          cambio/cancelación</li>
+        <li>La recalendarización de la medición estará sujeta a disponibilidad de equipos de medición y personal de
+          Kaeser
+          Compresores</li>
+        <li>En caso de que un equipo sea extraviado o dañado, el cliente deberá proceder a reintegrar el valor del mismo
+          dentro del
+          corto plazo. El costo será determinado por Kaeser Compresores</li>
+
+      </ol>
+    </div>
+
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goForward('ada-first')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+    </div>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

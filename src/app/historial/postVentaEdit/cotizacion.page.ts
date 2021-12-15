@@ -25,7 +25,8 @@ export class CotizacionPage implements OnInit {
       condicionPago: new FormControl("", Validators.compose([Validators.required])),
       moneda: new FormControl("", Validators.compose([Validators.required])),
       porcentajeDescuento: new FormControl("", Validators.compose([Validators.required])),
-      correoCliente: new FormControl("", Validators.compose([Validators.required]))
+      correoCliente: new FormControl("", Validators.compose([Validators.required])),
+      observacion: new FormControl("", Validators.compose([Validators.required]))
     })
 
   }
@@ -44,6 +45,7 @@ export class CotizacionPage implements OnInit {
     this.formRegister.controls.moneda.setValue(datosForm.moneda);
     this.formRegister.controls.porcentajeDescuento.setValue(datosForm.porcentajeDescuento);
     this.formRegister.controls.correoCliente.setValue(datosForm.correoCliente);
+    this.formRegister.controls.observacion.setValue(datosForm.observacion);
 
   }
 

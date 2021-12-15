@@ -14,5 +14,30 @@ ion-content {
 --box-shadow: 0px gray;
 --color: black;
 --highlight-height: 0;
---background: transparent;
+--background: transparent;  
 }
+
+ 
+  
+   ion-col{
+         padding: 0px
+   }
+    
+   ion-grid{
+         padding: 0px
+   }
+
+
+   ion-item{
+         margin: 3px;
+   }
+
+   ion-card-content{
+     padding-top: 3px;
+   }
+   
+   .item-native {
+    min-height: 25px !important;
+    height: 25px !important;
+    }
+ 

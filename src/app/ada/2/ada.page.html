@@ -13,83 +13,121 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar style="--background:none; border: none;">
     <div>
-      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+      <img (click)="goTo('ada')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
         src="assets/img/back.png">
       <ion-button
         style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
-        (click)="goTo('register')">
-        Soliictud de Estudios ADA</ion-button>
+        (click)="goTo('ada')">
+        Solictud de Estudios ADA</ion-button>
     </div>
   </ion-toolbar>
 
 
   <ion-card style="--background:#E6E7E7">
 
-    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
-      Ingresa tus datos y seleeciona los productos
-    </ion-card-content>
     <div style="text-align: -webkit-center;">
       <div class="rounded">
-        QUSEMF-030754-GUA-Políticas de Medición y Estudios ADA
+        Informacion de ingeniero(a) de Ventas
+      </div>
+    </div>
+    <form [formGroup]="formRegister">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Nombre:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Ing. de Ventas">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Prioridad:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">Urgente</ion-select-option>
+                <ion-select-option value="Normal">Normal</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+          </ion-col>
+          <ion-col style="text-align: center;">
+
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Fecha:</ion-label>
+              <ion-input clearInput="true" formControlName="idCliente" type="date" placeholder="Fecha de Solicitud"
+                clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+
+
+
+
+
+
+    </form>
+
+
+    <div style="text-align: -webkit-center; margin-top: 30px;">
+      <div class="rounded">
+        Información del Cliente
       </div>
     </div>
     <form [formGroup]="formRegister">
 
       <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="number" clearInput="true"
-          placeholder="No. de oportunidad">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oferta" type="number" placeholder="No. de oferta"
-          clearInput="true"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="idCliente" type="number" placeholder="Id Cliente"
-          clearInput="true"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="nombreCliente" type="name" name="name"
-          placeholder="Nombre del cliente" clearInput="true"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="direccion" placeholder="Dirección de entrega" clearInput="true">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="contacto" type="tel" name="tel" placeholder="Telefono Contacto"
-          clearInput="true">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="condicionPago" placeholder="Condiciones de pago"
-          clearInput="true"></ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="moneda" type="transaction-currency" name="transaction-currency"
-          placeholder="Moneda" clearInput="true">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="porcentajeDescuento" placeholder="Porcentaje de descuento"
-          clearInput="true">
-        </ion-input>
-      </ion-item>
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="correoCliente" multiple="true" type="email"
-          placeholder="Correo electrónico del cliente" clearInput="true">
+        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+          placeholder="Ing. de Ventas">
         </ion-input>
       </ion-item>
 
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+          placeholder="Ing. de Ventas">
+        </ion-input>
+      </ion-item>
 
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+          placeholder="Ing. de Ventas">
+        </ion-input>
+      </ion-item>
 
-      <div style="text-align: -webkit-center;">
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+          placeholder="Ing. de Ventas">
+        </ion-input>
+      </ion-item>
 
-        <ion-button (click)="goForward('productos')" type="submit"
-          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
-      </div>
+      <ion-item class="roundedInput">
+        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+          placeholder="Ing. de Ventas">
+        </ion-input>
+      </ion-item>
+
 
     </form>
+
+
+
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goForward('ada')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">REGRESAR</ion-button>
+
+
+      <ion-button (click)="goForward('ada-second')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+    </div>
+
+
 
 
   </ion-card>

@@ -16,6 +16,7 @@ class Cotizaciones extends CRUD
     public $estado;
 
 
+
     public function __construct($db)
     {
         $this->conn = $db;

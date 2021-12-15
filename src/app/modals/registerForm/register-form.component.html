@@ -1,24 +1,81 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar
-    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    style="--background: rgba(255, 255, 255, 0.85); border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;--min-height: 35px">
     <ion-title>{{tipoEquipo.tipo.toUpperCase()}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">X</ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+
+  <ion-toolbar
+    style="--min-height: 35px;--background: rgba(255, 255, 255, 0.85); border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <div style="text-align: -webkit-center;">
+      <ion-item class="roundedInput" style="width:90%;  --min-height: 16px;">
+        <ion-input class="roundedInput" name="BUSQUEDA" clearInput="true" type="text" placeholder="Busqueda"
+          (input)="filter($event.target)">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <div style="text-align: -webkit-center;">
+      <ion-grid style="width:90%;" *ngIf="id == 1">
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">CFM:</ion-label>
+              <ion-input name="CFM" clearInput="true" (input)="filter($event.target)">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+
+            <ion-item class="roundedInput">
+              <ion-label position="floating">PSI:</ion-label>
+              <ion-select name="PSI" clearInput="true" (ionChange)="filter($event.target)">
+                <ion-select-option value="">Todos</ion-select-option>
+                <ion-select-option value="87">87</ion-select-option>
+                <ion-select-option value="125">125</ion-select-option>
+                <ion-select-option value="130">130</ion-select-option>
+                <ion-select-option value="160">160</ion-select-option>
+                <ion-select-option value="174">174</ion-select-option>
+                <ion-select-option value="217">217</ion-select-option>
+
+
+              </ion-select>
+
+
+            </ion-item>
+
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">VOLTAJE:</ion-label>
+              <ion-select name="VOLTAJE" clearInput="true" (ionChange)="filter($event.target)">
+                <ion-select-option value="">Todos</ion-select-option>
+                <ion-select-option value="Trivoltaje (208/240/460 VAC 60HZ)">Trivoltaje (208/240/460 VAC 60HZ)
+                </ion-select-option>
+                <ion-select-option value=" 240 VAC 60HZ">240 VAC 60HZ</ion-select-option>
+                <ion-select-option value=" 460 VAC 60HZ">460 VAC 60HZ</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <div style="text-align: -webkit-center;">
-    <ion-item class="roundedInput" style="width:90%;">
-      <ion-input clearInput="true" type="text" placeholder="Busqueda" (input)="filter($event.target)"></ion-input>
-    </ion-item>
-  </div>
+
 
 
 
 
   <ion-card style="--background:#E6E7E7">
+
+
 
     <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
       <div style="margin-top: 20px;--background: #E6E7E7; color:#59595C; border: solid #4C7176 1px;">
@@ -30,21 +87,38 @@
           <ion-grid>
             <ion-row>
               <ion-col style="text-align: center;">
-                <strong style="color: #4C7176;"> {{modelo.modelo}} </strong>
+                <strong style="color: #4C7176; font-size: 20px;"> {{modelo.modelo}} </strong>
               </ion-col>
             </ion-row>
+
+            <ion-row *ngIf="id == 1">
+              <ion-col style=" text-align: right;">
+                <strong style="color: #4C7176;"> CFM: </strong>
+                <strong> {{modelo.CFM}} </strong>
+              </ion-col>
+              <ion-col style="text-align: center;">
+                <strong style="color: #4C7176;"> PSI: </strong>
+                <strong> {{modelo.PSI}} </strong>
+              </ion-col>
+              <ion-col style="text-align: left;">
+                <strong style="color: #4C7176;"> VOLTAJE: </strong>
+                <strong> {{modelo.VOLTAJE}} </strong>
+              </ion-col>
+            </ion-row>
+
             <ion-row>
               <ion-col size-xs="4" style="text-align: right;">
                 <ion-button (click)="restar(modelo)"
-                  style="--border-radius: 25px;--padding: 0 0px; --background: #59595C">-
+                  style="--border-radius: 25px;--padding: 0 0px; --background: #59595C;font-size: 15px;">-
                 </ion-button>
               </ion-col>
               <ion-col size-xs="4" style="text-align: center;">
-                <h1 style="--border-radius: 25px;--padding: 0 25px; --background: #59595C">{{modelo.cantidad}}</h1>
+                <h1 style="--border-radius: 25px;--padding: 0 25px; --background: #59595C;font-size: 20px;">
+                  {{modelo.cantidad}}</h1>
               </ion-col>
               <ion-col size-xs="4" style="text-align: left;">
                 <ion-button (click)="sumar(modelo)"
-                  style="--border-radius: 25px;--padding: 0 0px; --background: #4C7176">+
+                  style="--border-radius: 25px;--padding: 0 0px; --background: #4C7176;font-size: 15px;">+
                 </ion-button>
               </ion-col>
             </ion-row>

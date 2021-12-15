@@ -1,0 +1,139 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('register')">
+        Instalacion y Arranques</ion-button>
+    </div>
+  </ion-toolbar>
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      Ingresa los datos para el check list
+    </ion-card-content>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        Check List para instalaciones y arranques de aire comprimido
+      </div>
+    </div>
+    <form [formGroup]="formRegister">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Fecha:</ion-label>
+              <ion-input clearInput="true" type="date" placeholder="Fecha de Solicitud" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Empresa:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Nombre de la empresa" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Dirección equipo:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Dirección equipo" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Presión de trabajo:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Presión de trabajo" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Contacto:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Nombre del contacto" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">No. Tel contacto:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="No. Tel contacto" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Voltaje:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Voltaje" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">D. Tubería:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="D. Tubería" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+    <div style="text-align: -webkit-center;">
+
+      <ion-button (click)="goForward('arranques-first')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+    </div>
+
+
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

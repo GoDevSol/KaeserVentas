@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
   public appPages = [
-    { title: 'Cerrar Sesión', url: '/menu/cotizacion', icon: 'log-out' },
+    { title: 'Cerrar Sesión', url: '/login', icon: 'log-out' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() { }

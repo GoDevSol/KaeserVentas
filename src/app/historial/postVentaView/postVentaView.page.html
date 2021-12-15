@@ -29,16 +29,17 @@
 
       <div style="margin-top: 20px;border-top: 2px solid #4C7176; padding-top: 10px;">
         <h1> Datos:</h1>
-        <h2> No. de oportunidad: {{datosForm.oportunidad}}</h2>
-        <h2> No. de oferta: {{datosForm.oferta}}</h2>
-        <h2> Id Cliente: {{datosForm.idCliente}}</h2>
-        <h2> Nombre del cliente: {{datosForm.nombreCliente}}</h2>
-        <h2> Dirección de entrega: {{datosForm.direccion}}</h2>
-        <h2> Contacto: {{datosForm.contacto}} </h2>
-        <h2> Condiciones de pago: {{datosForm.condicionPago}}</h2>
-        <h2> Moneda: {{datosForm.moneda}}</h2>
-        <h2> Porcentaje de descuento: {{datosForm.porcentajeDescuento}}</h2>
-        <h2> Correo electrónico del cliente: {{datosForm.correoCliente}}</h2>
+        <h2><strong> No. de oportunidad: </strong> {{datosForm.oportunidad}}</h2>
+        <h2> <strong>No. de oferta:</strong> {{datosForm.oferta}}</h2>
+        <h2> <strong>Id Cliente:</strong> {{datosForm.idCliente}}</h2>
+        <h2> <strong>Nombre del cliente:</strong> {{datosForm.nombreCliente}}</h2>
+        <h2> <strong>Dirección de entrega:</strong> {{datosForm.direccion}}</h2>
+        <h2> <strong>Contacto:</strong> {{datosForm.contacto}} </h2>
+        <h2> <strong>Condiciones de pago:</strong> {{datosForm.condicionPago}}</h2>
+        <h2> <strong>Moneda:</strong> {{datosForm.moneda}}</h2>
+        <h2> <strong>Porcentaje de descuento:</strong> {{datosForm.porcentajeDescuento}}%</h2>
+        <h2> <strong>Correo electrónico del cliente:</strong> {{datosForm.correoCliente}}</h2>
+        <h2> <strong>Observacion:</strong> {{datosForm.observacion}}</h2>
 
 
       </div>
@@ -60,6 +61,7 @@
         </table>
       </div>
       <div style="text-align: -webkit-left; margin-top: 15px;" *ngIf="direccionArchivo.length > 0 ">
+        <h2> <strong> ORDEN DE COMPRA:</strong></h2>
         <table>
           <tr>
             <th>

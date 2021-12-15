@@ -30,6 +30,34 @@
     </ion-card-content>
     <hr style="background: black;">
 
+    <ion-grid>
+      <ion-row style="padding: 0px;">
+        <ion-col style="text-align: left;">
+          <ion-item class="roundedInput">
+            <ion-label>ESTADO</ion-label>
+            <ion-select clearInput="true" (ionChange)="onChange($event.target)" name="ESTADO">
+              <ion-select-option value="0">TODOS</ion-select-option>
+              <ion-select-option value="1">POST VENTA</ion-select-option>
+              <ion-select-option value="2">PENDIENTE</ion-select-option>
+              <ion-select-option value="3">EJECUTADA</ion-select-option>
+            </ion-select>
+
+          </ion-item>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-item class="roundedInput">
+            <ion-input (ionChange)="onChange($event.target)" clearInput=" true" type="date"
+              placeholder="Fecha de Solicitud" clearInput="true" name="DATE">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <hr style="background: black;">
+
     <ion-item style="--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;"
       *ngFor="let modelo of modelos">
 
@@ -46,9 +74,9 @@
             <ion-icon *ngIf="modelo.estado == 2" name="timer-outline"></ion-icon>
             <ion-icon *ngIf="modelo.estado == 3" name="checkmark-done-outline"></ion-icon>
 
-            <p *ngIf="modelo.estado == 1" style="margin: 0;">POST VENTA</p>
-            <p *ngIf="modelo.estado == 2" style="margin: 0;">PENDIENTE</p>
-            <p *ngIf="modelo.estado == 3" style="margin: 0;">EJECUTADA</p>
+            <h6 *ngIf="modelo.estado == 1" style="margin: 0; font-size: 13px;">POST VENTA</h6>
+            <h6 *ngIf="modelo.estado == 2" style="margin: 0; font-size: 13px;">PENDIENTE</h6>
+            <h6 *ngIf="modelo.estado == 3" style="margin: 0; font-size: 13px;">EJECUTADA</h6>
           </ion-col>
         </ion-row>
 

@@ -71,7 +71,25 @@ const routes: Routes = [
       {
         path: 'ada-first',
         loadChildren: () => import('../ada/2/ada.module').then(m => m.AdaPageModule)
+      },
+      {
+        path: 'ada-second',
+        loadChildren: () => import('../ada/3/ada.module').then(m => m.AdaPageModule)
+      },
+      {
+        path: 'arranques',
+        loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
+      },
+      {
+        path: 'arranques-first',
+        loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
+      },
+      {
+        path: 'arranques-second',
+        loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
+
       }
+
 
 
 

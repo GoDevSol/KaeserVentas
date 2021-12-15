@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { ServicesService } from 'src/app/api/services.service';
 
 @Component({
-  selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
 })
@@ -36,6 +35,7 @@ export class RegisterFormComponent implements OnInit {
         this.upsert(this.modelos, element)
       }
     });
+
   }
 
   async dismissModal() {
@@ -45,7 +45,18 @@ export class RegisterFormComponent implements OnInit {
   }
 
   filter(event) {
-    this.modelos = this.modelosAll.filter(s => s.modelo.includes(event.value));
+    if (event.name == "BUSQUEDA") {
+      this.modelos = this.modelosAll.filter(s => s.modelo.includes(event.value));
+    }
+    if (event.name == "CFM") {
+      this.modelos = this.modelosAll.filter(s => s.CFM.includes(event.value));
+    }
+    if (event.name == "PSI") {
+      this.modelos = this.modelosAll.filter(s => s.PSI.includes(event.value));
+    }
+    if (event.name == "VOLTAJE") {
+      this.modelos = this.modelosAll.filter(s => s.VOLTAJE.includes(event.value));
+    }
   }
 
   sumar(model) {

@@ -9,17 +9,18 @@ import { NavController } from '@ionic/angular';
 })
 export class PostVentaPage implements OnInit {
   modelos: any = []
+  modelosAll: any = []
 
   constructor(private navCtrl: NavController, private api: ServicesService) { }
 
   async ngOnInit() {
     this.modelos = await this.api.readCotizacionAll();
-    this.modelos = await this.modelos.map(x => {
+    this.modelosAll = await this.modelos.map(x => {
       x.datosForm = JSON.parse(x.datosForm.replaceAll('&quot;', '"'))
       x.datosModelos = JSON.parse(x.datosModelos.replaceAll('&quot;', '"'))
       return x
     })
-    console.log(this.modelos)
+
   }
 
   async goTo(ruta) {
@@ -29,6 +30,39 @@ export class PostVentaPage implements OnInit {
   async goToPostVenta(ruta, modelo) {
     await this.api.setDBItem("postVenta", modelo)
     this.navCtrl.navigateForward('menu/' + ruta)
+  }
+
+  onChange(event) {
+
+    if (event.name == "ESTADO") {
+      if (event.value == 0) {
+        this.modelos = this.modelosAll;
+      } else {
+        this.modelos = this.modelosAll.filter(s => s.estado == event.value);
+      }
+
+    } else {
+      if (event.value == "") {
+        this.modelos = this.modelosAll;
+      } else {
+        this.modelos = this.modelosAll.filter(s => {
+
+          var mydate: any = new Date(s.date);
+          var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
+
+          mydate = mydate.getFullYear() + '/' + (mydate.getMonth() + 1) + '/' + mydate.getDate()
+          mydate2 = mydate2.getFullYear() + '/' + (mydate2.getMonth() + 1) + '/' + mydate2.getDate()
+
+          if (mydate == mydate2) {
+            return true
+          }
+        });
+      }
+      console.log(this.modelosAll)
+
+    }
+
+
   }
 
 }

@@ -23,6 +23,8 @@ export class EnviarPage implements OnInit {
     this.modelosStorage = await this.api.getDBItem('modelos');
     this.datosForm = await this.api.getDBItem('datosForm');
 
+    console.log(this.datosForm)
+
   }
 
   async goTo(ruta) {

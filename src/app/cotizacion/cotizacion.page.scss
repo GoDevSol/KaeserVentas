@@ -34,3 +34,7 @@ ion-content {
   .roundedInput.ion-valid.ion-dirty {
     --border-color: var(--ion-color-success-shade);
   }
+
+  ion-item.item-has-focus > ion-label{
+  color:  #4C7176  !important;
+}

@@ -1,5 +1,5 @@
 import { ServicesService } from 'src/app/api/services.service';
-import { AddSaleOrderComponent } from './../../modals/addSaleOrder/addSaleOrder.component';
+import { AddSaleComponent } from '../../modals/addSaleOrder/add-sale.component';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
 
@@ -32,7 +32,7 @@ export class postVentaView implements OnInit {
   async showModal() {
 
     const modal = await this.modalCtrl.create({
-      component: AddSaleOrderComponent,
+      component: AddSaleComponent,
       componentProps: {
         id: ""
       },
