@@ -230,7 +230,7 @@ function getEstado($estado)
             break;
 
         case strlen($estado) > 11:
-            $estado = substr($estado, 0, -11);;
+            $estado = substr($estado, 0, -14);;
             break;
 
         default:
