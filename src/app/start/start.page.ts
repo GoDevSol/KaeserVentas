@@ -41,10 +41,13 @@ export class StartPage implements OnInit {
     const login = await this.api.login(credentials)
 
     if (login.message == "Successful login.") {
-      this.storage.create();
+      const info = await this.api.getInfoUser({ jwt: login.jwt })
+      this.api.setDBItem("JWT", login.jwt);
+      this.api.setDBItem("User", info);
+      this.api.setDBItem("isLogged", true);
       this.formLogin.reset()
-      this.storage.set("JWT", login.jwt);
-      this.storage.set("isLogged", true);
+
+
       this.router.navigateByUrl("menu/register");
     } else {
       this.getToast()

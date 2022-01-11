@@ -1,18 +1,82 @@
 <?php
-include_once './../../common/includeCommon.php';
-include_once './../../common/headerPOST.php.php';
-include_once './../../common/commonMail.php';
+
+include_once __DIR__ . '/../../common/headerPOST.php';
+include_once __DIR__ . '/../../common/includeCommon.php';
+include_once __DIR__ . '/../../common/mail.php';
 
 if (
-    $common->validateInput($data, "nombre,apellido,compania,correo,telefono")
+    $common->validateInput($data, "id")
 ) {
-    $word = array();
-    $word["nombrePersona"] = $data->nombre . " " . $data->apellido;
-    $word["nombreCompania"] = $data->compania;
-    $word["correo"] = $data->correo;
-    $word["telefono"] = $data->telefono;
+    $word = [];
+    $word["tablaDatos"] = "";
+    foreach ($data->datosForm as $key => $value) {
+        try {
+            $rowTabla = '';
+            switch ($key) {
 
-    $responseEmail = sendMailFunction("../htmlTemplate/cotizacion.html", $word, "adminSupport@kaeserservicios.com", "Soporte Aplicacion Kaeser", "jf.orozco3@gmail.com", "KAESER SERVICE - Cotizacion ");
+                case 'oportunidad':
+                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    break;
+
+                case 'oferta':
+                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    break;
+
+                case 'idCliente':
+                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    break;
+
+                case 'nombreCliente':
+                    $rowTabla =  '<tr><td> <strong> Nombre del Cliente:';
+                    break;
+
+                case 'direccion':
+                    $rowTabla =  '<tr><td> <strong> Direccion Cliente:';
+                    break;
+
+                case 'contacto':
+                    $rowTabla =  '<tr><td> <strong> Numero de Contacto:';
+                    break;
+
+                case 'condicionPago':
+                    $rowTabla =  '<tr><td> <strong> Condicion de Pago:';
+                    break;
+
+                case 'moneda':
+                    $rowTabla =  '<tr><td> <strong> Moneda:';
+                    break;
+
+                case 'porcentajeDescuento':
+                    $rowTabla =  '<tr><td> <strong> Porcentaje de Descuento:';
+                    break;
+
+                case 'correoCliente':
+                    $rowTabla =  '<tr><td> <strong> Correo del Cliente:';
+                    break;
+
+                case 'observacion':
+                    $rowTabla =  '<tr><td> <strong> Observacion:';
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+            $rowTabla = $rowTabla . '</strong></td><td style="padding-left: 10px;">' . $value . '</td></tr>';
+            $word["tablaDatos"] = $word["tablaDatos"] . $rowTabla;
+        } catch (\Throwable $th) {
+        }
+    }
+
+
+
+
+    try {
+        $responseEmail = sendMailFunction(__DIR__ . "../htmlTemplate/index.html", $word, "jf.orozco3@gmail.com", "Kaeser - Aplicacion Ventas");
+    } catch (\Throwable $th) {
+        var_dump($th);
+    }
+
 
     if ($common->validateStatus($responseEmail)) {
 

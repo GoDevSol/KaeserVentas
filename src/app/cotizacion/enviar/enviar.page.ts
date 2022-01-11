@@ -23,8 +23,6 @@ export class EnviarPage implements OnInit {
     this.modelosStorage = await this.api.getDBItem('modelos');
     this.datosForm = await this.api.getDBItem('datosForm');
 
-    console.log(this.datosForm)
-
   }
 
   async goTo(ruta) {
@@ -43,7 +41,15 @@ export class EnviarPage implements OnInit {
 
     }
     const save = await this.api.saveCotizacion(data)
+
+
     this.api.showToast('Se ha enviado la solicitud de cotizacion exitosamente.', "Cotizacion",)
+
+    var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage };
+
+    this.api.sendMail(confMail)
+
+
     this.navCtrl.navigateBack('menu/' + 'register')
   }
 

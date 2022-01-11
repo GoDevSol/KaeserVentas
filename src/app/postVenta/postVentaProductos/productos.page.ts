@@ -9,9 +9,9 @@ import { ServicesService } from 'src/app/api/services.service';
   styleUrls: ['./productos.page.scss'],
 })
 export class ProductosPage implements OnInit {
+  postVenta: any = [];
   tiposEquipo: any = [];
   modelosStorage: any = [];;
-  postVenta: any = [];;
 
   constructor(private navCtrl: NavController, private modalCtrl: ModalController, private api: ServicesService) { }
 
@@ -28,6 +28,7 @@ export class ProductosPage implements OnInit {
     await modal.present();
     await modal.onDidDismiss();
     this.getData();
+
   }
 
   async ngOnInit() {
@@ -42,14 +43,14 @@ export class ProductosPage implements OnInit {
   }
 
   async goForward(ruta) {
-
-    this.postVenta.datosModelos = this.modelosStorage
-    this.api.setDBItem("postVenta", this.postVenta)
+    var postVenta = await this.api.getDBItem('postVenta');
+    postVenta.datosModelos = this.modelosStorage
+    await this.api.setDBItem('postVenta', postVenta);
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 
   async getData() {
-    this.modelosStorage = this.api.getDBItem('modelos');
+    this.modelosStorage = await this.api.getDBItem('modelos');
   }
 
 }

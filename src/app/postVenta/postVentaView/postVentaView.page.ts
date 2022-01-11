@@ -17,7 +17,6 @@ export class postVentaView implements OnInit {
 
   async ngOnInit() {
     this.getData();
-
   }
 
   async goTo(ruta) {
@@ -45,7 +44,6 @@ export class postVentaView implements OnInit {
   }
   async getData() {
     var postVenta = await this.api.getDBItem('postVenta');
-
     this.modelosStorage = postVenta.datosModelos
     this.datosForm = postVenta.datosForm
     this.direccionArchivo = postVenta.direccionArchivo

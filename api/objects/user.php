@@ -11,6 +11,9 @@ class User extends CRUD
     public $nombres;
     public $correo;
     public $user;
+    public $puesto;
+    public $pais;
+
     public $password;
 
 
@@ -28,6 +31,25 @@ class User extends CRUD
     public function getById()
     {
         return $this->_read("*", "id=", "", $this, "");
+    }
+
+    function loadId()
+    {
+        $result = $this->getById("*", "id", "", $this, "");
+        if ($result["status"] == true) {
+            $this->inputMappingObj((object) $result["data"][0], $this);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updatePassword()
+    {
+        $updateParams = "password";
+        $whereParams = "id=";
+
+        return $this->_update($updateParams, $whereParams, $this);
     }
 
 
@@ -84,6 +106,5 @@ class User extends CRUD
     function params()
     {
         $updateParams = $this->createParams($this, "id");
-        echo $updateParams;
     }
 }

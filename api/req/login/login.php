@@ -20,7 +20,7 @@ if ($userExist && password_verify($data->password, $user->password)) {
         "iat" => $issued_at,
         "exp" => $expiration_time,
         "iss" => $issuer,
-        "data" => $common->responseToObject("id,nombres,correo", $user)
+        "data" => $common->responseToObject("id,nombres,correo,puesto,pais,user", $user)
     );
 
     $jwt = JWT::encode($token, $key);

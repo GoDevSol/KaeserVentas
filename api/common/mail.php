@@ -67,7 +67,6 @@ function sendMailFunction($htmlFile, $ModifiedArray, $sendTo, $subject, $atachme
 
         return array("status" => true, "message" => "Email send successfully.");
     } catch (Exception $e) {
-
         return array("status" => false, "message" => "Email not send. Error: " . $e->getMessage());
     }
 }

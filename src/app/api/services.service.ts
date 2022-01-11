@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  //URL = "https://localhost/kaeserVentas/api/req/";
+  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController) { }
 
@@ -54,6 +54,10 @@ export class ServicesService {
     return await this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
   }
 
+  async getInfoUser(credentials) {
+    return await this.resolverSolicitudParams(this.URL + "login/validate_token.php", credentials);
+  }
+
   //
   async getTiposEquipo() {
     return await this.resolverSolicitud(this.URL + "TiposEquipo/read.php");
@@ -82,7 +86,7 @@ export class ServicesService {
   }
 
   async saveCotizacion(json) {
-    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/create.php", json);
+    return await this.resolverSolicitudParamsWithOutAData(this.URL + "Cotizaciones/create.php", json);
   }
 
   async modificarCotizacion(json) {
@@ -91,6 +95,19 @@ export class ServicesService {
 
 
 
+  //USER
+
+  async modificarUsuario(json) {
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { ...json, jwt: jwt }
+    return await this.resolverSolicitudParams(this.URL + "user/updateUser.php", newJson);
+  }
+
+  async updatePassword(json) {
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { ...json, jwt: jwt }
+    return await this.resolverSolicitudParamsWithOutAData(this.URL + "user/updateUserPassword.php", newJson);
+  }
 
 
   //FILE
@@ -103,6 +120,13 @@ export class ServicesService {
   }
 
 
+
+
+  //MAIL
+
+  async sendMail(json) {
+    return await this.resolverSolicitudParams(this.URL + "email/" + json.url, json);
+  }
 
 
 
