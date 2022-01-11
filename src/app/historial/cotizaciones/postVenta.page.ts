@@ -55,11 +55,12 @@ export class PostVentaPage implements OnInit {
       if (event.value == "") {
         this.modelos = this.modelosAll;
       } else {
-        var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
-        this.fecha = mydate2;
+        var mydate23: any = new Date(event.value.replace(/-/g, '\/'));
+        this.fecha = mydate23;
         this.modelos = this.modelosAll.filter(s => {
 
           var mydate: any = new Date(s.date);
+          var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
 
           mydate = mydate.getFullYear() + '/' + (mydate.getMonth() + 1) + '/' + mydate.getDate()
           mydate2 = mydate2.getFullYear() + '/' + (mydate2.getMonth() + 1) + '/' + mydate2.getDate()

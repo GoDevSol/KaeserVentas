@@ -229,6 +229,10 @@ function getEstado($estado)
             $estado = "TODOS";
             break;
 
+        case strlen($estado) > 11:
+            $estado = substr($estado, 0, -9);;
+            break;
+
         default:
             break;
     }
