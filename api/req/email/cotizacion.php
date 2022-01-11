@@ -7,23 +7,27 @@ include_once __DIR__ . '/../../common/mail.php';
 if (
     $common->validateInput($data, "id")
 ) {
+
     $word = [];
+    $word["nombreTrabajador"] = $data->user->nombres;
     $word["tablaDatos"] = "";
+    $word["tablaModelos"] = "";
+
     foreach ($data->datosForm as $key => $value) {
         try {
             $rowTabla = '';
             switch ($key) {
 
                 case 'oportunidad':
-                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    $rowTabla =  '<tr><td> <strong> No. de Oportunidad:';
                     break;
 
                 case 'oferta':
-                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    $rowTabla =  '<tr><td> <strong> No. de Oferta:';
                     break;
 
                 case 'idCliente':
-                    $rowTabla =  '<tr><td> <strong> No. de oportunidad:';
+                    $rowTabla =  '<tr><td> <strong> Codigo del Cliente:';
                     break;
 
                 case 'nombreCliente':
@@ -67,12 +71,22 @@ if (
         } catch (\Throwable $th) {
         }
     }
+    $contador = 1;
+    foreach ($data->modelos as $key => $value) {
+        try {
+
+            $word["tablaModelos"] = $word["tablaModelos"]
+                . '<tr><td style="border-left: 1px solid #4C7176;border-bottom: 1px dashed #4C7176;">' . $contador . '</td><td style="border-left: 1px solid #4C7176;border-bottom: 1px dashed #4C7176;padding-left: 10px;"> ' . $value->modelo . '</td><td style="border-left: 1px solid #4C7176;border-bottom: 1px dashed #4C7176;padding-left: 10px;">' . $value->cantidad . '</td></tr>';;
+        } catch (\Throwable $th) {
+        }
+        $contador++;
+    }
 
 
 
 
     try {
-        $responseEmail = sendMailFunction(__DIR__ . "../htmlTemplate/index.html", $word, "jf.orozco3@gmail.com", "Kaeser - Aplicacion Ventas");
+        $responseEmail = sendMailFunction(__DIR__ . "../htmlTemplate/index.html", $word, $data->user->correo, "Kaeser - Aplicacion Ventas");
     } catch (\Throwable $th) {
         var_dump($th);
     }

@@ -41,11 +41,12 @@ export class EnviarPage implements OnInit {
 
     }
     const save = await this.api.saveCotizacion(data)
+    const user = await this.api.getDBItem("User")
 
 
     this.api.showToast('Se ha enviado la solicitud de cotizacion exitosamente.', "Cotizacion",)
 
-    var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage };
+    var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage, user: user };
 
     this.api.sendMail(confMail)
 

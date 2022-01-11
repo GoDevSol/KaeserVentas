@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  URL = "https://localhost/kaeserVentas/api/req/";
+  URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  //URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController) { }
 
@@ -120,6 +120,14 @@ export class ServicesService {
   }
 
 
+  //REPORTE
+
+  async createPDF(json) {
+    return await this.resolverSolicitudParamsWithOutParse(this.URL + "pdf/pdfCreation.php", json);
+  }
+
+
+
 
 
   //MAIL
@@ -189,8 +197,29 @@ export class ServicesService {
     return result.data;
   }
 
+  async resolverSolicitudParamsWithOutParse(url, json) {
+    var data = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(json)
+    })
+
+    var string64 = await data.text()
+
+    const linkSource = string64;
+    //const downloadLink = document.createElement("a");
+    //downloadLink.href = linkSource;
+    //downloadLink.download = "jenner.pdf";
+    //downloadLink.click();
+
+    let pdfWindow = window.open("")
+    pdfWindow.document.write(
+      "<iframe width='100%' height='100%' src='" +
+      string64 + "'></iframe>"
+    )
+
+  }
 
 
+};
 
 
-}

@@ -11,6 +11,9 @@ export class PostVentaPage implements OnInit {
   modelos: any = []
   modelosAll: any = []
 
+  estado: any = 0
+  fecha: any = ""
+
   constructor(private navCtrl: NavController, private api: ServicesService) { }
 
   async ngOnInit() {
@@ -27,6 +30,12 @@ export class PostVentaPage implements OnInit {
     this.navCtrl.navigateBack('menu/' + ruta)
   }
 
+  async createPDF() {
+
+    console.log(this.api.createPDF({ modelos: this.modelos, fecha: this.fecha, estado: this.estado }))
+  }
+
+
   async goToPostVenta(ruta, modelo) {
     await this.api.setDBItem("postVenta", modelo)
     this.navCtrl.navigateForward('menu/' + ruta)
@@ -35,6 +44,7 @@ export class PostVentaPage implements OnInit {
   onChange(event) {
 
     if (event.name == "ESTADO") {
+      this.estado = event.value;
       if (event.value == 0) {
         this.modelos = this.modelosAll;
       } else {
@@ -45,10 +55,11 @@ export class PostVentaPage implements OnInit {
       if (event.value == "") {
         this.modelos = this.modelosAll;
       } else {
+        var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
+        this.fecha = mydate2;
         this.modelos = this.modelosAll.filter(s => {
 
           var mydate: any = new Date(s.date);
-          var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
 
           mydate = mydate.getFullYear() + '/' + (mydate.getMonth() + 1) + '/' + mydate.getDate()
           mydate2 = mydate2.getFullYear() + '/' + (mydate2.getMonth() + 1) + '/' + mydate2.getDate()
