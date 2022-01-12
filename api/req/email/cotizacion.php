@@ -86,7 +86,7 @@ if (
 
 
     try {
-        $responseEmail = sendMailFunction(__DIR__ . "../htmlTemplate/index.html", $word, $data->user->correo, "Kaeser - Aplicacion Ventas");
+        $responseEmail = sendMailFunction("./htmlTemplate/index.html", $word, $data->user->correo, "Kaeser - Aplicacion Ventas");
     } catch (\Throwable $th) {
         var_dump($th);
     }

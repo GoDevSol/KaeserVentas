@@ -1,5 +1,4 @@
-import { AddSaleComponentModule } from './../../modals/addSaleOrder/add-sale.module';
-import { AddSaleComponent } from '../../modals/addSaleOrder/add-sale.component';
+
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
 import { ServicesService } from 'src/app/api/services.service';
@@ -21,8 +20,8 @@ export class postVentaView implements OnInit {
 
   }
 
-  async goTo(ruta) {
-    this.navCtrl.back()
+  async goTo() {
+    this.navCtrl.back();
   }
 
   async goForward(ruta) {
@@ -30,20 +29,6 @@ export class postVentaView implements OnInit {
   }
 
 
-  async showModal() {
-
-    const modal = await this.modalCtrl.create({
-      component: AddSaleComponentModule,
-      componentProps: {
-        id: 1
-      },
-      backdropDismiss: false
-    })
-    await modal.present();
-    await modal.onDidDismiss();
-    this.getData();
-
-  }
   async getData() {
     var postVenta = await this.api.getDBItem('postVenta');
 

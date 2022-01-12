@@ -34,7 +34,7 @@
       *ngFor="let modelo of modelos">
 
       <ion-grid>
-        <ion-row style="padding: 0px;">
+        <ion-row style="padding: 0px;" (click)="goToPostVenta('solicitudesView',modelo)">
           <ion-col style="text-align: left;">
             <strong style="color: #4C7176;"> Cotizaciòn </strong>
             <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>

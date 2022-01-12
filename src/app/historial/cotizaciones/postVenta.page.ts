@@ -36,10 +36,6 @@ export class PostVentaPage implements OnInit {
   }
 
 
-  async goToPostVenta(ruta, modelo) {
-    await this.api.setDBItem("postVenta", modelo)
-    this.navCtrl.navigateForward('menu/' + ruta)
-  }
 
   onChange(event) {
 
@@ -73,8 +69,26 @@ export class PostVentaPage implements OnInit {
       console.log(this.modelosAll)
 
     }
+  }
 
 
+
+  async goToPostVenta(estado, modelo) {
+
+    await this.api.setDBItem("postVenta", modelo)
+    if (estado == 1) {
+      this.navCtrl.navigateForward('menu/postVentaView')
+    }
+    if (estado == 2) {
+      this.navCtrl.navigateForward('menu/solicitudesView')
+    }
+    if (estado == 3) {
+      this.navCtrl.navigateForward('menu/ejecutado-view')
+    }
+
+
+    console.log(estado)
+    console.log(modelo)
   }
 
 }

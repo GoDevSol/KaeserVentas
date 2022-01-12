@@ -20,7 +20,7 @@ export class postVentaView implements OnInit {
   }
 
   async goTo(ruta) {
-    this.navCtrl.navigateBack('menu/' + ruta)
+    this.navCtrl.back();
   }
 
   async goForward(ruta) {

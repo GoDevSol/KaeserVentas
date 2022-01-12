@@ -92,6 +92,11 @@ const routes: Routes = [
         path: 'arranques-second',
         loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
 
+      },
+      {
+        path: 'ejecutado-view',
+        loadChildren: () => import('../historial/cotizaciones/postVentaView/postVentaView.module').then(m => m.postVentaViewModule)
+
       }
 
 
