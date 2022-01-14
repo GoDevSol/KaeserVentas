@@ -85,6 +85,10 @@ class Cotizaciones extends CRUD
     {
         return $this->_read("*", "estado=,idUser=", "", $this, "");
     }
+    public function getByUser()
+    {
+        return $this->_read("*", "idUser=", "", $this, "");
+    }
 
 
 

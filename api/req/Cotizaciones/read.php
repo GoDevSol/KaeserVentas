@@ -15,7 +15,7 @@ $validate = validateToken($data->jwt, $key);
 if ($validate["data"]->rol == 1) {
     $Cotizaciones->rol = $validate["data"]->rol;
     $Cotizaciones->idUser = $validate["data"]->id;
-    $CotizacionesResult = $Cotizaciones->getByEstadoAndUser();
+    $CotizacionesResult = $Cotizaciones->getByUser();
 } else {
     $CotizacionesResult = $Cotizaciones->getAll();
 }
