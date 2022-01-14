@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  URL = "https://localhost/kaeserVentas/api/req/";
+  URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  //URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController) { }
 
@@ -82,7 +82,9 @@ export class ServicesService {
   //COTIZACIONES
 
   async readCotizacionAll() {
-    return await this.resolverSolicitud(this.URL + "Cotizaciones/read.php");
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { jwt: jwt }
+    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/read.php", newJson);
   }
 
   async readCotizacion(state) {
