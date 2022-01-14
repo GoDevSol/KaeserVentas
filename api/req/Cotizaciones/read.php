@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../common/headerGET.php';
+include_once __DIR__ . '/../../common/headerPOST.php';
 include_once __DIR__ . '/../../common/includeCommon.php';
 
 include_once __DIR__ . '/../../objects/Cotizaciones.php';
