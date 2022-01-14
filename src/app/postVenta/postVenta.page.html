@@ -34,15 +34,28 @@
       *ngFor="let modelo of modelos">
 
       <ion-grid>
-        <ion-row style="padding: 0px;" (click)="goToPostVenta('postVentaView',modelo)">
+        <ion-row style="padding: 0px;">
           <ion-col style="text-align: left;">
             <strong style="color: #4C7176;"> Cotizaciòn </strong>
-            <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
+            <h6 style="margin: 0px;">{{modelo.datosForm.idCliente}} - solicitud de cotización -
+              {{modelo.datosForm.nombreCliente}} - <p style="display: inline;" *ngFor="let mod of modelo.datosModelos">
+                - {{mod.modelo}}
+              <p>
+            </h6>
           </ion-col>
           <ion-col style="text-align: center;" size="3">
-            <ion-button (click)="goToPostVenta('postVentaView',modelo)"
+
+            <ion-button [hidden]="user.rol != 1" (click)="goToPostVenta('postVentaView',modelo)"
               style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
               Procesar</ion-button>
+
+            <div [hidden]="modelo.estadoC4C == 1">
+              <ion-button [hidden]="user.rol == 1 && modelo.estadoC4C != 1"
+                (click)="ejecutarCotizacion('postVentaView',modelo)"
+                style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
+                Ejecutar en C4C</ion-button>
+            </div>
+
           </ion-col>
         </ion-row>
 

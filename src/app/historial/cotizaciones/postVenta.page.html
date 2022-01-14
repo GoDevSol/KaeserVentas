@@ -36,7 +36,7 @@
           <ion-item class="roundedInput">
             <ion-label>ESTADO</ion-label>
             <ion-select clearInput="true" (ionChange)="onChange($event.target)" name="ESTADO">
-              <ion-select-option value="0">TODOS</ion-select-option>
+              <ion-select-option value="">TODOS</ion-select-option>
               <ion-select-option value="1">POST VENTA</ion-select-option>
               <ion-select-option value="2">PENDIENTE</ion-select-option>
               <ion-select-option value="3">EJECUTADA</ion-select-option>
@@ -65,7 +65,11 @@
         <ion-row style="padding: 0px;" (click)="goToPostVenta(modelo.estado,modelo)">
           <ion-col style="text-align: left;">
             <strong style="color: #4C7176;"> Cotizaciòn </strong>
-            <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
+            <h6 style="margin: 0px;">{{modelo.datosForm.idCliente}} - solicitud de cotización -
+              {{modelo.datosForm.nombreCliente}} - <p style="display: inline;" *ngFor="let mod of modelo.datosModelos">
+                - {{mod.modelo}}
+              <p>
+            </h6>
           </ion-col>
           <ion-col style="text-align: center;" size="3" (click)="goToPostVenta(modelo.estado,modelo)">
 
@@ -89,13 +93,17 @@
 
 
     <div style="text-align: -webkit-center;">
+
+      <ion-button (click)="createPDF()" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+        CREAR REPORTE ESTADOS</ion-button>
+
+      <ion-button (click)="createPDFDetalle()" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
+        CREAR REPORTE DETALLE</ion-button>
+    </div>
+    <div style="text-align: -webkit-center;">
       <ion-button (click)="goTo('historialMenu')"
         style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
         REGRESAR</ion-button>
-
-      <ion-button (click)="createPDF()" style=" --border-radius: 25px;--padding: 0 25px; --background: #4C7176">
-        CREAR PDF</ion-button>
-
     </div>
 
 

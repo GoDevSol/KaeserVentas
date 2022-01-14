@@ -15,6 +15,8 @@ class Historial extends CRUD
     public $datosModelos;
     public $direccionArchivo;
     public $estado;
+    public $estadoC4C;
+
 
 
     public function __construct($db)
@@ -92,7 +94,7 @@ class Historial extends CRUD
 
     public function createHistorial()
     {
-        $insertParams = "idCotizacion,datosForm,datosModelos,direccionArchivo,estado";
+        $insertParams = "idCotizacion,datosForm,datosModelos,direccionArchivo,estado,estadoC4C";
 
         return $this->_create($insertParams, $this);
     }

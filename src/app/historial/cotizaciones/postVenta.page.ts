@@ -12,7 +12,7 @@ export class PostVentaPage implements OnInit {
   modelosAll: any = []
 
   estado: any = 0
-  fecha: any = ""
+  fecha: Date
 
   constructor(private navCtrl: NavController, private api: ServicesService) { }
 
@@ -31,50 +31,74 @@ export class PostVentaPage implements OnInit {
   }
 
   async createPDF() {
+    var fecha: any = -1;
+    if (this.fecha != undefined) {
 
-    console.log(this.api.createPDF({ modelos: this.modelos, fecha: this.fecha, estado: this.estado }))
+      if (!isNaN(this.fecha.valueOf())) {
+        fecha = this.fecha
+      }
+    }
+    this.api.createPDF({ modelos: this.modelos, fecha: fecha, estado: this.estado })
   }
+
+  async createPDFDetalle() {
+    var fecha: any = -1;
+    if (this.fecha != undefined) {
+
+      if (!isNaN(this.fecha.valueOf())) {
+        fecha = this.fecha
+      }
+    }
+    this.api.createPDFDetalle({ modelos: this.modelos, fecha: fecha, estado: this.estado })
+  }
+
+
 
 
 
   onChange(event) {
 
+
     if (event.name == "ESTADO") {
       this.estado = event.value;
-      if (event.value == 0) {
-        this.modelos = this.modelosAll;
-      } else {
-        this.modelos = this.modelosAll.filter(s => s.estado == event.value);
-      }
+    } else if (event.name == "DATE") {
+      this.fecha = new Date(event.value.replace(/-/g, '\/'));
+    }
 
-    } else {
-      if (event.value == "") {
-        this.modelos = this.modelosAll;
-      } else {
-        var mydate23: any = new Date(event.value.replace(/-/g, '\/'));
-        this.fecha = mydate23;
-        this.modelos = this.modelosAll.filter(s => {
+    this.modelos = this.modelosAll.filter(s => {
 
+      var bandera = true;
+
+      if (this.fecha != undefined) {
+        if (!isNaN(this.fecha.valueOf())) {
           var mydate: any = new Date(s.date);
-          var mydate2: any = new Date(event.value.replace(/-/g, '\/'));
+          var stringDate
 
           mydate = mydate.getFullYear() + '/' + (mydate.getMonth() + 1) + '/' + mydate.getDate()
-          mydate2 = mydate2.getFullYear() + '/' + (mydate2.getMonth() + 1) + '/' + mydate2.getDate()
+          stringDate = this.fecha.getFullYear() + '/' + (this.fecha.getMonth() + 1) + '/' + this.fecha.getDate()
 
-          if (mydate == mydate2) {
-            return true
+          if (mydate != stringDate) {
+            bandera = false
           }
-        });
+        }
       }
-      console.log(this.modelosAll)
+      if (this.estado == "") {
+        return bandera
+      } else {
 
-    }
+        return s.estado.includes(this.estado)
+      }
+
+
+    });
+
   }
 
 
 
   async goToPostVenta(estado, modelo) {
 
+    await this.api.setDBItem("return", true)
     await this.api.setDBItem("postVenta", modelo)
     if (estado == 1) {
       this.navCtrl.navigateForward('menu/postVentaView')

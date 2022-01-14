@@ -1,3 +1,4 @@
+import { ServicesService } from 'src/app/api/services.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 
@@ -8,9 +9,10 @@ import { ModalController, NavController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController, private navCtrl: NavController) { }
+  constructor(private modalCtrl: ModalController, private navCtrl: NavController, private api: ServicesService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.api.setDBItem("return", false)
   }
 
   async goTo(ruta) {

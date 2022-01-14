@@ -44,19 +44,30 @@ export class RegisterFormComponent implements OnInit {
 
   }
 
-  filter(event) {
+  busquedaFilter = ""
+  psiFilter = ""
+  voltajeFilter = ""
+
+  async filter(event) {
+
     if (event.name == "BUSQUEDA") {
-      this.modelos = this.modelosAll.filter(s => s.modelo.includes(event.value));
-    }
-    if (event.name == "CFM") {
-      this.modelos = this.modelosAll.filter(s => s.CFM.includes(event.value));
+      this.busquedaFilter = event.value
     }
     if (event.name == "PSI") {
-      this.modelos = this.modelosAll.filter(s => s.PSI.includes(event.value));
+      this.psiFilter = event.value
     }
     if (event.name == "VOLTAJE") {
-      this.modelos = this.modelosAll.filter(s => s.VOLTAJE.includes(event.value));
+      this.voltajeFilter = event.value
     }
+
+    this.modelos = this.modelosAll.filter(s => {
+      return s.modelo.includes(this.busquedaFilter) && s.PSI.includes(this.psiFilter) && s.VOLTAJE.includes(this.voltajeFilter)
+    });
+
+
+
+    console.log(this.modelos)
+
   }
 
   sumar(model) {

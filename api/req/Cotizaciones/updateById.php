@@ -8,7 +8,7 @@ include_once __DIR__ . '/../../objects/Historial.php';
 $Historial = new Historial($db);
 $Cotizaciones = new Cotizaciones($db);
 
-if ($common->validateInput($data, "datosForm,datosModelos,direccionArchivo,estado")) {
+if ($common->validateInput($data, "datosForm,datosModelos")) {
 
     $db->beginTransaction();
 
@@ -18,7 +18,9 @@ if ($common->validateInput($data, "datosForm,datosModelos,direccionArchivo,estad
 
     $Historial->idCotizacion = $Cotizaciones->id;
 
+
     $CotizacionesResult = $Cotizaciones->updateById();
+
 
     $HistorialResult = $Historial->createHistorial();
 

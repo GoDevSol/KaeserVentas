@@ -11,11 +11,15 @@ import { RegisterFormComponent } from '../modals/registerForm/register-form.comp
 export class RegisterPage implements OnInit {
 
   constructor(private navCtrl: NavController, private api: ServicesService) { }
+  user: any = {}
 
-  ngOnInit() {
-    this.api.cleanDBItem("modelos")
-    this.api.cleanDBItem("datosForm")
-    this.api.cleanDBItem("postVenta")
+  async ngOnInit() {
+    var user = await this.api.getDBItem("User")
+    this.user = user
+    await this.api.setDBItem("return", false)
+    await this.api.cleanDBItem("modelos")
+    await this.api.cleanDBItem("datosForm")
+    await this.api.cleanDBItem("postVenta")
 
   }
 

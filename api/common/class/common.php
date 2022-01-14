@@ -96,34 +96,51 @@ class Common extends Response
         }
     }
 
-    public function concatenarBind($variable, $param)
+    public function concatenarBind($variable, $param, $where = false)
     {
         $arrayParam = explode(",", $param);
 
         foreach ($arrayParam as $valor) {
-
             $signEqual = explode("=", $valor);
-
             $signMore = explode(">", $valor);
-
             $signLess = explode("<", $valor);
 
             if (count($signEqual) == 2) {
+                if ($where) {
+                    $variable = $variable .  $signEqual[0] . "=:" . $signEqual[0] . " AND ";
+                } else {
 
-                $variable = $variable .  $signEqual[0] . "=:" . $signEqual[0] . ", ";;
+                    $variable = $variable .  $signEqual[0] . "=:" . $signEqual[0] . ", ";
+                }
             } else if (count($signMore) == 2) {
+                if ($where) {
+                    $variable = $variable .  $signEqual[0] . ">:" . $signEqual[0] . " AND ";
+                } else {
 
-                $variable = $variable .  $signEqual[0] . ">:" . $signEqual[0] . ", ";;
+                    $variable = $variable .  $signEqual[0] . ">:" . $signEqual[0] . ", ";
+                }
             } else if (count($signLess) == 2) {
+                if ($where) {
+                    $variable = $variable .  $signEqual[0] . "<:" . $signEqual[0] . " AND ";
+                } else {
 
-                $variable = $variable .  $signEqual[0] . "<:" . $signEqual[0] . ", ";;
+                    $variable = $variable .  $signEqual[0] . "<:" . $signEqual[0] . ", ";
+                }
             } else {
+                if ($where) {
+                    $variable = $variable .  $signEqual[0] . "=:" . $signEqual[0] . " AND ";
+                } else {
 
-                $variable = $variable .  $valor . "=:" . $valor . ", ";;
+                    $variable = $variable .  $valor . "=:" . $valor . ", ";
+                }
             }
         }
 
-        return rtrim($variable, ", ");
+        if ($where) {
+            return rtrim($variable, "AND ");
+        } else
+
+            return rtrim($variable, ", ");
     }
 
 

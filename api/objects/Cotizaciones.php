@@ -14,6 +14,9 @@ class Cotizaciones extends CRUD
     public $datosModelos;
     public $direccionArchivo;
     public $estado;
+    public $idUser;
+    public $estadoC4C;
+
 
 
 
@@ -78,11 +81,18 @@ class Cotizaciones extends CRUD
         return $this->_read("*", "estado=", "", $this, "");
     }
 
+    public function getByEstadoAndUser()
+    {
+        return $this->_read("*", "estado=,idUser=", "", $this, "");
+    }
+
+
+
 
 
     public function createCotizaciones()
     {
-        $insertParams = "datosForm,datosModelos,direccionArchivo";
+        $insertParams = "datosForm,datosModelos,direccionArchivo,idUser";
 
         return $this->_create($insertParams, $this);
     }

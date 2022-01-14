@@ -9,11 +9,12 @@ $Historial = new Historial($db);
 $Cotizaciones = new Cotizaciones($db);
 $Historial->estado = 1;
 
-if ($common->validateInput($data, "datosForm,datosModelos")) {
+if ($common->validateInput($data, "datosForm,datosModelos,idUser")) {
 
     $db->beginTransaction();
 
     $common->inputMappingObj($data, $Cotizaciones);
+
 
     $CotizacionesResult = $Cotizaciones->createCotizaciones();
 

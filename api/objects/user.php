@@ -13,6 +13,7 @@ class User extends CRUD
     public $user;
     public $puesto;
     public $pais;
+    public $rol;
 
     public $password;
 

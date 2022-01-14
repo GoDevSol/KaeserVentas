@@ -11,8 +11,11 @@ export class PostVentaPage implements OnInit {
   modelos: any = []
 
   constructor(private navCtrl: NavController, private api: ServicesService) { }
+  user: any = {}
 
   async ngOnInit() {
+    const user = await this.api.getDBItem("User")
+    this.user = user
     this.modelos = await this.api.readCotizacion({ estado: 1 });
     this.modelos = await this.modelos.map(x => {
       x.datosForm = JSON.parse(x.datosForm.replaceAll('&quot;', '"'))
@@ -26,7 +29,16 @@ export class PostVentaPage implements OnInit {
   }
 
   async goToPostVenta(ruta, modelo) {
+    console.log(modelo)
     await this.api.setDBItem("postVenta", modelo)
+    await this.api.setDBItem("ejecutar", false)
+    this.navCtrl.navigateForward('menu/' + ruta)
+  }
+
+  async ejecutarCotizacion(ruta, modelo) {
+    console.log(modelo)
+    await this.api.setDBItem("postVenta", modelo)
+    await this.api.setDBItem("ejecutar", true)
     this.navCtrl.navigateForward('menu/' + ruta)
   }
 

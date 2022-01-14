@@ -21,8 +21,13 @@ export class postVentaView implements OnInit {
 
   }
 
-  async goTo(ruta) {
-    this.navCtrl.back()
+  async goTo(back) {
+    var respuesta = await this.api.getDBItem("return")
+    if (respuesta) {
+      this.navCtrl.navigateBack('cotizacionesAll');
+    } else {
+      this.navCtrl.navigateBack(back);
+    }
   }
 
   async goForward(ruta) {

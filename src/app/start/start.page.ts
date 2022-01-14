@@ -15,7 +15,7 @@ export class StartPage implements OnInit {
 
   formLogin: FormGroup;
 
-  constructor(private router: Router, private storage: Storage, private formBuilder: FormBuilder, private api: ServicesService, public toastController: ToastController) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private api: ServicesService, public toastController: ToastController) {
 
     this.formLogin = this.formBuilder.group({
       user: new FormControl("", Validators.compose([Validators.required])),
@@ -24,7 +24,9 @@ export class StartPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.api.clearAll()
+
   }
 
   async getToast() {
@@ -42,9 +44,9 @@ export class StartPage implements OnInit {
 
     if (login.message == "Successful login.") {
       const info = await this.api.getInfoUser({ jwt: login.jwt })
-      this.api.setDBItem("JWT", login.jwt);
-      this.api.setDBItem("User", info);
-      this.api.setDBItem("isLogged", true);
+      await this.api.setDBItem("JWT", login.jwt);
+      await this.api.setDBItem("User", info);
+      await this.api.setDBItem("isLogged", true);
       this.formLogin.reset()
 
 

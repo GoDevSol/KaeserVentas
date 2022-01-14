@@ -37,7 +37,11 @@
         <ion-row style="padding: 0px;" (click)="goToPostVenta('solicitudesView',modelo)">
           <ion-col style="text-align: left;">
             <strong style="color: #4C7176;"> Cotizaciòn </strong>
-            <h6 style="margin: 0px;">30040101 - solicitud de cotización - Fénix Media - Air center sx3</h6>
+            <h6 style="margin: 0px;">{{modelo.datosForm.idCliente}} - solicitud de cotización -
+              {{modelo.datosForm.nombreCliente}} - <p style="display: inline;" *ngFor="let mod of modelo.datosModelos">
+                - {{mod.modelo}}
+              <p>
+            </h6>
           </ion-col>
           <ion-col style="text-align: center;" size="3">
             <ion-button (click)="goToPostVenta('solicitudesView',modelo)"

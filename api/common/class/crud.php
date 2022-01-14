@@ -11,7 +11,7 @@ class CRUD extends Common
 
         if (!empty($where)) {
 
-            $where =  $this->concatenarBind($str, $where);
+            $where =  $this->concatenarBind($str, $where, true);
         } else {
 
             $where = " 1 = 1";
@@ -23,6 +23,7 @@ class CRUD extends Common
         }
 
         $str = "SELECT " . $fields . " FROM " . $table . " WHERE " . $where . $orderBy . $limit;
+
 
         return $str;
     }
@@ -99,7 +100,7 @@ class CRUD extends Common
 
         $str = rtrim($str, ", ") . " WHERE ";
 
-        $str = $this->concatenarBind($str, $whereFields);
+        $str =  $this->concatenarBind($str, $whereFields, true);
 
         return $str;
     }
@@ -122,7 +123,8 @@ class CRUD extends Common
     {
         $str = "DELETE FROM " . $table . " WHERE ";
 
-        $str = $this->concatenarBind($str, $whereFields);
+        $str = $this->concatenarBind($str, $whereFields, true);
+
 
         return $str;
     }

@@ -12,15 +12,23 @@ export class postVentaView implements OnInit {
   modelosStorage: any = [];
   datosForm: any = [];
   direccionArchivo: any = "";
+  ejecutar: any = 0;
 
   constructor(private navCtrl: NavController, private api: ServicesService, private modalCtrl: ModalController, public toastController: ToastController) { }
 
   async ngOnInit() {
+
     this.getData();
   }
 
-  async goTo(ruta) {
-    this.navCtrl.back();
+  async goTo(back) {
+    var respuesta = await this.api.getDBItem("return")
+    console.log(respuesta)
+    if (respuesta) {
+      this.navCtrl.navigateBack('menu/' + 'cotizacionesAll');
+    } else {
+      this.navCtrl.navigateBack('menu/' + back);
+    }
   }
 
   async goForward(ruta) {
@@ -43,6 +51,10 @@ export class postVentaView implements OnInit {
 
   }
   async getData() {
+
+    this.ejecutar = await this.api.getDBItem("ejecutar")
+
+
     var postVenta = await this.api.getDBItem('postVenta');
     this.modelosStorage = postVenta.datosModelos
     this.datosForm = postVenta.datosForm
@@ -76,6 +88,28 @@ export class postVentaView implements OnInit {
 
 
   }
+
+
+  async ProcessEjecutar() {
+
+    var postVenta = await this.api.getDBItem('postVenta');
+
+    var data = {
+      id: postVenta.id,
+      datosForm: JSON.stringify(postVenta.datosForm),
+      datosModelos: JSON.stringify(postVenta.datosModelos),
+      direccionArchivo: postVenta.direccionArchivo,
+      estadoC4C: 1,
+      estado: postVenta.estado
+
+    }
+    await this.api.modificarCotizacion(data);
+    this.api.showToast('Post Venta procesada en C4C exitosamente', 'C4C Checklist');
+    this.navCtrl.navigateBack('menu/' + 'register')
+
+
+  }
+
 
 
 

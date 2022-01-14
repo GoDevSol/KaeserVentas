@@ -50,11 +50,15 @@
             <th>#</th>
             <th>Unidades</th>
             <th>Descripcion</th>
+            <th>PSI</th>
+            <th>Voltaje</th>
           </tr>
           <tr *ngFor="let item of modelosStorage; let i = index">
             <td>{{i+1}}</td>
             <td>{{item.cantidad}}</td>
             <td>{{item.modelo}}</td>
+            <td>{{item.PSI}}</td>
+            <td>{{item.VOLTAJE}}</td>
           </tr>
 
         </table>
