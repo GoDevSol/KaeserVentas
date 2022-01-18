@@ -12,15 +12,19 @@ if ($common->validateInput($data, "datosForm,datosModelos")) {
 
     $db->beginTransaction();
 
+
+
     $common->inputMappingObj($data, $Cotizaciones);
+
 
     $common->inputMappingObj($data, $Historial);
 
     $Historial->idCotizacion = $Cotizaciones->id;
 
-
     $CotizacionesResult = $Cotizaciones->updateById();
 
+    $Cotizaciones->setEstadoC4C();
+    $Historial->estadoC4C = $Cotizaciones->estadoC4C;
 
     $HistorialResult = $Historial->createHistorial();
 

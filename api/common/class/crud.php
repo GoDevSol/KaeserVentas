@@ -40,7 +40,6 @@ class CRUD extends Common
 
             $stmt = $this->prepareAndBind($query, $clase, $where);
         }
-
         return $this->returnResponse($stmt);
     }
 

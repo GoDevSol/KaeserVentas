@@ -2,6 +2,11 @@
 require(__DIR__ . '/../../libs/pdf/fpdf.php');
 include_once __DIR__ . '/../../common/headerPOST.php';
 include_once __DIR__ . '/../../common/includeCommon.php';
+include_once __DIR__ . '/../../objects/user.php';
+
+include_once __DIR__ . '/../../objects/Historial.php';
+
+$Cotizaciones = new Historial($db);
 
 class PDF extends FPDF
 {
@@ -67,49 +72,7 @@ class PDF extends FPDF
         $this->ChapterBody($file);
     }
 
-    function LoadData($dataArray)
-    {
 
-        $data = array();
-        $contador = 1;
-
-        foreach ($dataArray as $ite) {
-
-            $item = [];
-            $item[] = $contador;
-            $item[] = substr($ite->date, 0, -9);
-
-            $item[] =  getEstado($ite->estado);
-
-            $stringDescripcion = " ";
-            if (empty($ite->datosForm->oportunidad)) {
-                $ite->datosForm->oportunidad = " ";
-            }
-            if (empty($ite->datosForm->oferta)) {
-                $ite->datosForm->oferta = " ";
-            }
-            if (empty($ite->datosForm->idCliente)) {
-                $ite->datosForm->idCliente = " ";
-            }
-
-            if (empty($ite->datosForm->nombreCliente)) {
-                $ite->datosForm->nombreCliente = " ";
-            }
-
-            $stringDescripcion = $ite->datosForm->oportunidad . " - " . $ite->datosForm->oferta . " - " . $ite->datosForm->idCliente . " - " . $ite->datosForm->nombreCliente . " - ";
-            foreach ($ite->datosModelos as $te) {
-                $stringDescripcion = $stringDescripcion . $te->modelo . " - ";
-            }
-
-            $item[] = $stringDescripcion;
-
-            $data[] = $item;
-            $contador++;
-        }
-
-
-        return $data;
-    }
 
     function CellFit($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '', $scale = false, $force = true)
     {
@@ -181,7 +144,7 @@ class PDF extends FPDF
         $this->SetLineWidth(.3);
         $this->SetFont('', 'B', 14);
         // Cabecera
-        $w = array(10, 20, 25, 140);
+        $w = array(10, 35, 25, 20, 100);
         for ($i = 0; $i < count($header); $i++)
             $this->CellFitSpace($w[$i], 7, $header[$i], 1, 0, 'C', true);
         $this->Ln();
@@ -201,11 +164,76 @@ class PDF extends FPDF
             $this->CellFitSpace($w[0], $height, $row[0], '1', 0, 'C', $fill);
             $this->CellFitSpace($w[1], $height, $row[1], '1', 0, 'C', $fill);
             $this->CellFitSpace($w[2], $height, ($row[2]), '1', 0, 'C', $fill);
-            $this->MultiCell($w[3], 9, ($row[3]) . intdiv(strlen($row[3]), 85), '1', 'C', $fill);
+            $this->CellFitSpace($w[3], $height, ($row[3]), '1', 0, 'C', $fill);
+            $this->MultiCell($w[4], 9, ($row[4]), '1', 'C', $fill);
             $fill = !$fill;
         }
         // Línea de cierre
         $this->Cell(array_sum($w), 0, '', 'T');
+    }
+
+    function LoadData($dataArray, $common, $Cotizaciones, $pdf, $header, $db)
+    {
+
+
+
+        foreach ($dataArray as $ite) {
+
+
+
+            $user = new User($db);
+
+
+
+            $user->id = $ite->idUser;
+
+            $userResult = $user->getById();
+
+
+
+
+            $data = array();
+            $contador = 1;
+
+            $stringDescripcion = " ";
+            if (empty($ite->datosForm->oportunidad)) {
+                $ite->datosForm->oportunidad = " ";
+            }
+            if (empty($ite->datosForm->oferta)) {
+                $ite->datosForm->oferta = " ";
+            }
+            if (empty($ite->datosForm->idCliente)) {
+                $ite->datosForm->idCliente = " ";
+            }
+
+            if (empty($ite->datosForm->nombreCliente)) {
+                $ite->datosForm->nombreCliente = " ";
+            }
+
+            $stringDescripcion = $ite->datosForm->oportunidad . " - " . $ite->datosForm->oferta . " - " . $ite->datosForm->idCliente . " - " . $ite->datosForm->nombreCliente;
+
+            $common->inputMappingObj($ite, $Cotizaciones);
+
+            $Cotizaciones->idCotizacion = $ite->id;
+
+            $CotizacionesResult = $Cotizaciones->getByIdCotizacion();
+
+            foreach ($CotizacionesResult['data'] as $estado) {
+                $item = [];
+                $item[] = $contador;
+                $item[] = $estado['Date'];
+
+                $item[] =  getEstado($estado['estado']);
+                $item[] = $estado['estadoC4C'] == 1 ? 'SI' : 'NO';
+                $item[] = $userResult["data"][0]['nombres'];
+
+                $data[] = $item;
+                $contador++;
+            }
+            $pdf->ChapterTitle($stringDescripcion);
+            $pdf->FancyTable($header, $data);
+            $pdf->Ln(1);
+        }
     }
 }
 
@@ -243,7 +271,7 @@ $pdf = new PDF();
 $title = 'Kaeser Compresores';
 $pdf->SetTitle($title);
 $pdf->AddPage();
-$pdf->ChapterTitle("REPORTE DE COTIZACIONES");
+$pdf->ChapterTitle("REPORTE DE ESTADOS POR COTIZACION");
 $pdf->Ln(1);
 
 $pdf->SetFillColor(255, 255, 255);
@@ -267,12 +295,9 @@ $pdf->Text(160, 48, getEstado($data->estado));
 
 $pdf->Ln();
 $pdf->Ln();
-$header = array('#', 'Fecha', 'Estado', utf8_decode('Descripcion'));
+$header = array('#', 'Fecha', 'Estado', 'E. C4C', utf8_decode('Nombre Usuario'));
 
-$dataArray = $pdf->LoadData($data->modelos);
-$pdf->SetFont('Arial', '', 14);
-$pdf->FancyTable($header, $dataArray);
-
+$dataArray = $pdf->LoadData($data->modelos, $common, $Cotizaciones, $pdf, $header, $db);
 
 $return = $pdf->Output('name.pdf', 'S');
 $return = base64_encode($return);

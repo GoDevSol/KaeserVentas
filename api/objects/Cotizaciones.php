@@ -66,6 +66,7 @@ class Cotizaciones extends CRUD
         return $this->_read("*", "datosForm=", "", $this, "");
     }
 
+
     public function getByDatosModelos()
     {
         return $this->_read("*", "datosModelos=", "", $this, "");
@@ -90,6 +91,11 @@ class Cotizaciones extends CRUD
         return $this->_read("*", "idUser=", "", $this, "");
     }
 
+    function setEstadoC4C()
+    {
+        $this->estadoC4C = $this->_read("*", "id=", "", $this, "")['data'][0]['estadoC4C'];
+    }
+
 
 
 
@@ -109,6 +115,8 @@ class Cotizaciones extends CRUD
 
         return $this->_update($updateParams, $whereParams, $this);
     }
+
+
     function updateByDatosForm()
     {
         $updateParams = $this->createParams($this, "datosForm");

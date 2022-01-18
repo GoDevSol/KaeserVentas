@@ -62,7 +62,7 @@ class Historial extends CRUD
 
     public function getByIdCotizacion()
     {
-        return $this->_read("*", "idCotizacion=", "", $this, "");
+        return $this->_read("*", "idCotizacion=", " Date asc ", $this, "");
     }
 
     public function getByDatosForm()

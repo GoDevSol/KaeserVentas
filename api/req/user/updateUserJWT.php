@@ -18,7 +18,7 @@ if ($common->validateStatus($validate)) {
 
             $userResult = $user->updateUser();
 
-            $userResult["data"] = $common->responseToObject("nombres,correo,puesto,pais,user", $user);
+            $userResult["data"] = $common->responseToObject("nombres,correo,puesto,pais,user,rol", $user);
 
             if ($common->validateStatus($userResult)) {
 
