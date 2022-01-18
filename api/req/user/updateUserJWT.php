@@ -8,8 +8,7 @@ $validate = validateToken($data->jwt, $key);
 $user = new User($db);
 
 if ($common->validateStatus($validate)) {
-    var_dump($validate["data"]->rol);
-    if ($validate["data"]->id == 3) {
+    if ($validate["data"]->rol == 3) {
 
         if ($common->validateInput($data, "nombres,correo,puesto,pais")) {
 
