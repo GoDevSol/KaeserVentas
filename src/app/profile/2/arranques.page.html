@@ -1,0 +1,180 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('register')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('register')">
+        Modificar Perfil</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+
+
+  <ion-card style="--background:#E6E7E7; padding-bottom: 20px;">
+
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        SELECCIONE USUARIO
+      </div>
+    </div>
+
+    <ion-item class="roundedInput">
+      <ion-label position="floating">Usuario:</ion-label>
+      <ion-select clearInput="true" (ionChange)="onChange($event.target)">
+        <ion-select-option *ngFor="let user of usersAll" [value]="user.id">{{user.nombres}}</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+
+  </ion-card>
+
+
+
+
+
+
+
+
+  <ion-card style="--background:#E6E7E7" [hidden]="!datosForm">
+
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        DATOS DE USUARIO
+      </div>
+    </div>
+    <form [formGroup]="formUser">
+      <ion-grid>
+        <ion-row>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">User (Codigo Empleado):</ion-label>
+              <ion-input formControlName="user" clearInput="true" type="text" placeholder="User (Codigo Empleado):">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Nombre Y Apellido:</ion-label>
+              <ion-input formControlName="nombres" clearInput="true" type="text" placeholder="Nombre Y Apellido">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Correo Electronico:</ion-label>
+              <ion-input formControlName="correo" clearInput="true" type="text" placeholder="Correo Electronico"
+                clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Pais:</ion-label>
+              <ion-select formControlName="pais" clearInput="true">
+                <ion-select-option value="GTQ">Guatemala</ion-select-option>
+                <ion-select-option value="CRI">Costa Rica</ion-select-option>
+                <ion-select-option value="SLV">El Salvador</ion-select-option>
+                <ion-select-option value="HNL">Honduras</ion-select-option>
+                <ion-select-option value="PAN">Panama</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Puesto:</ion-label>
+              <ion-input formControlName="puesto" clearInput="true" type="text" placeholder="Puesto" clearInput="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </form>
+
+
+
+
+
+    <div style="text-align: -webkit-center;">
+
+      <ion-button (click)="modificar('register')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">MODIFICAR DATOS</ion-button>
+    </div>
+
+    <div style="text-align: -webkit-center; margin-top: 25px;">
+      <div class="rounded">
+        MODIFICAR CONTRASEÑA
+      </div>
+    </div>
+
+
+    <form [formGroup]="formPassword">
+      <ion-grid>
+        <ion-row>
+
+
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Contraseña Nueva:</ion-label>
+              <ion-input formControlName="password" clearInput="true" type="password" placeholder="Contraseña Nueva">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Confirmacion de Contraseña:</ion-label>
+              <ion-input formControlName="passwordConfirm" clearInput="true" type="password"
+                placeholder="Confirmacion de Contraseña"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </form>
+
+
+    <div style="text-align: -webkit-center;">
+
+      <ion-button (click)="contrasena('register')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">Actualizar contraseña</ion-button>
+    </div>
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

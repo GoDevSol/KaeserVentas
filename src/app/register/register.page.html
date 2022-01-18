@@ -22,9 +22,10 @@
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <!-- <ion-fab-button style="--background: #ffffff;">
+
+      <ion-fab-button (click)="goTo('profileAll')" style="--background: #ffffff;" [hidden]="user.rol != 3">
         <ion-icon name="person-add"></ion-icon>
-      </ion-fab-button> -->
+      </ion-fab-button>
 
       <ion-fab-button (click)="goTo('profile')" style="--background: #ffffff;">
         <ion-icon name="person-circle-outline"></ion-icon>
@@ -34,7 +35,7 @@
 
   <ion-grid style="margin-top: 25px;" style="text-align: -webkit-center;">
     <ion-row>
-      <ion-col [hidden]="user.rol != 1" size-xs="6" size-md="4">
+      <ion-col [hidden]="user.rol == 2" size-xs="6" size-md="4">
         <div class="backgroundOpt">
           <ion-img class="OptImg" src="assets/img/menu/cotizador.png"></ion-img>
           <ion-button (click)="goTo('cotizacion')" cli class="OptButton">Cotizador</ion-button>

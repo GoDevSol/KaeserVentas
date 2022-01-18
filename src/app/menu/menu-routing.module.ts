@@ -9,6 +9,10 @@ const routes: Routes = [
     component: MenuPage,
     children: [
       {
+        path: 'profileAll',
+        loadChildren: () => import('../profile/2/arranques.module').then(m => m.ArranquesPageModule)
+      },
+      {
         path: 'profile',
         loadChildren: () => import('../profile/1/arranques.module').then(m => m.ArranquesPageModule)
       },

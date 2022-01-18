@@ -12,19 +12,15 @@ include_once __DIR__ . '/../../objects/user.php';
 $Cotizaciones = new Cotizaciones($db);
 $validate = validateToken($data->jwt, $key);
 
-if ($validate["data"]->rol == 1) {
-    $Cotizaciones->rol = $validate["data"]->rol;
-    $Cotizaciones->idUser = $validate["data"]->id;
-    $CotizacionesResult = $Cotizaciones->getByUser();
-} else {
-    $CotizacionesResult = $Cotizaciones->getAll();
-}
-
-
-
 if ($common->validateStatus($CotizacionesResult)) {
-
+    if ($validate["data"]->rol == 1) {
+        $Cotizaciones->rol = $validate["data"]->rol;
+        $Cotizaciones->idUser = $validate["data"]->id;
+        $CotizacionesResult = $Cotizaciones->getByUser();
+    } else {
+        $CotizacionesResult = $Cotizaciones->getAll();
+    }
     $common->response200($CotizacionesResult);
 } else {
-    $common->response404("No data found.");
+    $common->response404("JWT Invalido.");
 }

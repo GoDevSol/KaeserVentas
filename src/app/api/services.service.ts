@@ -1,4 +1,4 @@
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -10,7 +10,7 @@ export class ServicesService {
   URL = "https://godevsol.tech/kaeserVentas/api/req/";
   //URL = "https://localhost/kaeserVentas/api/req/";
 
-  constructor(private storage: Storage, public toastController: ToastController) { }
+  constructor(private storage: Storage, public toastController: ToastController, private navCtrl: NavController) { }
 
 
   //DB
@@ -111,10 +111,20 @@ export class ServicesService {
     return await this.resolverSolicitudParams(this.URL + "user/updateUser.php", newJson);
   }
 
+  async modificarUsuarioJWT(json) {
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { ...json, jwt: jwt }
+    return await this.resolverSolicitudParams(this.URL + "user/updateUserJWT.php", newJson);
+  }
+
   async updatePassword(json) {
     var jwt = await this.getDBItem("JWT")
     var newJson = { ...json, jwt: jwt }
     return await this.resolverSolicitudParamsWithOutAData(this.URL + "user/updateUserPassword.php", newJson);
+  }
+
+  async getAllUser() {
+    return await this.resolverSolicitud(this.URL + "user/read.php");
   }
 
 
@@ -175,7 +185,8 @@ export class ServicesService {
       body: JSON.stringify(json)
     })
     var result = await data.json()
-
+    console.log(result)
+    //this.navCtrl.navigateBack('login')
     return result.data;
   }
 

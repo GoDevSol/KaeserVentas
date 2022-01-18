@@ -15,28 +15,33 @@ $Cotizaciones = new Cotizaciones($db);
 
 $user = new User($db);
 
+if ($common->validateStatus($validate)) {
 
-if ($common->validateInput($data, "estado") && $common->validateStatus($validate)) {
+    if ($common->validateInput($data, "estado")) {
 
-    $common->inputMappingObj($data, $Cotizaciones);
-    $Cotizaciones->rol = $validate["data"]->rol;
-    $Cotizaciones->idUser = $validate["data"]->id;
+        $common->inputMappingObj($data, $Cotizaciones);
+        $Cotizaciones->rol = $validate["data"]->rol;
+        $Cotizaciones->idUser = $validate["data"]->id;
 
-    if ($validate["data"]->rol == 1) {
-        $CotizacionesResult = $Cotizaciones->getByEstadoAndUser();
+        if ($validate["data"]->rol == 1) {
+            $CotizacionesResult = $Cotizaciones->getByEstadoAndUser();
+        } else {
+            $CotizacionesResult = $Cotizaciones->getByEstado();
+        }
+
+
+
+        if ($common->validateStatus($CotizacionesResult)) {
+
+            $common->response200($CotizacionesResult);
+        } else {
+            $common->response404("No data found.");
+        }
     } else {
-        $CotizacionesResult = $Cotizaciones->getByEstado();
-    }
 
-
-
-    if ($common->validateStatus($CotizacionesResult)) {
-
-        $common->response200($CotizacionesResult);
-    } else {
-        $common->response404("No data found.");
+        $common->response404("Datos incompletos.");
     }
 } else {
 
-    $common->response404("Datos incompletos.");
+    $common->response404("JWT Invalido");
 }
