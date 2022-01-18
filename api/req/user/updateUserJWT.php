@@ -15,7 +15,9 @@ if ($common->validateStatus($validate)) {
             $db->beginTransaction();
 
             $common->inputMappingObj($data, $user);
+
             $userResult = $user->updateUser();
+
             $userResult["data"] = $common->responseToObject("nombres,correo,puesto,pais,user", $user);
 
             if ($common->validateStatus($userResult)) {

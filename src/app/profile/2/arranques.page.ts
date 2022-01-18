@@ -22,13 +22,13 @@ export class ArranquesPage implements OnInit {
       nombres: new FormControl("", Validators.compose([Validators.required])),
       correo: new FormControl("", Validators.compose([Validators.required])),
       pais: new FormControl("", Validators.compose([Validators.required])),
-      puesto: new FormControl("", Validators.compose([Validators.required]))
+      puesto: new FormControl("", Validators.compose([Validators.required])),
+      rol: new FormControl("", Validators.compose([Validators.required]))
     })
 
     this.formPassword = this.formBuilder.group({
       password: new FormControl("", Validators.compose([Validators.required])),
-      passwordConfirm: new FormControl("", Validators.compose([Validators.required])),
-      passwordOld: new FormControl("", Validators.compose([Validators.required]))
+      passwordConfirm: new FormControl("", Validators.compose([Validators.required]))
     })
 
   }
@@ -57,6 +57,7 @@ export class ArranquesPage implements OnInit {
     this.formUser.controls.correo.setValue(this.datosForm.correo);
     this.formUser.controls.pais.setValue(this.datosForm.pais);
     this.formUser.controls.puesto.setValue(this.datosForm.puesto);
+    this.formUser.controls.rol.setValue(this.datosForm.rol);
 
   }
 
@@ -71,15 +72,18 @@ export class ArranquesPage implements OnInit {
     this.datosForm.nombres = this.formUser.value.nombres
     this.datosForm.pais = this.formUser.value.pais
     this.datosForm.puesto = this.formUser.value.puesto
+    this.datosForm.rol = this.formUser.value.rol
 
     var data = await this.api.modificarUsuarioJWT(this.datosForm);
 
     this.api.showToast("Se ha modificado la informacion exitosamente.", "Datos Usuario")
+
     this.navCtrl.navigateBack('menu/' + ruta)
+
   }
 
   async contrasena(ruta) {
-    var data = await this.api.updatePassword(this.formPassword.value);
+    var data = await this.api.updatePasswordJWT({ ...this.formPassword.value, user: this.datosForm });
     try {
       if (data.status == true) {
         this.api.showToast("Se ha modificado la contraseña exitosamente.", "Datos Usuario")

@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  //URL = "https://localhost/kaeserVentas/api/req/";
+  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController, private navCtrl: NavController) { }
 
@@ -121,6 +121,12 @@ export class ServicesService {
     var jwt = await this.getDBItem("JWT")
     var newJson = { ...json, jwt: jwt }
     return await this.resolverSolicitudParamsWithOutAData(this.URL + "user/updateUserPassword.php", newJson);
+  }
+
+  async updatePasswordJWT(json) {
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { ...json, jwt: jwt }
+    return await this.resolverSolicitudParamsWithOutAData(this.URL + "user/updateUserPasswordJWT.php", newJson);
   }
 
   async getAllUser() {

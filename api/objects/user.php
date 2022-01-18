@@ -65,7 +65,7 @@ class User extends CRUD
 
     function updateUser()
     {
-        $updateParams = "nombres,correo";
+        $updateParams = "nombres,correo,pais,puesto,rol";
 
         $whereParams = "id=";
 
