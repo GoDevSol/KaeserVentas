@@ -12,7 +12,7 @@ include_once __DIR__ . '/../../objects/user.php';
 $Cotizaciones = new Cotizaciones($db);
 $validate = validateToken($data->jwt, $key);
 
-if ($common->validateStatus($CotizacionesResult)) {
+if ($common->validateStatus($validate)) {
     if ($validate["data"]->rol == 1) {
         $Cotizaciones->rol = $validate["data"]->rol;
         $Cotizaciones->idUser = $validate["data"]->id;
