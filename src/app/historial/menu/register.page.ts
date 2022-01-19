@@ -11,7 +11,11 @@ export class RegisterPage implements OnInit {
 
   constructor(private modalCtrl: ModalController, private navCtrl: NavController, private api: ServicesService) { }
 
+  user: any = {}
+
   async ngOnInit() {
+    var user = await this.api.getDBItem("User")
+    this.user = user
     await this.api.setDBItem("return", false)
   }
 

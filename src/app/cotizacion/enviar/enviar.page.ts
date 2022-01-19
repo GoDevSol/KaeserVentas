@@ -50,7 +50,7 @@ export class EnviarPage implements OnInit {
 
     this.api.showToast('Se ha enviado la solicitud de cotizacion exitosamente.', "Cotizacion",)
 
-    var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage, user: user };
+    var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage, user: user, titulo: "COTIZACION" };
 
     this.api.sendMail(confMail)
 

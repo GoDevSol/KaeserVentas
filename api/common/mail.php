@@ -6,8 +6,11 @@ require __DIR__ . '/../libs/mail/src/Exception.php';
 require __DIR__ . '/../libs/mail/src/PHPMailer.php';
 
 require __DIR__ . '/../libs/mail/src/SMTP.php';
+require_once(__DIR__ . '/../libs/dompdf/autoload.inc.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
+
+use Dompdf\Dompdf;
 
 use PHPMailer\PHPMailer\Exception;
 
@@ -52,6 +55,17 @@ function sendMailFunction($htmlFile, $ModifiedArray, $sendTo, $subject, $atachme
     explodeString($mail, $sendTo, 1);
     explodeString($mail, $atachment, 2);
 
+    if (!($atachment == "")) {
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($body);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $output = $dompdf->output();
+        file_put_contents($atachment . '.pdf', $output);
+        $mail->AddAttachment($atachment . '.pdf', '', $encoding = 'base64', $type = 'application/pdf');
+    }
+
 
     $mail->isHTML(true);
 
@@ -59,14 +73,17 @@ function sendMailFunction($htmlFile, $ModifiedArray, $sendTo, $subject, $atachme
 
     $mail->Body = $body;
 
+
     $mail->AltBody = "Actualice su explorador, y comuniquese a servicio al cliente indicando el problema. Error: 305ET";
 
     try {
 
         $mail->send();
+        unlink($atachment . '.pdf');
 
         return array("status" => true, "message" => "Email send successfully.");
     } catch (Exception $e) {
+        var_dump($e);
         return array("status" => false, "message" => "Email not send. Error: " . $e->getMessage());
     }
 }

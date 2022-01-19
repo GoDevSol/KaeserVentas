@@ -24,9 +24,9 @@ export class postVentaView implements OnInit {
   async goTo(back) {
     var respuesta = await this.api.getDBItem("return")
     if (respuesta) {
-      this.navCtrl.navigateBack('cotizacionesAll');
+      this.navCtrl.navigateBack('menu/' + 'cotizacionesAll');
     } else {
-      this.navCtrl.navigateBack(back);
+      this.navCtrl.navigateBack('menu/' + back);
     }
   }
 
@@ -65,16 +65,16 @@ export class postVentaView implements OnInit {
   async Process() {
 
     var postVenta = await this.api.getDBItem('postVenta');
-    if (postVenta.direccionArchivo == "") {
-      this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
-      return
-    }
+    // if (postVenta.direccionArchivo == "") {
+    //   this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
+    //   return
+    // }
 
     var data = {
       id: postVenta.id,
       datosForm: JSON.stringify(postVenta.datosForm),
       datosModelos: JSON.stringify(postVenta.datosModelos),
-      direccionArchivo: postVenta.direccionArchivo,
+      //direccionArchivo: postVenta.direccionArchivo,
       estado: 3
 
     }

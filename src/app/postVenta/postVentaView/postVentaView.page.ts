@@ -18,7 +18,6 @@ export class postVentaView implements OnInit {
 
   async ngOnInit() {
 
-    this.getData();
   }
 
   async goTo(back) {
@@ -67,24 +66,28 @@ export class postVentaView implements OnInit {
   }
 
   async Process() {
-
+    const user = await this.api.getDBItem("User")
     var postVenta = await this.api.getDBItem('postVenta');
-    if (postVenta.direccionArchivo == "") {
-      this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
-      return
-    }
+    // if (postVenta.direccionArchivo == "") {
+    //   this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
+    //   return
+    // }
 
     var data = {
       id: postVenta.id,
       datosForm: JSON.stringify(postVenta.datosForm),
       datosModelos: JSON.stringify(postVenta.datosModelos),
-      direccionArchivo: postVenta.direccionArchivo,
+      //direccionArchivo: postVenta.direccionArchivo,
       estado: 2
 
     }
     await this.api.modificarCotizacion(data);
     this.api.showToast('Post Venta procesada exitosamente', 'Post Venta');
     this.navCtrl.navigateBack('menu/' + 'register')
+
+    var confMail = { url: 'cotizacion.php', datosForm: this.datosForm, modelos: this.modelosStorage, user: user, titulo: "POSTVENTA" };
+
+    this.api.sendMail(confMail)
 
 
   }
@@ -108,6 +111,11 @@ export class postVentaView implements OnInit {
     this.navCtrl.navigateBack('menu/' + 'register')
 
 
+  }
+
+
+  ionViewWillEnter(): void {
+    this.getData();
   }
 
 

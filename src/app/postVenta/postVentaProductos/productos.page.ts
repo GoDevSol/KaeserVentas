@@ -42,11 +42,13 @@ export class ProductosPage implements OnInit {
     this.navCtrl.navigateBack('menu/' + ruta)
   }
 
+
+
   async goForward(ruta) {
     var postVenta = await this.api.getDBItem('postVenta');
     postVenta.datosModelos = this.modelosStorage
     await this.api.setDBItem('postVenta', postVenta);
-    this.navCtrl.navigateForward('menu/' + ruta)
+    this.navCtrl.navigateBack('menu/' + ruta)
   }
 
   async getData() {

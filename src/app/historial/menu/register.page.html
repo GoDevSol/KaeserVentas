@@ -30,7 +30,7 @@
 
     <ion-grid style="margin-top: 25px;" style="text-align: -webkit-center;">
       <ion-row>
-        <ion-col size-xs="6" size-md="6">
+        <ion-col size-xs="6" size-md="6" [hidden]="user.rol == 1">
           <div class="backgroundOpt">
             <ion-img class="OptImg" src="assets/img/menu/cotizador.png"></ion-img>
             <ion-button (click)="goTo('solicitudes')" cli class="OptButton">Solicitudes</ion-button>
