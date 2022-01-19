@@ -83,11 +83,14 @@ export class postVentaView implements OnInit {
     }
     await this.api.modificarCotizacion(data);
     this.api.showToast('Post Venta procesada exitosamente', 'Post Venta');
-    this.navCtrl.navigateBack('menu/' + 'register')
 
     var confMail = { url: 'cotizacion.php', datosForm: this.datosForm, modelos: this.modelosStorage, user: user, titulo: "POSTVENTA" };
 
-    this.api.sendMail(confMail)
+    await this.api.sendMail(confMail)
+
+    this.navCtrl.navigateBack('menu/' + 'register')
+
+
 
 
   }

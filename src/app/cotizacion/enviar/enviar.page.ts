@@ -52,7 +52,7 @@ export class EnviarPage implements OnInit {
 
     var confMail = { url: 'cotizacion.php', id: save.id, datosForm: this.datosForm, modelos: this.modelosStorage, user: user, titulo: "COTIZACION" };
 
-    this.api.sendMail(confMail)
+    await this.api.sendMail(confMail)
 
     this.navCtrl.navigateBack('menu/' + 'register')
   }
