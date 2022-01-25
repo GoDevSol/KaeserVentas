@@ -38,14 +38,15 @@ function sendMailFunction($htmlFile, $ModifiedArray, $sendTo, $subject, $atachme
 
     $mail = new PHPMailer(true);
 
-    $mail->SMTPDebug = 0;
-    $mail->isSMTP();
-    $mail->Host       = $smtp_var_host;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $smtp_var_username;
-    $mail->Password   = $smtp_var_password;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port       = 465;
+
+    $mail->FromName = "kaeserventas@godevsol.tech";
+
+    $mail->addAddress($sendTo, "Recipient Name");
+
+    $mail->isHTML(true);
+
+    $mail->Subject = $subject;
+
 
     $mail->setFrom($email_from_address, $email_from_alias);
 
