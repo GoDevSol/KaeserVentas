@@ -1,0 +1,169 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('checklist')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('checklist')">
+        Check list</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      <span style="font-size: larger;"> Ingresa tus datos y seleeciona los productos</span>
+    </ion-card-content>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        SIGMA AIR MANAGER 4.0
+      </div>
+    </div>
+    <div style="text-align: -webkit-center;">
+      <ion-grid>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-radio-group>
+              <ion-grid>
+
+                <ion-row>
+                  <ion-col>
+                    <ion-label style="margin-right: 20PX;">SIGMA 4.0-4</ion-label>
+                    <ion-radio value="4">SIGMA 4.0-4</ion-radio>
+
+                  </ion-col>
+                  <ion-col>
+                    <ion-label style="margin-right: 20PX;">SIGMA 4.0-8</ion-label>
+                    <ion-radio value="8"></ion-radio>
+                  </ion-col>
+                  <ion-col>
+                    <ion-label style="margin-right: 20PX;">SIGMA 4.0-16</ion-label>
+                    <ion-radio value="16"></ion-radio>
+
+                  </ion-col>
+
+                </ion-row>
+              </ion-grid>
+
+            </ion-radio-group>
+
+          </ion-col>
+
+        </ion-row>
+        <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">PRESION SISTEMA:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="PSI" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">PRESION MAXIMA:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="PSI" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">PRESION MINIMO:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="PSI" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Transductor:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="14.5 a">0 - 1 bar (a) / 14.5 psia</ion-select-option>
+                <ion-select-option value="14.5">0 - 1 bar / 14.5 psi</ion-select-option>
+                <ion-select-option value="87">0 - 6 bar / 87 psi</ion-select-option>
+                <ion-select-option value="145">0 - 10 bar / 145 psi</ion-select-option>
+                <ion-select-option value="232">0 - 16 bar / 232 psi</ion-select-option>
+                <ion-select-option value="363">0 - 25 bar / 363 psi</ion-select-option>
+                <ion-select-option value="464">0 - 32 bar / 464 psi</ion-select-option>
+                <ion-select-option value="653">0 - 45 bar / 653 psi</ion-select-option>
+              </ion-select>
+
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;" size="4">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">No.:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+
+
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">DHS:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">Si</ion-select-option>
+                <ion-select-option value="Normal">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Master Profibus:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">Si</ion-select-option>
+                <ion-select-option value="Normal">No</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+
+
+
+
+
+
+      </ion-grid>
+    </div>
+
+
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goForward('checklist')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ANTERIOR</ion-button>
+      <ion-button (click)="goForward('checklist-third')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+    </div>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

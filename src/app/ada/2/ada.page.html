@@ -81,41 +81,164 @@
         Información del Cliente
       </div>
     </div>
-    <form [formGroup]="formRegister">
+    <ion-grid>
+      <form [formGroup]="formRegister">
 
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
-          placeholder="Ing. de Ventas">
-        </ion-input>
-      </ion-item>
+        <ion-row>
 
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
-          placeholder="Ing. de Ventas">
-        </ion-input>
-      </ion-item>
+          <ion-col size-xs="3" style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">ID del Cliente:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="ID del Cliente">
+              </ion-input>
+            </ion-item>
+          </ion-col>
 
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
-          placeholder="Ing. de Ventas">
-        </ion-input>
-      </ion-item>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Nombre del Cliente:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Nombre del Cliente">
+              </ion-input>
+            </ion-item>
+          </ion-col>
 
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
-          placeholder="Ing. de Ventas">
-        </ion-input>
-      </ion-item>
+        </ion-row>
 
-      <ion-item class="roundedInput">
-        <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
-          placeholder="Ing. de Ventas">
-        </ion-input>
-      </ion-item>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Planta:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Planta">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Direccion de empresa:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Direccion de empresa">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Tipo de industria:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Tipo de industria">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Nombre de contacto(s) y cargo:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Nombre de contacto(s) y cargo">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Correo Electronico:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Correo Electronico">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
 
-    </form>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item size="6" class="roundedInput">
+              <ion-label position="floating">Telefono:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Telefono">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item size="6" class="roundedInput">
+              <ion-label position="floating">Celular:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Celular">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
+
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Requisitos para ingreso:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Requisitos para ingreso">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Periodo de demanda de aire:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Periodo de demanda de aire">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">Rango de horario para instalar/desinstalar:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Rango de horario para instalar/desinstalar">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item size="6" class="roundedInput">
+              <ion-label position="floating">Precio kWh:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Precio kWh">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item size="6" class="roundedInput">
+              <ion-label position="floating">Presion en punto de uso:</ion-label>
+              <ion-input clearInput="true" formControlName="oportunidad" type="text" clearInput="true"
+                placeholder="Presion en punto de uso">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+      </form>
+    </ion-grid>
 
 
     <div style="text-align: -webkit-center;">

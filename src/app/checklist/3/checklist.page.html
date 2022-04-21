@@ -1,0 +1,139 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('checklist-second')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('checklist-second')">
+        Check list</ion-button>
+    </div>
+  </ion-toolbar>
+
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+      <span style="font-size: larger;"> Ingresa tus datos y seleeciona los productos</span>
+    </ion-card-content>
+    <div style="text-align: -webkit-center;">
+      <div class="rounded">
+        SIGMA AIR MANAGER 4.0
+      </div>
+    </div>
+    <div style="text-align: -webkit-center;">
+      <ion-grid *ngFor="let option of options; let i = index">
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">CABLE:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">TRUE</ion-select-option>
+                <ion-select-option value="Normal">FALSE</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">SC1 - DP:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">TRUE</ion-select-option>
+                <ion-select-option value="Normal">FALSE</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">SC2/SCS - DP:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">TRUE</ion-select-option>
+                <ion-select-option value="Normal">FALSE</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label position="floating">SC2/SCS - SNW:</ion-label>
+              <ion-select clearInput="true">
+                <ion-select-option value="Urgente">TRUE</ion-select-option>
+                <ion-select-option value="Normal">FALSE</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Modelo / Marca:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Fecha de Solicitud" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;" size="3">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">P Max:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Fecha de Solicitud" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col style="text-align: center;" size="3">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">Año:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="Fecha de Solicitud" clearInput="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+
+        </ion-row>
+        <ion-row>
+          <ion-col style="text-align: center; margin: 0;">
+            <div style="text-align: -webkit-right;">
+              <ion-button (click)="restar(i)" type="submit"
+                style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">Eliminar</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+      </ion-grid>
+      <div style="text-align: -webkit-right;">
+        <ion-button (click)="sumar()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">Agregar +</ion-button>
+      </div>
+      <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+    </div>
+
+
+    <div style="text-align: -webkit-center;">
+      <ion-button (click)="goForward('checklist-second')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ANTERIOR</ion-button>
+      <ion-button (click)="goForward('checklist-four')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">SIGUIENTE</ion-button>
+    </div>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

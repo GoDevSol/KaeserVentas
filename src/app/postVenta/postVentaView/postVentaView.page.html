@@ -85,8 +85,11 @@
       </div>
 
       <div style="text-align: -webkit-center; margin-top: 20px;">
-        <ion-button (click)="goForward('postVentaEdit')" type="submit"
+        <ion-button *ngIf="opcion == 'postVenta' || opcion == 'C4C' " (click)="goForward('postVentaEdit')" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">EDITAR</ion-button>
+
+        <ion-button *ngIf="opcion == 'version'" (click)="ProcessVersion()" type="submit"
+          style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">Crear Nueva Version</ion-button>
 
 
 
@@ -101,10 +104,10 @@
           type="submit" style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
           AGREGAR ORDEN DE COMPRA</ion-button> -->
 
-        <ion-button [hidden]="ejecutar != false" (click)="Process()" type="submit"
+        <ion-button *ngIf="opcion == 'postVenta'" (click)="Process()" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">PROCESAR</ion-button>
 
-        <ion-button [hidden]="ejecutar == false" (click)="ProcessEjecutar()" type="submit"
+        <ion-button *ngIf="opcion == 'C4C'" (click)="ProcessEjecutar()" type="submit"
           style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">
           EJECUTAR C4C</ion-button>
 

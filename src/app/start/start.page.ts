@@ -43,9 +43,9 @@ export class StartPage implements OnInit {
     const login = await this.api.login(credentials)
 
     if (login.message == "Successful login.") {
-      const info = await this.api.getInfoUser({ jwt: login.jwt })
+
       await this.api.setDBItem("JWT", login.jwt);
-      await this.api.setDBItem("User", info);
+
       await this.api.setDBItem("isLogged", true);
       this.formLogin.reset()
 

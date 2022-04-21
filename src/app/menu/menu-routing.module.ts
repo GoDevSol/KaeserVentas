@@ -37,6 +37,10 @@ const routes: Routes = [
         loadChildren: () => import('../postVenta/postVenta.module').then(m => m.PostVentaPageModule)
       },
       {
+        path: 'postVentaHistorial',
+        loadChildren: () => import('../postVenta/Historial/postVenta.module').then(m => m.PostVentaPageModule)
+      },
+      {
         path: 'postVentaView',
         loadChildren: () => import('../postVenta/postVentaView/postVentaView.module').then(m => m.postVentaViewModule)
       },
@@ -85,21 +89,76 @@ const routes: Routes = [
         loadChildren: () => import('../ada/3/ada.module').then(m => m.AdaPageModule)
       },
       {
+        path: 'checklist',
+        loadChildren: () => import('../checklist/1/checklist.module').then(m => m.ChecklistPageModule)
+      },
+      {
+        path: 'checklist-second',
+        loadChildren: () => import('../checklist/2/checklist.module').then(m => m.ChecklistPageModule)
+      },
+      {
+        path: 'checklist-third',
+        loadChildren: () => import('../checklist/3/checklist.module').then(m => m.ChecklistPageModule)
+      },
+      {
+        path: 'checklist-four',
+        loadChildren: () => import('../checklist/4/checklist.module').then(m => m.ChecklistPageModule)
+      },
+      {
+        path: 'checklist-five',
+        loadChildren: () => import('../checklist/5/checklist.module').then(m => m.ChecklistPageModule)
+      },
+      {
+        path: 'checklist-six',
+        loadChildren: () => import('../checklist/6/checklist.module').then(m => m.ChecklistPageModule)
+      },
+
+      {
         path: 'arranques',
         loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
       },
       {
         path: 'arranques-first',
-        loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
+        loadChildren: () => import('../arranques/2/arranques.module').then(m => m.ArranquesPageModule)
       },
       {
         path: 'arranques-second',
-        loadChildren: () => import('../arranques/1/arranques.module').then(m => m.ArranquesPageModule)
+        loadChildren: () => import('../arranques/3/arranques.module').then(m => m.ArranquesPageModule)
+
+      },
+      {
+        path: 'arranques-third',
+        loadChildren: () => import('../arranques/4/arranques.module').then(m => m.ArranquesPageModule)
+
+      },
+      {
+        path: 'arranques-four',
+        loadChildren: () => import('../arranques/5/arranques.module').then(m => m.ArranquesPageModule)
+
+      },
+      {
+        path: 'arranques-five',
+        loadChildren: () => import('../arranques/6/arranques.module').then(m => m.ArranquesPageModule)
+
+      },
+      {
+        path: 'arranques-six',
+        loadChildren: () => import('../arranques/7/arranques.module').then(m => m.ArranquesPageModule)
+
+      },
+      {
+        path: 'arranques-seven',
+        loadChildren: () => import('../arranques/8/arranques.module').then(m => m.ArranquesPageModule)
 
       },
       {
         path: 'ejecutado-view',
         loadChildren: () => import('../historial/cotizaciones/postVentaView/postVentaView.module').then(m => m.postVentaViewModule)
+
+      },
+      {
+        path: 'calendar',
+        loadChildren: () => import('../calendar/calendar.module').then(m => m.CalendarPageModule)
 
       }
 

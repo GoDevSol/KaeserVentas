@@ -14,8 +14,11 @@ export class RegisterPage implements OnInit {
   user: any = {}
 
   async ngOnInit() {
-    var user = await this.api.getDBItem("User")
-    this.user = user
+
+
+    this.user = await this.api.getInfoUser()
+
+
     await this.api.setDBItem("return", false)
     await this.api.cleanDBItem("modelos")
     await this.api.cleanDBItem("datosForm")

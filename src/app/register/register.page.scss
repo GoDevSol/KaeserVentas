@@ -1,58 +1,51 @@
 ion-content {
-    --background: url('/assets/img/login/background.png') no-repeat center center / cover;
+  --background: url('/assets/img/login/background.png') no-repeat center center / cover;
 }
 
 .scroll-content {
-    margin-bottom: 0!important;
+  margin-bottom: 0 !important;
 }
 
 .rounded {
-border-color: #4C7176;
-border-style: solid;
-width: 90%;
-margin-top: 5px;
-border-radius: 25px;
-padding: 10px;
-border-width: 3px;
-box-shadow: 0px gray;
-color: black;
+  border-color: #4C7176;
+  border-style: solid;
+  width: 90%;
+  margin-top: 5px;
+  border-radius: 25px;
+  padding: 10px;
+  border-width: 3px;
+  box-shadow: 0px gray;
+  color: black;
 }
 
 
 
-.backgroundOpt{
-  width: 100%; 
-  background-color:#E6E7E7;
+.backgroundOpt {
+  width: 100%;
+  background-color: #E6E7E7;
   border-radius: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.OptImg{
+.OptImg {
   width: 45%;
   height: 240px;
 }
 
-.OptButton{
+.OptButton {
   --border-radius: 25px;
-  --padding: 0 25px; 
+  --padding: 0 25px;
   --background: #4C7176;
 }
 
 
 @media only screen and (max-width: 766px) {
-  .OptImg{
+  .OptImg {
     width: 35%;
     height: 130px;
   }
-  .cell-class {
-  border-left: #4C7176 solid;
-  }
 
-}
 
-@media only screen and (min-width: 766px) {
-  .cell-class-border {
-  border-left: #4C7176 solid;
-}
+
 }

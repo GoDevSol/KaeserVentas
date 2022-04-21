@@ -9,6 +9,12 @@ import { NavController } from '@ionic/angular';
 })
 export class PostVentaPage implements OnInit {
   modelos: any = []
+  modelosAll: any = []
+
+  filterText: any = 0
+  estado: any = 0
+
+  fecha: Date
 
   constructor(private navCtrl: NavController, private api: ServicesService) { }
 
@@ -29,5 +35,45 @@ export class PostVentaPage implements OnInit {
     await this.api.setDBItem("postVenta", modelo)
     this.navCtrl.navigateForward('menu/' + ruta)
   }
+
+  async filter(event) {
+
+    if (event.name == "FILTRO") {
+      this.filterText = event.value
+    } else if (event.name == "DATE") {
+      this.fecha = new Date(event.value.replace(/-/g, '\/'));
+    }
+
+    this.modelos = this.modelosAll.filter(s => {
+
+      var bandera = true;
+
+      if (this.fecha != undefined) {
+        if (!isNaN(this.fecha.valueOf())) {
+          var mydate: any = new Date(s.date);
+          var stringDate
+
+          mydate = mydate.getFullYear() + '/' + (mydate.getMonth() + 1) + '/' + mydate.getDate()
+          stringDate = this.fecha.getFullYear() + '/' + (this.fecha.getMonth() + 1) + '/' + this.fecha.getDate()
+
+          if (mydate != stringDate) {
+            bandera = false
+          }
+        }
+      }
+
+      if (this.filterText == "") {
+        return bandera
+      } else {
+        return (s.datosForm.nombreCliente + s.datosForm.idCliente).toUpperCase().includes(this.filterText.toUpperCase())
+      }
+
+
+    });
+
+
+
+  }
+
 
 }

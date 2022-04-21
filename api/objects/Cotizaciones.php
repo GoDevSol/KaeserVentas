@@ -116,6 +116,15 @@ class Cotizaciones extends CRUD
         return $this->_update($updateParams, $whereParams, $this);
     }
 
+    function updateByIdAllDatosForm()
+    {
+        $updateParams = $this->createParams($this, "datosForm,datosModelos");
+
+        $whereParams = "id=";
+
+        return $this->_update($updateParams, $whereParams, $this);
+    }
+
 
     function updateByDatosForm()
     {

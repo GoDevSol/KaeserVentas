@@ -30,6 +30,30 @@
     </ion-card-content>
     <hr style="background: black;">
 
+    <ion-grid>
+      <ion-row style="padding: 0px;">
+        <ion-col style="text-align: left;">
+          <ion-item class="roundedInput">
+            <ion-label position="floating">Filtro:</ion-label>
+            <ion-input (input)="filter($event.target)" clearInput="true" multiple="true" type="text"
+              placeholder="Cliente o Equipos" clearInput="true" name="FILTRO">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-item class="roundedInput">
+            <ion-input (ionChange)="filter($event.target)" clearInput=" true" type="date"
+              placeholder="Fecha de Solicitud" clearInput="true" name="DATE">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <hr style="background: black;">
+
     <ion-item style="--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;"
       *ngFor="let modelo of modelos">
 
@@ -37,25 +61,38 @@
         <ion-row style="padding: 0px;">
           <ion-col style="text-align: left;">
             <strong style="color: #4C7176;"> Cotizaciòn </strong>
-            <h6 style="margin: 0px;">{{modelo.datosForm.idCliente}} - solicitud de cotización -
+            <h6 style="margin: 0px;"> <strong style="font-size: large;">{{modelo.datosForm.oportunidad}} </strong>-
+              {{modelo.datosForm.idCliente}}
+              -
+              solicitud de cotización -
               {{modelo.datosForm.nombreCliente}} - <p style="display: inline;" *ngFor="let mod of modelo.datosModelos">
                 - {{mod.modelo}}
               <p>
             </h6>
           </ion-col>
-          <ion-col style="text-align: center;" size="3">
+          <ion-col style="text-align: center;" size="5">
 
-            <ion-button [hidden]="user.rol != 1" (click)="goToPostVenta('postVentaView',modelo)"
+            <ion-button [hidden]="user.rol == 2" (click)="goToPostVenta('postVentaView',modelo)"
               style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
               Procesar</ion-button>
 
+            <ion-button (click)="crearVersion('postVentaEdit',modelo)"
+              style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
+              Nueva Version</ion-button>
+
+            <ion-button (click)="Historial('postVentaHistorial',modelo,modelo.id)"
+              style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
+              Historial</ion-button>
+
             <div [hidden]="modelo.estadoC4C == 1">
-              <ion-button [hidden]="user.rol == 1 && modelo.estadoC4C != 1"
+              <ion-button [hidden]="user.rol == 2 && modelo.estadoC4C != 1"
                 (click)="ejecutarCotizacion('postVentaView',modelo)"
                 style=" --border-radius: 25px;--padding: 0 20px; --background: #4C7176; font-size: 12px;">
 
                 Ejecutar en C4C</ion-button>
             </div>
+
+
 
           </ion-col>
         </ion-row>

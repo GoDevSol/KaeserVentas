@@ -12,7 +12,7 @@ export class postVentaView implements OnInit {
   modelosStorage: any = [];
   datosForm: any = [];
   direccionArchivo: any = "";
-  ejecutar: any = 0;
+  opcion: any = "";
 
   constructor(private navCtrl: NavController, private api: ServicesService, private modalCtrl: ModalController, public toastController: ToastController) { }
 
@@ -51,8 +51,7 @@ export class postVentaView implements OnInit {
   }
   async getData() {
 
-    this.ejecutar = await this.api.getDBItem("ejecutar")
-
+    this.opcion = await this.api.getDBItem("opcion")
 
     var postVenta = await this.api.getDBItem('postVenta');
     this.modelosStorage = postVenta.datosModelos
@@ -66,7 +65,9 @@ export class postVentaView implements OnInit {
   }
 
   async Process() {
-    const user = await this.api.getDBItem("User")
+
+    const user = await this.api.getInfoUser()
+
     var postVenta = await this.api.getDBItem('postVenta');
     // if (postVenta.direccionArchivo == "") {
     //   this.api.showToast('Por favor ingrese una orden de compra para poder procesar la cotizacion.', 'Post Venta');
@@ -112,8 +113,24 @@ export class postVentaView implements OnInit {
     await this.api.modificarCotizacion(data);
     this.api.showToast('Post Venta procesada en C4C exitosamente', 'C4C Checklist');
     this.navCtrl.navigateBack('menu/' + 'register')
+  }
+
+  async ProcessVersion() {
+
+    var postVenta = await this.api.getDBItem('postVenta');
 
 
+    var data = {
+      id: postVenta.id,
+      datosForm: JSON.stringify(postVenta.datosForm),
+      datosModelos: JSON.stringify(postVenta.datosModelos)
+
+    }
+    await this.api.modificarCotizacionAndVersion(data);
+
+    this.api.showToast('Se ha creado una nueva version para esta cotizacion.', 'Post Venta');
+
+    this.navCtrl.navigateBack('menu/' + 'register')
   }
 
 

@@ -35,6 +35,23 @@ export class CotizacionPage implements OnInit {
 
     this.postVenta = await this.api.getDBItem('postVenta');
     var datosForm = this.postVenta.datosForm
+    console.log(this.postVenta)
+    var opcion = await this.api.getDBItem("opcion")
+
+
+    if (opcion == "version") {
+      try {
+        datosForm.oportunidad = datosForm.oportunidad.split('/')[0];
+        var Cantidad = await this.api.readVersiones({ idCotizacion: this.postVenta.id });
+        datosForm.oportunidad = datosForm.oportunidad + " / " + (Cantidad.length + 1)
+
+      } catch (error) {
+        datosForm.oportunidad = datosForm.oportunidad + " / 1"
+      }
+
+    }
+
+
     this.formRegister.controls.oportunidad.setValue(datosForm.oportunidad);
     this.formRegister.controls.oferta.setValue(datosForm.oferta);
     this.formRegister.controls.idCliente.setValue(datosForm.idCliente);
@@ -50,7 +67,12 @@ export class CotizacionPage implements OnInit {
   }
 
   async goTo(ruta) {
-    this.navCtrl.navigateBack('menu/' + ruta)
+    var opcion = await this.api.getDBItem("opcion")
+    if (opcion == "version") {
+      this.navCtrl.navigateBack('menu/postVenta')
+    } else {
+      this.navCtrl.navigateBack('menu/' + ruta)
+    }
   }
 
   async goForward(ruta) {

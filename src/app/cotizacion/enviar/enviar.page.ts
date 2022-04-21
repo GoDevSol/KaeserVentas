@@ -35,7 +35,7 @@ export class EnviarPage implements OnInit {
 
   async sendMail() {
 
-    const user = await this.api.getDBItem("User")
+    const user = await this.api.getInfoUser()
 
     var data = {
       datosForm: JSON.stringify(this.datosForm),

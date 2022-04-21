@@ -30,6 +30,30 @@
     </ion-card-content>
     <hr style="background: black;">
 
+    <ion-grid>
+      <ion-row style="padding: 0px;">
+        <ion-col style="text-align: left;">
+          <ion-item class="roundedInput">
+            <ion-label position="floating">Filtro:</ion-label>
+            <ion-input (input)="filter($event.target)" clearInput="true" multiple="true" type="text"
+              placeholder="Cliente o Equipos" clearInput="true" name="FILTRO">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-item class="roundedInput">
+            <ion-input (ionChange)="filter($event.target)" clearInput=" true" type="date"
+              placeholder="Fecha de Solicitud" clearInput="true" name="DATE">
+            </ion-input>
+
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <hr style="background: black;">
+
     <ion-item style="--background: #E6E7E7; color:#59595C; border-bottom: dashed #4C7176 1px;"
       *ngFor="let modelo of modelos">
 

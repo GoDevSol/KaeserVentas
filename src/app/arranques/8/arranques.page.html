@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    style="--background:none; border-bottom: #4C7176 solid; border-width: 3px;border-top: solid 5px #4C7176;">
+    <ion-img slot="start" style="height: 50px; margin: 5px;" src="assets/img/principal/logo.png"></ion-img>
+
+    <ion-buttons slot="end">
+      <ion-menu-button style="color:#4C7176;"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar style="--background:none; border: none;">
+    <div>
+      <img (click)="goTo('arranques-five')" style="height: 25px;display: inline; width: 20px; vertical-align: super;"
+        src="assets/img/back.png">
+      <ion-button
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176;  height: 25px;vertical-align: super;"
+        (click)="goTo('arranques-five')">
+        Check List</ion-button>
+    </div>
+  </ion-toolbar>
+
+  <ion-card style="--background:#E6E7E7">
+
+    <ion-card-content style="text-align: justify;line-height: 1;font-size: 14px;">
+    </ion-card-content>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: center;">
+          <ion-item class="roundedInput">
+            <ion-label class="colorGreen" position="floating">Comentarios:</ion-label>
+            <ion-textarea rows="4" clearInput="true" placeholder="Comentarios">
+            </ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+    </ion-grid>
+    <div style="text-align: -webkit-justified; padding: 40px; padding-top: 20px; padding-bottom: 20px;">
+      <span style="color: #4C7176; font-size: larger;"> Tiempo prueba por tecnico aplicaciones (hrs):</span>
+      <ion-grid>
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">De:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="De" clearInput="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <ion-item class="roundedInput">
+              <ion-label class="colorGreen" position="floating">A:</ion-label>
+              <ion-input clearInput="true" type="text" placeholder="A" clearInput="true">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+      </ion-grid>
+    </div>
+
+    <hr style="height: 0px;color:  #4C7176; border:1px dashed;">
+
+
+
+
+
+
+    <div style="text-align: -webkit-center;">
+
+      <ion-button (click)="goForward('arranques-five')" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">ANTERIOR</ion-button>
+
+      <ion-button (click)="generarPDF()" type="submit"
+        style="--border-radius: 25px;--padding: 0 25px; --background: #4C7176">GENERAR PDF</ion-button>
+    </div>
+
+
+
+
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer text-center no-border transparent style="background:white">
+  <div style=" text-align: -webkit-center; border-top: 2px solid #4C7176;">
+    <ion-img style="width: 225px;" src="assets/img/footer/footer.png"></ion-img>
+  </div>
+
+</ion-footer>

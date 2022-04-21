@@ -7,8 +7,8 @@ import { Storage } from '@ionic/storage';
 })
 export class ServicesService {
 
-  URL = "https://godevsol.tech/kaeserVentas/api/req/";
-  //URL = "https://localhost/kaeserVentas/api/req/";
+  //URL = "https://godevsol.tech/kaeserVentas/api/req/";
+  URL = "https://localhost/kaeserVentas/api/req/";
 
   constructor(private storage: Storage, public toastController: ToastController, private navCtrl: NavController) { }
 
@@ -58,8 +58,9 @@ export class ServicesService {
     return await this.resolverSolicitudParamsWithOutAData(this.URL + "login/login.php", credentials);
   }
 
-  async getInfoUser(credentials) {
-    return await this.resolverSolicitudParams(this.URL + "login/validate_token.php", credentials);
+  async getInfoUser() {
+    var JWT = await this.getDBItem("JWT")
+    return await this.resolverSolicitudParams(this.URL + "login/validate_token.php", { jwt: JWT });
   }
 
   //
@@ -75,6 +76,20 @@ export class ServicesService {
 
   async getModelosByTipoEquipo(id) {
     return await this.resolverSolicitudParams(this.URL + "Modelo/readByIdTipoEquipo.php", id);
+  }
+
+
+
+  //VERSIONES
+
+  async readVersiones(state) {
+    var jwt = await this.getDBItem("JWT")
+    var newJson = { ...state, jwt: jwt }
+    return await this.resolverSolicitudParams(this.URL + "Versiones/readByIdCotizacion.php", newJson);
+  }
+
+  async changeVersiones(state) {
+    return await this.resolverSolicitudParams(this.URL + "Versiones/updateVersionAndIdCotizacion.php", state);
   }
 
 
@@ -100,6 +115,11 @@ export class ServicesService {
   async modificarCotizacion(json) {
     return await this.resolverSolicitudParams(this.URL + "Cotizaciones/updateById.php", json);
   }
+
+  async modificarCotizacionAndVersion(json) {
+    return await this.resolverSolicitudParams(this.URL + "Cotizaciones/updateByIdVersion.php", json);
+  }
+
 
 
 
@@ -190,9 +210,15 @@ export class ServicesService {
       method: "POST",
       body: JSON.stringify(json)
     })
-    var result = await data.json()
-    console.log(result)
-    //this.navCtrl.navigateBack('login')
+    var result;
+    try {
+      result = await data.json()
+    } catch (error) {
+      this.navCtrl.navigateBack('login')
+      this.clearAll()
+      document.location.replace(('login'))
+    }
+
     return result.data;
   }
 

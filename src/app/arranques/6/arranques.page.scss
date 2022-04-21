@@ -1,0 +1,73 @@
+
+ion-content {
+    --background: url('/assets/img/login/background.png') no-repeat center center / cover;
+}
+
+  .roundedInput {
+    --border-color: var(--ion-color-medium-shade);
+    --background: #E6E7E7;
+    margin-top: 5px;
+    padding: 0px 15px;
+    font-size: 14px;
+    --border-radius: 15px;
+    --border-width: 1px;
+    --box-shadow: 5px white;
+    --color: black;
+    --highlight-height: 0;    
+   }
+
+   
+
+   .roundedInput.ion-invalid.item-has-focus {
+
+    --border-color: var(--ion-color-danger-shade);
+  }
+  
+  .roundedInput.ion-valid.item-has-focus {
+    --border-color: var(--ion-color-success-shade);
+  }
+  
+  .roundedInput.ion-invalid.ion-dirty {
+    --border-color: var(--ion-color-danger-shade);
+  }
+  
+  .roundedInput.ion-valid.ion-dirty {
+    --border-color: var(--ion-color-success-shade);
+  }
+
+  .rounded {
+border-color: #4C7176;
+border-style: solid;
+width: 90%;
+margin-top: 5px;
+border-radius: 25px;
+padding: 10px;
+border-width: 3px;
+box-shadow: 0px gray;
+color: black;
+}
+  
+.rounded-text {
+
+border-style: solid;
+width: 95%;
+margin-top: 5px;
+border-radius: 10px;
+background-color: rgb(163, 163, 163);
+padding: 10px;
+border-width: 1px;
+box-shadow: 0px gray;
+color: black;
+}
+
+.widhte {
+
+width: 95%;
+
+}
+
+
+
+ion-item.item-has-focus > ion-label{
+  color:  #4C7176  !important;
+}

@@ -61,12 +61,9 @@ export class RegisterFormComponent implements OnInit {
     }
 
     this.modelos = this.modelosAll.filter(s => {
-      return s.modelo.includes(this.busquedaFilter) && s.PSI.includes(this.psiFilter) && s.VOLTAJE.includes(this.voltajeFilter)
+      return s.modelo.toUpperCase().includes(this.busquedaFilter.toUpperCase()) && s.PSI.includes(this.psiFilter) && s.VOLTAJE.includes(this.voltajeFilter)
     });
 
-
-
-    console.log(this.modelos)
 
   }
 

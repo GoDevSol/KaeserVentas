@@ -1,20 +1,32 @@
+import { ServicesService } from 'src/app/api/services.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Storage } from '@ionic/storage';
+import { Router, CanActivate } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntroGuard implements CanActivate {
-  constructor(private storage: Storage, private router: Router) {
+  constructor(private api: ServicesService, private router: Router) {
 
   }
 
   async canActivate() {
-    //route: ActivatedRouteSnapshot,
-    //state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    var IsLogged;
+    try {
+      var Info = await this.api.getInfoUser();
+      IsLogged = true
 
-    return true
+    } catch (error) {
+      IsLogged = false;
+    }
+
+    if (IsLogged) {
+      return true;
+    } else {
+      this.router.navigateByUrl("/login");
+    }
+
   }
 
 }
